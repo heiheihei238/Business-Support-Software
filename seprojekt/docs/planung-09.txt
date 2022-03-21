@@ -1,0 +1,12 @@
+Plannung für Iteration 1
+
+Geplante Funktionen:
+
+Front-End-Aufgaben
+1) Erlauben Sie die Eingabe von persönlichen Informationen in der Benutzeroberfläche, um neue Benutzer anzulegen;
+2) Ermöglichung der Eingabe von Produktinformationen in der Benutzeroberfläche zur Erstellung neuer Produkte;
+3) Auswahl vorhandener Produkte und Mengen in der Benutzeroberfläche für die Erstellung neuer Bestellungen zulassen;
+4) Anzeige vorhandener Benutzerprodukte und Bestellungen als Liste in der Benutzeroberfläche;
+
+Back-End-Aufgaben
+5) 
