@@ -1,0 +1,4 @@
+22.03 	Umgebung eingerichtet, Halloworld läuft in Intellij idea erfolgreich;
+  	"iteration1" datenbank erstellen, drei entities "Kunde", "Product", "Bestellung" erstellen.
+23.03	web-inf datei korrigieren ->jsf-Tags können erfolgreich auf der Seite gerendert werden.
+	die Basisfunktion für Kunde im service implementieren: Alle Kunden finden; Kundendaten aktualisieren; Neue Kunde hinzufügen; Kunde nach Kennung suchen; Kunde löschen

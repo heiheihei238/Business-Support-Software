@@ -11,23 +11,11 @@
 </h:head>
 
 <h:body>
-    <h1>hello,world</h1>
-    <h:outputText value = "Hello World!" />
-    #{testOverview.getHello()}
-    <h:dataTable value="#{kundeOverview.all}" var="kunde">
-
-        <h:column>
-            <f:facet name="header" style="padding=20px 50px">kunde_id</f:facet>
-            #{kunde.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">birthday</f:facet>
-            #{kunde.birthday}
-        </h:column>
-        <h:column>
-            <f:facet name="header">address</f:facet>
-            #{kunde.address}
-        </h:column>
-    </h:dataTable>
+    <h1>sale-system</h1>
+    <ul class="body">
+        <li><a href="kunde.xhtml">kunde</a></li>
+        <li><a href="product.xhtml">product</a></li>
+        <li><a href="bestellung.xhtml">bestellung</a></li>
+    </ul>
 </h:body>
 </html>

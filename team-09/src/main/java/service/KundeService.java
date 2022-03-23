@@ -12,7 +12,7 @@ public class KundeService {
     @PersistenceContext
     EntityManager em;
 
-    public Kunde find(Integer kunde_id) {
+    public Kunde find(Long kunde_id) {
         return em.find(Kunde.class,kunde_id);
     }
 
@@ -24,10 +24,9 @@ public class KundeService {
         em.remove(em.merge(kunde));
     }
 
-//    public void save(Kunde kunde) {
-//        kunde.setLast_update();
-//        em.persist(kunde);
-//    }
+    public void save(Kunde kunde) {
+        em.persist(kunde);
+    }
 
     public List<Kunde> all() {
         return em.createQuery("select a from Kunde a", Kunde.class).getResultList();
