@@ -11,10 +11,38 @@ import java.util.Date;
 public class Kunde {
     @GeneratedValue
     @Id
-    Long id;
+    private Long id;
 
-    Date birthday;
+    private Date birthday;
 
-    String address;
+    private String address;
+
+    public Kunde() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 
 }
