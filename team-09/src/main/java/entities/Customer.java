@@ -2,10 +2,11 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "t_kunde")
-public class Kunde {
+@Table(name = "t_customer")
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +19,10 @@ public class Kunde {
 
     private String address;
 
-    public Kunde() {
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
+
+    public Customer() {
     }
 
     public Long getId() {

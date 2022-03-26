@@ -19,8 +19,8 @@
 <!--    </persistence-unit>-->
 
     <persistence-unit name="postgresql-jpa">
-        <class>entities.Bestellung</class>
-        <class>entities.Kunde</class>
+        <class>entities.Order</class>
+        <class>entities.Customer</class>
         <class>entities.Product</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->

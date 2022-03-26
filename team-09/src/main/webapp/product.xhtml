@@ -13,36 +13,35 @@
 <h:body>
 
     <h1>product</h1>
-<!--    <h:dataTable value="#{kundeOverview.all}" var="kunde">-->
+    <h:dataTable value="#{productOverview.all}" var="product">
 
-<!--        <h:column>-->
-<!--            <f:facet name="header" style="padding=20px 50px">id</f:facet>-->
-<!--            #{kunde.id}-->
-<!--        </h:column>-->
-<!--        <h:column>-->
-<!--            <f:facet name="header" style="padding=20px 50px">name</f:facet>-->
-<!--            #{kunde.name}-->
-<!--        </h:column>-->
-<!--        <h:column>-->
-<!--            <f:facet name="header">birthday</f:facet>-->
-<!--            #{kunde.birthday}-->
-<!--        </h:column>-->
-<!--        <h:column>-->
-<!--            <f:facet name="header">kunde</f:facet>-->
-<!--            #{kunde.address}-->
-<!--        </h:column>-->
-<!--    </h:dataTable>-->
+        <h:column>
+            <f:facet name="header" style="padding=20px 50px">id</f:facet>
+            #{product.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header" style="padding=20px 50px">name</f:facet>
+            #{product.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">price</f:facet>
+            #{product.price}
+        </h:column>
+        <h:column>
+            <f:facet name="header">amount</f:facet>
+            #{product.amount}
+        </h:column>
+    </h:dataTable>
 
 
-<!--    <h:form id="update_form">-->
-<!--        <h:panelGrid columns="2" styleClass="table_all">-->
-<!--            name: <h:inputText value="#{kundeOverview.kunde.name}" style="border-radius:7px;width: 200px;padding: 2px;"/>-->
-<!--            birthday: <h:inputText value="#{kundeOverview.kunde.birthday}" style="border-radius:7px;width: 200px;padding: 2px;">-->
-<!--            <f:convertDateTime type="date" pattern="yyyy-MM-dd" /></h:inputText>-->
-<!--            address: <h:inputText value="#{kundeOverview.kunde.address}" style="border-radius:7px;width: 200px;padding: 2px;"/>-->
+    <h:form id="update_form">
+        <h:panelGrid columns="2" styleClass="table_all">
+            name: <h:inputText value="#{productOverview.product.name}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+            amount: <h:inputText value="#{productOverview.product.amount}" style="border-radius:7px;width: 200px;padding: 2px;" />
+            price: <h:inputText value="#{productOverview.product.price}" style="border-radius:7px;width: 200px;padding: 2px;"/>
 
-<!--            <h:commandButton styleClass="button" action="#{kundeOverview.save()}" value="Add Kunde"/>-->
-<!--        </h:panelGrid>-->
-<!--    </h:form>-->
+            <h:commandButton styleClass="button" action="#{productOverview.save()}" value="Add Product"/>
+        </h:panelGrid>
+    </h:form>
 </h:body>
 </html>
