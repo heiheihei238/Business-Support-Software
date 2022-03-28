@@ -19,6 +19,7 @@ public class OrderItem {
     Order order;
 
     public OrderItem() {
+        product = new Product();
     }
 
     public Long getId() {

@@ -41,8 +41,8 @@ public class ProductOverview {
         return null;
     }
 
-    public void remove() {
-        ps.remove(this.product);
+    public void remove(Product product) {
+        ps.remove(product);
     }
 
     public Product find(Long product_id) {
