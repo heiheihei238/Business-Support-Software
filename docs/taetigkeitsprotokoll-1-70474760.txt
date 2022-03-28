@@ -3,8 +3,8 @@
 23.03	web-inf datei korrigieren ->jsf-Tags können erfolgreich auf der Seite gerendert werden.
 	die Basisfunktion für Kunde im service implementieren: Alle Kunden finden; 
 	Kundendaten aktualisieren; Neue Kunde hinzufügen; Kunde nach Kennung suchen; Kunde löschen
-25.03	die Funktion "Hinzufügen einer Kunde" und "alle Kunde zeigen"  auf der website implementieren.
-	die Funktion "Hinzufügen eines Produktes" und "alle Produkte zeigen"  auf der website implementieren.
-26.03	Aufteilung der Tabelle bestellung in die Tabellen order und orderitem, 
-	Änderung einiger Eigenschaften der Tabellen customer und product 
-	und Änderung einiger der Beziehungen zwischen den Tabellen.
+25.03	die Funktion "Hinzufügen einer Kunde" und "alle Kunde anzeigen"  auf der website implementieren.
+	die Funktion "Hinzufügen eines Produktes" und "alle Produkte anzeigen"  auf der website implementieren.
+28.03	Entity "Bestellung" rename als "Order", und die Beziehung zwischen drei Tabellen wurde verändert.
+	die Funktion "Löschen einer Kunde", "Löschen eines Produktes", "Hinzufügen einer Bestellung", 
+	"Löschen einer Bestellung", "alle Bestellung anzeigen" auf der website implementieren.

@@ -41,8 +41,8 @@ public class CustomerOverview {
         return null;
     }
 
-    public void remove() {
-        cs.remove(this.customer);
+    public void remove(Customer customer) {
+        cs.remove(customer);
     }
 
     public Customer find(Long customer_id) {

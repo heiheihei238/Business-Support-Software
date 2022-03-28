@@ -28,31 +28,22 @@
             #{order.time}
         </h:column>
         <h:column>
-            <f:facet name="header">order</f:facet>
-            <h:dataTable value="#{order.orderItems}" var="orderitem">
-                <h:column>
-                    <f:facet name="header" style="padding=20px 50px">name</f:facet>
-                    #{orderitem.product.name}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">price</f:facet>
-                    #{orderitem.product.price}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">amount</f:facet>
-                    #{orderitem.amount}
-                </h:column>
-            </h:dataTable>
+            <f:facet name="header">product</f:facet>
+            #{order.product.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">amount</f:facet>
+            #{order.amount}
         </h:column>
     </h:dataTable>
 
 
     <h:form id="update_form">
         <h:panelGrid columns="2" styleClass="table_all">
-            customer_id: <h:inputText value="#{orderOverview.order.customer.id}" style="border-radius:7px;width: 200px;padding: 2px;"/>
-            product_id: <h:inputText value="#{orderOverview.orderItem.product.id}" style="border-radius:7px;width: 200px;padding: 2px;"/>
-            amount: <h:inputText value="#{orderOverview.orderItem.amount}" style="border-radius:7px;width: 200px;padding: 2px;"/>
-            <h:commandButton styleClass="button" action="#{orderOverview.save()}" value="Add Kunde"/>
+            customer_id: <h:inputText value="#{orderOverview.order.customer_id}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+            product_id: <h:inputText value="#{orderOverview.order.product_id}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+            amount: <h:inputText value="#{orderOverview.order.amount}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+            <h:commandButton styleClass="button" action="#{orderOverview.save()}" value="Add order"/>
         </h:panelGrid>
     </h:form>
 </h:body>

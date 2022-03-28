@@ -13,16 +13,23 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    private Long customer_id;
+
+    private Long product_id;
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name = "customer_id", insertable=false, updatable=false)
     private Customer customer;
 
     private Timestamp time;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
+    private Long amount;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", insertable=false, updatable=false)
+    private Product product;
 
     public Order() {
-        customer = new Customer();
     }
 
     public Long getId() {
@@ -49,11 +56,35 @@ public class Order {
         this.time = time;
     }
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public Long getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(Long customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public Long getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Long product_id) {
+        this.product_id = product_id;
     }
 }

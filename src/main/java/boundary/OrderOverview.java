@@ -2,13 +2,13 @@ package boundary;
 
 
 import entities.Order;
-import entities.OrderItem;
+import service.CustomerService;
 import service.OrderService;
+import service.ProductService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -17,18 +17,12 @@ import java.util.logging.Logger;
 public class OrderOverview {
 
     private Order order;
-    private List<OrderItem> orderItems;
-    private OrderItem orderItem;
-
-
 
     @Inject
-    OrderService ps;
+    OrderService os;
 
     public OrderOverview() {
         order = new Order();
-        orderItems = new ArrayList<OrderItem>();
-        orderItem = new OrderItem();
     }
 
     public Order getOrder() {
@@ -39,46 +33,26 @@ public class OrderOverview {
         this.order = order;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
-    }
-
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItem) {
-        this.orderItems = orderItem;
-    }
-
-
-
     public Order update() {
-        return ps.update(this.order);
+        return os.update(this.order);
     }
 
     public String save() {
-        this.orderItems.add(orderItem);
-        order.setOrderItems(this.orderItems);
         Logger.getLogger(OrderOverview.class.getCanonicalName()).info("order saved: "+ order);
-        ps.save(order);
+        os.save(order);
         return null;
     }
 
     public void remove() {
-        ps.remove(this.order);
+        os.remove(this.order);
     }
 
     public Order find(Long order_id) {
-        return ps.find(order_id);
+        return os.find(order_id);
     }
 
     public List<Order> getAll() {
-        return ps.all();
+        return os.all();
     }
 
 }

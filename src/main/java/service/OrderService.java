@@ -1,10 +1,13 @@
 package service;
 
 import entities.Order;
+import entities.Product;
 
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -25,7 +28,15 @@ public class OrderService {
     }
 
     public void save(Order order) {
+        Product product = em.find(Product.class, order.getProduct_id());
+        if (product.getAmount() >= order.getAmount()) {
+            product.setAmount(product.getAmount() - order.getAmount());
+            em.merge(product);
+            order.setTime(new Timestamp(System.currentTimeMillis()));
+        }
+
         em.persist(order);
+
     }
 
     public List<Order> all() {

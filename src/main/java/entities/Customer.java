@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class Customer {
 
     private String address;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "customer", cascade=CascadeType.PERSIST)
+    private List<Order> orders = new ArrayList<>();
 
     public Customer() {
     }
@@ -55,5 +56,13 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

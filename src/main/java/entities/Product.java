@@ -1,6 +1,8 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "t_product")
@@ -16,16 +18,8 @@ public class Product {
 
     private Long amount;
 
-    @OneToOne
-    private OrderItem orderItem;
-
-    public OrderItem getOrderItem() {
-        return orderItem;
-    }
-
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
-    }
+    @OneToMany(mappedBy = "product", cascade=CascadeType.PERSIST)
+    private List<Order> orders = new ArrayList<>();
 
     public Product() {
     }
@@ -60,5 +54,13 @@ public class Product {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
