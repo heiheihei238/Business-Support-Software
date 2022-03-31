@@ -4,6 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+
+
+
+
       lang="en">
 
 <h:head>
@@ -12,22 +16,42 @@
 </h:head>
 
 <h:body>
+
     <div class="bodyStyle">
+
         <img alt="" src="resources/image/Ostfalia-Hochschule-fur-angewandte-Wissenschaften.jpg" width="25%" height="25%" align="right"/>
         <br/><br/><br/><br/><br/><br/>
         <div class="title">Customer</div>
         <div style="width: 100%;height: 3px; border: 2px solid black;float: left;background-color: black;margin-bottom: 20px;margin-top: 20px" align="left"></div>
         <h:form id="update-form">
-            <h:panelGrid columns="2" styleClass="table_all" style="margin: auto" cellspacing="15px">
+            <h:panelGrid columns="3" styleClass="table_all" style="margin: auto" cellspacing="15px">
                 <h:outputLabel styleClass="text">Name:</h:outputLabel>
-                <h:inputText value="#{customerOverview.customer.name}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+
+                <h:inputText value="#{customerOverview.customer.name}"
+                             id="uname"
+                             required="true"
+                             requiredMessage="Username is required"
+
+                             style="border-radius:7px;width: 200px;padding: 2px;">
+                             <f:validateLength  for="uname" minimum="1"/>
+                </h:inputText>
+                <h:message for="uname" style="color:red" />
                 <h:outputLabel styleClass="text">Birthday:</h:outputLabel>
-                <h:inputText value="#{customerOverview.customer.birthday}" style="border-radius:7px;width: 200px;padding: 2px;">
+
+
+                <h:inputText id="date" value="#{customerOverview.customer.birthday}" placeholder='YYYY-MM-DD' style="border-radius:7px;width: 200px;padding: 2px;">
                     <f:convertDateTime type="date" pattern="yyyy-MM-dd" /></h:inputText>
+                <h:message for="date" style="color:red" />
+
+
                 <h:outputLabel styleClass="text">Address:</h:outputLabel>
                 <h:inputText value="#{customerOverview.customer.address}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+
             </h:panelGrid>
+
+
             <h:commandButton styleClass="add" action="#{customerOverview.save()}" value="Submit" style="border-radius: 5px"/>
+
         </h:form>
         <div style="width: 100%;height: 3px;border: 2px solid black;float: left;background-color: black;margin-bottom: 20px;margin-top: 20px" align="left"></div>
 
@@ -52,6 +76,7 @@
                 <f:facet name="header">actions</f:facet>
                 <h:form>
                     <h:commandButton value="delete" action="#{customerOverview.remove(customer)}" style="border-radius: 5px"/>
+
                 </h:form>
             </h:column>
         </h:dataTable>
