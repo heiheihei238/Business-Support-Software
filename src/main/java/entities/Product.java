@@ -6,6 +6,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_product")
+@NamedQuery(query = "Select p from Product p where p.name = :name and p.price = :price", name = "find product by name and price")
+
 public class Product {
 
     @Id
