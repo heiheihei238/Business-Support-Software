@@ -5,7 +5,7 @@
     font-size: 100px;
     text-align: center;
     width: 100%;
-    margin-top: 400px;
+    margin-top: 350px;
     color: transparent;
     background: linear-gradient(15deg,white,gray,black,gray,white);
     -webkit-background-clip: text;
@@ -19,4 +19,16 @@
     color: white;
     text-align: right;
     margin-top: 400px;
+}
+
+.navButton {
+    margin-left: 10px;
+    padding: 10px 60px;
+    background: linear-gradient(15deg,gray,white,gray);
+}
+
+.container{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
 }

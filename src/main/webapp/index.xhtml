@@ -11,13 +11,20 @@
     <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 
-<h:body style="background-image: url('resources/image/thumb-1920-373654.jpg'); background-size: cover;height: 400px">
+<h:body style="background-image: url('resources/image/thumb-1920-373654.jpg'); background-size: cover;">
     <div class="text2">WELCOME TO TEAM 09</div>
-    <div class="text1">Designed and produced by Tang,Wang,Li,Chen</div>
-    <ul class="body">
+    <!--<ul class="navigation">
         <li><a href="customer.xhtml">customer</a></li>
         <li><a href="product.xhtml">product</a></li>
         <li><a href="bestellung.xhtml">bestellung</a></li>
-    </ul>
+    </ul>-->
+    <div class="container">
+
+    <h:button styleClass="navButton" value="customer" outcome="customer"/>
+    <h:button styleClass="navButton" value="Orders" outcome="bestellung"/>
+    <h:button styleClass="navButton" value="product" outcome="product"/>
+    </div>
+
+    <div class="text1">Designed and produced by Tang,Wang,Li,Chen</div>
 </h:body>
 </html>
