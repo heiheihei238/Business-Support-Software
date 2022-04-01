@@ -51,8 +51,8 @@ public class OrderOverview {
         return null;
     }
 
-    public void remove() {
-        os.remove(this.order);
+    public void remove(Order order) {
+        os.remove(order);
     }
 
     public Order find(Long order_id) {
