@@ -34,3 +34,9 @@
     height: 40px;
     background: linear-gradient(15deg,gray,white,gray);
 }
+
+.error-message{
+    color: red;
+    list-style: none;
+    text-align: center;
+}

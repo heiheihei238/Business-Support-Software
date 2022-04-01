@@ -27,6 +27,7 @@
                 <h:inputText value="#{orderOverview.order.amount}" style="border-radius:7px;width: 200px;padding: 2px;"/>
             </h:panelGrid>
             <h:commandButton styleClass="add" action="#{orderOverview.save()}" value="Submit" style="border-radius: 5px"/>
+            <h:messages globalOnly="true" styleClass="error-message"/>
         </h:form>
         <div style="width: 100%;height: 3px;border: 2px solid black;float: left;background-color: black;margin-bottom: 20px;margin-top: 20px" align="left"></div>
 

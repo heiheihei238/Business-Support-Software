@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
@@ -14,8 +13,8 @@
 
         </properties>
     </persistence-unit>
-</persistence>-->
-
+</persistence>
+<!--
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
@@ -26,18 +25,18 @@
         <class>entities.Customer</class>
         <class>entities.Product</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/iteration1" /> <!-- BD Mane -->
-            <property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->
-            <property name="javax.persistence.jdbc.password" value="192837465" /> <!-- DB Password -->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> &lt;!&ndash; DB Driver &ndash;&gt;
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/iteration1" /> &lt;!&ndash; BD Mane &ndash;&gt;
+            <property name="javax.persistence.jdbc.user" value="postgres" /> &lt;!&ndash; DB User &ndash;&gt;
+            <property name="javax.persistence.jdbc.password" value="192837465" /> &lt;!&ndash; DB Password &ndash;&gt;
 
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/> <!-- DB Dialect -->
-            <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/> &lt;!&ndash; DB Dialect &ndash;&gt;
+            <property name="hibernate.hbm2ddl.auto" value="update" /> &lt;!&ndash; create / create-drop / update &ndash;&gt;
 
-            <property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
-            <property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
+            <property name="hibernate.show_sql" value="true" /> &lt;!&ndash; Show SQL in console &ndash;&gt;
+            <property name="hibernate.format_sql" value="true" /> &lt;!&ndash; Show SQL formatted &ndash;&gt;
         </properties>
     </persistence-unit>
 
 
-</persistence>
+</persistence>-->

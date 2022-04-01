@@ -27,15 +27,17 @@ public class OrderService {
         em.remove(em.merge(order));
     }
 
-    public void save(Order order) {
+    public boolean save(Order order) {
         Product product = em.find(Product.class, order.getProduct_id());
         if (product.getAmount() >= order.getAmount()) {
             product.setAmount(product.getAmount() - order.getAmount());
             em.merge(product);
             order.setTime(new Timestamp(System.currentTimeMillis()));
+            em.persist(order);
+            return true;
         }
+            return false;
 
-        em.persist(order);
 
     }
 
