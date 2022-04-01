@@ -74,10 +74,10 @@
                 <f:facet name="header">actions</f:facet>
                 <h:form>
                     <h:commandButton value="delete" action="#{customerOverview.remove(customer)}" style="border-radius: 5px"/>
-
                 </h:form>
             </h:column>
         </h:dataTable>
+        <h:messages globalOnly="true" styleClass="error-message"/>
         <br/><br/><br/>
         <h:button styleClass="add" value="Return to Menu" outcome="index"/>
     </div>
