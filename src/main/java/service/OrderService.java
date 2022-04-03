@@ -1,5 +1,6 @@
 package service;
 
+import entities.Customer;
 import entities.Order;
 import entities.Product;
 
@@ -29,17 +30,19 @@ public class OrderService {
 
     public boolean save(Order order) {
         Product product = em.find(Product.class, order.getProduct_id());
-        if (product.getAmount() >= order.getAmount()) {
-            product.setAmount(product.getAmount() - order.getAmount());
-            em.merge(product);
-            order.setTime(new Timestamp(System.currentTimeMillis()));
-            em.persist(order);
-            return true;
+        Customer customer = em.find(Customer.class, order.getCustomer_id());
+        if (product == null || customer == null) return false;
+        else if (product.getAmount() >= order.getAmount()){
+                product.setAmount(product.getAmount() - order.getAmount());
+                em.merge(product);
+                order.setTime(new Timestamp(System.currentTimeMillis()));
+                em.persist(order);
+                return true;
+            }
+            else return false;
         }
-            return false;
 
 
-    }
 
     public List<Order> all() {
         return em.createQuery("select a from Order a", Order.class).getResultList();
