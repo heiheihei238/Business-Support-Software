@@ -11,7 +11,10 @@
     <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 
+<h:body style="background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); background-size: cover;">
+<!--
 <h:body style="background-image: url('resources/image/thumb-1920-373654.jpg'); background-size: cover;">
+-->
     <div class="text2">WELCOME TO TEAM 09</div>
     <!--<ul class="navigation">
         <li><a href="customer.xhtml">customer</a></li>
@@ -20,9 +23,9 @@
     </ul>-->
     <div class="container">
 
-    <h:button styleClass="navButton" value="customer" outcome="customer"/>
-    <h:button styleClass="navButton" value="Orders" outcome="bestellung"/>
-    <h:button styleClass="navButton" value="product" outcome="product"/>
+    <h:button styleClass="buttonCustomer" value="Customer" outcome="customer"/>
+    <h:button styleClass="buttonBestellung" value="Orders" outcome="bestellung"/>
+    <h:button styleClass="buttonProdukt" value="Product" outcome="product"/>
     </div>
     <div class="text1">Designed and produced by Tang,Wang,Li,Chen</div>
 </h:body>
