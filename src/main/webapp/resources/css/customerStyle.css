@@ -13,13 +13,17 @@
     font-family: Arial, serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .bodyStyle{
+    background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%) ;
+    /*
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
     background-image: url("../image/v2-b731aa1122969d78b5366fbc2acf4875_1440w.jpg");
-    background-size: auto;
-    background-repeat: no-repeat;
+    */
+    background-size: cover;
+    /*background-repeat: no-repeat;*/
 }
 
 .add{
@@ -39,4 +43,8 @@
     color: red;
     list-style: none;
     text-align: center;
+}
+
+.requiredMessage{
+    color: red;
 }
