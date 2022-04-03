@@ -1,0 +1,28 @@
+                                                             Reflexion
+Anordnung der Aufgabenteilung:
+
+Yinghao Wang:
+     1.Aufbau des UI inklusive Kunde, Bestellung, Product und Homepage；
+     2.Optimierung der UI-Seiten auf der UI-Homepage；
+     3.Verschönerung der Präsentation der drei Tabellen；
+     4.Bildressourcen Auffinden und Importieren
+     5.Planung.txt erstellen;
+
+Kehao Li:
+     1.Mit der Database beschäftigen: package entities erstellen und programmieren;
+     2.CRUD implementieren: package service erstellen und programmieren. die CRUD Methode für overview Klasse anbieten;
+     3.CRUD Methode für Webseite(.xhtml Datei) anbieten;
+     4.Grund Datatable und “form für Hinzufügen”(kein CSS style) im der .xhtml Datei erstellen.
+
+Shijie Tang:
+     1.Konfiguration der Projekt Konfigurationsdateien, Gesamtprojekt Aufbau: persistence.xml,  web.xml konfigurieren, Das Projekt Verzeichnis erstellen, “hello world” läuft erfolgreich;
+     2.CRD Methode in der Webseite testen und die Methode im Service optimieren → Behandlung von Ausnahmen bei der Datenbankverarbeitung;
+     3.Optimierung der Navigationslinks.
+
+Ting Chen：
+     1.verschiedener möglicher Benutzeraktionen auf der Webseite testen →  die Funktion “Prüfen des Formulars auf nicht leere Felder implementieren;
+     2.Entwurf von Seiten Prototypen;
+     3.Optimierung der Nutzererfahrung auf der Seite: Änderungen der Position und Größe einiger Komponenten auf der Seite und der Klickwirkung von Schaltflächen.
+
+Abweichung vom Plan：
+Die Grundvoraussetzungen für diese Iteration sind erfüllt, aber es gibt noch Optimierungsmängel.Wir haben einen Auftrag so eingerichtet, dass er nur eine Position enthält, und obwohl dies im ursprünglichen Plan nicht erwähnt wurde, sind wir der Meinung, dass dies in der Praxis verbessert werden muss, und darüber hinaus gibt es keine anderen Merkmale, die vom Plan abweichen.
