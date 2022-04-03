@@ -13,18 +13,24 @@
 
 <h:body>
     <div class="bodyStyle">
-        <img alt="" src="resources/image/Ostfalia-Hochschule-fur-angewandte-Wissenschaften.jpg" width="25%" height="25%" align="right"/>
+        <img alt="" src="resources/image/Ostfalia-Hochschule-fur-angewandte-Wissenschaften.png" width="25%" height="25%" align="right"/>
         <br/><br/><br/><br/><br/><br/>
         <div class="title">Bestellung</div>
         <div style="width: 100%;height: 3px; border: 2px solid black;float: left;background-color: black;margin-bottom: 20px;margin-top: 20px" align="left"></div>
         <h:form id="update-form">
-            <h:panelGrid columns="2" styleClass="table_all" style="margin: auto" cellspacing="15px">
+            <h:panelGrid columns="3" styleClass="table_all" style="margin: auto" cellspacing="15px">
                 <h:outputLabel styleClass="text">Customer_id:</h:outputLabel>
-                <h:inputText value="#{orderOverview.order.customer_id}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+                <h:inputText id="customerId" value="#{orderOverview.order.customer_id}" style="border-radius:7px;width: 200px;padding: 2px;" required="true"
+                             requiredMessage="CustomerID is required"/>
+                <h:message for="customerId" styleClass="requiredMessage"/>
                 <h:outputLabel styleClass="text">Product_id:</h:outputLabel>
-                <h:inputText value="#{orderOverview.order.product_id}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+                <h:inputText id="productId" value="#{orderOverview.order.product_id}" style="border-radius:7px;width: 200px;padding: 2px;" required="true"
+                             requiredMessage="ProductID is required"/>
+                <h:message for="productId" styleClass="requiredMessage"/>
                 <h:outputLabel styleClass="text">Amount:</h:outputLabel>
-                <h:inputText value="#{orderOverview.order.amount}" style="border-radius:7px;width: 200px;padding: 2px;"/>
+                <h:inputText id="amount" value="#{orderOverview.order.amount}" style="border-radius:7px;width: 200px;padding: 2px;" required="true"
+                             requiredMessage="Amount is required"/>
+                <h:message for="amount" styleClass="requiredMessage"/>
             </h:panelGrid>
             <h:commandButton styleClass="add" action="#{orderOverview.save()}" value="Submit" style="border-radius: 5px"/>
             <h:messages globalOnly="true" styleClass="error-message"/>
