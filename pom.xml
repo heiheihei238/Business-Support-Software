@@ -6,7 +6,7 @@
     <artifactId>bikes</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>First Iteration</name>
+    <name>Second Iteration</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,7 +53,7 @@
     </dependencies>
 
     <build>
-        <finalName>first-iteration</finalName>
+        <finalName>second-iteration</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

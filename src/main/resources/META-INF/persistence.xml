@@ -5,7 +5,7 @@
              version="2.2">
     <persistence-unit name="default" transaction-type="JTA">
 
-        <jta-data-source>java:jboss/datasources/iteration1</jta-data-source>
+        <jta-data-source>java:jboss/datasources/bikes9</jta-data-source>
 
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
