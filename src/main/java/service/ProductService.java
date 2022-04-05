@@ -26,24 +26,18 @@ public class ProductService {
     }
 
     public void save(Product product) {
-        if (findByName(product.getName(), product.getPrice()) != null) {
-            Product product1 = findByName(product.getName(), product.getPrice());
-            product1.setAmount(product.getAmount()+product1.getAmount());
-            update(product1);
-        }
-        else
             em.persist(product);
     }
 
-    public Product findByName(String name, Double price) {
-        Query query = em.createNamedQuery("find product by name and price");
-        query.setParameter("name", name).setParameter("price", price);
-        List<Product> list = query.getResultList( );
-        if (list.size() != 0) return list.get(0);
-        else return null;
+    public Product findByName(String name) {
+        Query query = em.createQuery("SELECT p FROM Product p WHERE p.product_name = :name");
+        query.setParameter("name", name);
+        return (Product) query.getSingleResult();
     }
 
-    public List<Product> all() {
-        return em.createQuery("select a from Product a", Product.class).getResultList();
+    public List findAll() {
+        Query query = em.createQuery("SELECT p FROM Product p");
+        return query.getResultList();
     }
+
 }

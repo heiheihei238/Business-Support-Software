@@ -1,68 +1,135 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "t_product")
-@NamedQuery(query = "Select p from Product p where p.name = :name and p.price = :price", name = "find product by name and price")
-
+@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer product_id;
 
-    private String name;
+    private BigDecimal list_price;
 
-    private Double price;
+    private Integer model_year;
 
-    private Long amount;
+    private String product_name;
 
-    @OneToMany(mappedBy = "product", cascade=CascadeType.PERSIST)
-    private List<Order> orders = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "brand_id", insertable = false, updatable = false)
+    private Brand brand;
+
+    private Integer brand_id;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private Category category;
+
+    private Integer category_id;
+
+    @OneToOne(mappedBy = "product")
+    private Stock stocks;
+
+    private Integer stock_id;
 
     public Product() {
     }
 
-    public Long getId() {
-        return id;
+    public Integer getProduct_id() {
+        return product_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
     }
 
-    public String getName() {
-        return name;
+    public BigDecimal getList_price() {
+        return list_price;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setList_price(BigDecimal list_price) {
+        this.list_price = list_price;
     }
 
-    public Double getPrice() {
-        return price;
+    public Integer getModel_year() {
+        return model_year;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setModel_year(Integer model_year) {
+        this.model_year = model_year;
     }
 
-    public Long getAmount() {
-        return amount;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public void setAmount(Long amount) {
-        this.amount = amount;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public Brand getBrands() {
+        return brand;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setBrands(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Integer getBrand_id() {
+        return brand_id;
+    }
+
+    public void setBrand_id(Integer brand_id) {
+        this.brand_id = brand_id;
+    }
+
+    public Category getCategories() {
+        return category;
+    }
+
+    public void setCategories(Category category) {
+        this.category = category;
+    }
+
+    public Integer getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }
+
+    public Stock getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(Stock stocks) {
+        this.stocks = stocks;
+    }
+
+    public Integer getStock_id() {
+        return stock_id;
+    }
+
+    public void setStock_id(Integer stock_id) {
+        this.stock_id = stock_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "product_id=" + product_id +
+                ", list_price=" + list_price +
+                ", model_year=" + model_year +
+                ", product_name='" + product_name + '\'' +
+                ", brands=" + brand +
+                ", brand_id=" + brand_id +
+                ", categories=" + category +
+                ", category_id=" + category_id +
+                ", stocks=" + stocks +
+                ", stock_id=" + stock_id +
+                '}';
     }
 }

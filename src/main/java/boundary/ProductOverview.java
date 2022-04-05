@@ -49,8 +49,8 @@ public class ProductOverview {
         return ps.find(product_id);
     }
 
-    public List<Product> getAll() {
-        return ps.all();
+    public List getAll() {
+        return ps.findAll();
     }
 
 

@@ -8,7 +8,6 @@ import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -29,23 +28,23 @@ public class OrderService {
     }
 
     public boolean save(Order order) {
-        Product product = em.find(Product.class, order.getProduct_id());
-        Customer customer = em.find(Customer.class, order.getCustomer_id());
-        if (product == null || customer == null) return false;
-        else if (product.getAmount() >= order.getAmount()){
-                product.setAmount(product.getAmount() - order.getAmount());
-                em.merge(product);
-                order.setTime(new Timestamp(System.currentTimeMillis()));
-                em.persist(order);
-                return true;
-            }
-            else return false;
-        }
-
-
-
-    public List<Order> all() {
-        return em.createQuery("select a from Order a", Order.class).getResultList();
+//        Product product = em.find(Product.class, order.getProduct_id());
+//        Customer customer = em.find(Customer.class, order.getCustomer_id());
+//        if (product == null || customer == null) return false;
+//        else if (product.getAmount() >= order.getAmount()){
+//                product.setAmount(product.getAmount() - order.getAmount());
+//                em.merge(product);
+//                order.setTime(new Timestamp(System.currentTimeMillis()));
+//                em.persist(order);
+//                return true;
+//            }
+//            else return false;
+        em.persist(order);
+        return true;
     }
 
+
+    public List<Order> findAll() {
+        return em.createQuery("SELECT o FROM Order o", Order.class).getResultList();
+    }
 }

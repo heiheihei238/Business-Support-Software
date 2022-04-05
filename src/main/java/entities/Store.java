@@ -1,47 +1,48 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "customers")
-public class Customer {
+@Table(name = "stores")
+public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer customer_id;
+    private Integer store_id;
 
     private String city;
 
     private String email;
 
-    private String first_name;
-
-    private String last_name;
-
     private String phone;
 
     private String state;
+
+    private String store_name;
 
     private String street;
 
     private String zip_code;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Order> order = new ArrayList<>();
+    @OneToMany(mappedBy = "store")
+    private List<Order> orders;
 
-    public Customer() {
+    @OneToMany(mappedBy = "store")
+    private List<Staff> staffs;
+
+    @OneToMany(mappedBy = "store")
+    private List<Stock> stocks;
+
+    public Store() {
     }
 
-
-
-    public Integer getCustomer_id() {
-        return customer_id;
+    public Integer getStore_id() {
+        return store_id;
     }
 
-    public void setCustomer_id(Integer customer_id) {
-        this.customer_id = customer_id;
+    public void setStore_id(Integer store_id) {
+        this.store_id = store_id;
     }
 
     public String getCity() {
@@ -60,22 +61,6 @@ public class Customer {
         this.email = email;
     }
 
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -90,6 +75,14 @@ public class Customer {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getStore_name() {
+        return store_name;
+    }
+
+    public void setStore_name(String store_name) {
+        this.store_name = store_name;
     }
 
     public String getStreet() {
@@ -109,25 +102,43 @@ public class Customer {
     }
 
     public List<Order> getOrders() {
-        return order;
+        return orders;
     }
 
-    public void setOrders(List<Order> order) {
-        this.order = order;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Staff> getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(List<Staff> staffs) {
+        this.staffs = staffs;
+    }
+
+    public List<Stock> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(List<Stock> stocks) {
+        this.stocks = stocks;
     }
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "customer_id=" + customer_id +
+        return "Store{" +
+                "store_id=" + store_id +
                 ", city='" + city + '\'' +
                 ", email='" + email + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", state='" + state + '\'' +
+                ", store_name='" + store_name + '\'' +
                 ", street='" + street + '\'' +
                 ", zip_code='" + zip_code + '\'' +
+                ", orders=" + orders +
+                ", staffs=" + staffs +
+                ", stocks=" + stocks +
                 '}';
     }
 }

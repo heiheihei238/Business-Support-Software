@@ -2,7 +2,6 @@ package boundary;
 
 
 import entities.Customer;
-import org.postgresql.util.PSQLException;
 import service.CustomerService;
 
 import javax.enterprise.context.RequestScoped;
@@ -11,9 +10,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.PersistenceException;
-import javax.validation.ConstraintViolationException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -86,7 +82,7 @@ public class CustomerOverview {
     }
 
     public List<Customer> getAll() {
-        return cs.all();
+        return cs.findAll();
     }
 
 

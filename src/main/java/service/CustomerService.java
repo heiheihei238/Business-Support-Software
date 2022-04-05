@@ -1,13 +1,10 @@
 package service;
 
 import entities.Customer;
-import org.postgresql.util.PSQLException;
 
-import javax.ejb.EJBTransactionRolledbackException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @Stateless
@@ -32,7 +29,7 @@ public class CustomerService {
         em.persist(customer);
     }
 
-    public List<Customer> all() {
-        return em.createQuery("select a from Customer a", Customer.class).getResultList();
+    public List<Customer> findAll() {
+        return em.createQuery("select c from Customer c", Customer.class).getResultList();
     }
 }

@@ -2,9 +2,7 @@ package boundary;
 
 
 import entities.Order;
-import service.CustomerService;
 import service.OrderService;
-import service.ProductService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -12,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 @Named
@@ -60,7 +57,7 @@ public class OrderOverview {
     }
 
     public List<Order> getAll() {
-        return os.all();
+        return os.findAll();
     }
 
 }

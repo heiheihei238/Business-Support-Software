@@ -1,90 +1,163 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "t_order")
+@Table(name = "order")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer order_id;
 
-    private Long customer_id;
+    @Temporal(TemporalType.DATE)
+    private Date order_date;
 
-    private Long product_id;
+    private Integer order_status;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "customer_id", insertable=false, updatable=false)
-    private Customer customer;
+    @Temporal(TemporalType.DATE)
+    private Date required_date;
 
-    private Timestamp time;
-
-    private Long amount;
+    @Temporal(TemporalType.DATE)
+    private Date shipped_date;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", insertable=false, updatable=false)
-    private Product product;
+    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    private Customer customer;
+
+    private Integer customer_id;
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id", insertable = false, updatable = false)
+    private Staff staff;
+
+    private Integer staff_id;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id", insertable = false, updatable = false)
+    private Store store;
+
+    private Integer store_id;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> order_items;
 
     public Order() {
     }
 
-    public Long getId() {
-        return id;
+    public Integer getOrder_id() {
+        return order_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOrder_id(Integer order_id) {
+        this.order_id = order_id;
     }
 
-    public Customer getCustomer() {
+    public Date getOrder_date() {
+        return order_date;
+    }
+
+    public void setOrder_date(Date order_date) {
+        this.order_date = order_date;
+    }
+
+    public Integer getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(Integer order_status) {
+        this.order_status = order_status;
+    }
+
+    public Date getRequired_date() {
+        return required_date;
+    }
+
+    public void setRequired_date(Date required_date) {
+        this.required_date = required_date;
+    }
+
+    public Date getShipped_date() {
+        return shipped_date;
+    }
+
+    public void setShipped_date(Date shipped_date) {
+        this.shipped_date = shipped_date;
+    }
+
+    public Customer getCustomers() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomers(Customer customer) {
         this.customer = customer;
     }
 
-    public Timestamp getTime() {
-        return time;
-    }
-
-    public void setTime(Timestamp time) {
-        this.time = time;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public Long getCustomer_id() {
+    public Integer getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(Long customer_id) {
+    public void setCustomer_id(Integer customer_id) {
         this.customer_id = customer_id;
     }
 
-    public Long getProduct_id() {
-        return product_id;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public Integer getStaff_id() {
+        return staff_id;
+    }
+
+    public void setStaff_id(Integer staff_id) {
+        this.staff_id = staff_id;
+    }
+
+    public Store getStores() {
+        return store;
+    }
+
+    public void setStores(Store store) {
+        this.store = store;
+    }
+
+    public Integer getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(Integer store_id) {
+        this.store_id = store_id;
+    }
+
+    public List<OrderItem> getOrder_items() {
+        return order_items;
+    }
+
+    public void setOrder_items(List<OrderItem> order_items) {
+        this.order_items = order_items;
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "order_id=" + order_id +
+                ", order_date=" + order_date +
+                ", order_status=" + order_status +
+                ", required_date=" + required_date +
+                ", shipped_date=" + shipped_date +
+                ", customers=" + customer +
+                ", customer_id=" + customer_id +
+                ", staffs=" + staff +
+                ", staff_id=" + staff_id +
+                ", stores=" + store +
+                ", store_id=" + store_id +
+                ", order_items=" + order_items +
+                '}';
     }
 }

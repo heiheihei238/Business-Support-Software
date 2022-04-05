@@ -1,4 +1,4 @@
-1. die Information von order, order-items customers, products im Form der Liste anzeigen;
+1. die Information von order, order-items customer, product im Form der Liste anzeigen;
 2. Klasse von aller Entities laut der Struktur des Datenbank erstellen;
 3. Die Zusammenhang(z.B. OneToMany, OneToOne) zwischen verschiedene Entities erstellen;
 4. eine Navigation fuer jede Webseite erstellen (ein template erstellen);
