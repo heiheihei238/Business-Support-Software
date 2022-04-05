@@ -32,4 +32,12 @@ public class CustomerService {
     public List<Customer> findAll() {
         return em.createQuery("select c from Customer c", Customer.class).getResultList();
     }
+
+    //分页查询
+    public List<Customer> findAll(int page, int size) {
+        return em.createQuery("select c from Customer c", Customer.class)
+                .setFirstResult((page - 1) * size)
+                .setMaxResults(size)
+                .getResultList();
+    }
 }

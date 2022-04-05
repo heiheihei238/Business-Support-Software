@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+   <title>customer</title>
+</h:head>
+<h:body>
+   <div class="bodystyle">
+      <!--分页列表展示-->
+      <h:dataTable value="#{customerOverview.getAll(customerOverview.currentPage, customerOverview.pageSize)}" var="customer">
+<!--      <h:dataTable value="#{customerOverview.allCustomer}" var="customer">-->
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer ID"/>
+               </f:facet>
+               <h:outputText value="#{customer.customer_id}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer firstName"/>
+               </f:facet>
+               <h:outputText value="#{customer.first_name}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer lastName"/>
+               </f:facet>
+               <h:outputText value="#{customer.last_name}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer city"/>
+               </f:facet>
+               <h:outputText value="#{customer.city}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer Address"/>
+               </f:facet>
+               <h:outputText value="#{customer.street}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer Phone"/>
+               </f:facet>
+               <h:outputText value="#{customer.phone}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer Email"/>
+               </f:facet>
+               <h:outputText value="#{customer.email}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer Status"/>
+               </f:facet>
+               <h:outputText value="#{customer.state}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Customer zipCode"/>
+               </f:facet>
+               <h:outputText value="#{customer.zip_code}"/>
+            </h:column>
+      </h:dataTable>
+
+       <!--分页按钮-->
+       <h:form>
+           <h:commandButton value="First" action="#{customerOverview.first}"/>
+           <h:commandButton value="Previous" action="#{customerOverview.previous}"/>
+           <h:commandButton value="Next" action="#{customerOverview.next}"/>
+           <h:commandButton value="Last" action="#{customerOverview.last}"/>
+       </h:form>
+
+
+   </div>
+
+
+
+
+</h:body>
+</html>
