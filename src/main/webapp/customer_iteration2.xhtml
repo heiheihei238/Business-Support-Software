@@ -7,12 +7,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
    <title>customer</title>
+    <f:metadata>
+<!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
+        <f:viewAction action="#{customerOverview.init}" />
+    </f:metadata>
 </h:head>
 <h:body>
    <div class="bodystyle">
       <!--分页列表展示-->
       <h:dataTable value="#{customerOverview.getAll(customerOverview.currentPage, customerOverview.pageSize)}" var="customer">
-<!--      <h:dataTable value="#{customerOverview.allCustomer}" var="customer">-->
             <h:column>
                <f:facet name="header">
                   <h:outputText value="Customer ID"/>
@@ -68,20 +71,25 @@
                <h:outputText value="#{customer.zip_code}"/>
             </h:column>
       </h:dataTable>
-
-       <!--分页按钮-->
-       <h:form>
-           <h:commandButton value="First" action="#{customerOverview.first}"/>
-           <h:commandButton value="Previous" action="#{customerOverview.previous}"/>
-           <h:commandButton value="Next" action="#{customerOverview.next}"/>
-           <h:commandButton value="Last" action="#{customerOverview.last}"/>
-       </h:form>
-
-
    </div>
 
-
-
+       <!--分页按钮-->
+    <div>
+        <h:form>
+            <div>
+                current page: <h:outputText value="#{customerOverview.currentPage}"/>
+            </div>
+            <div>
+                <h:commandButton value="First" action="#{customerOverview.first}"/>
+                <h:commandButton value="Previous" action="#{customerOverview.previous}"/>
+                <h:commandButton value="Next" action="#{customerOverview.next}"/>
+                <h:commandButton value="Last" action="#{customerOverview.last}"/>
+                <h:inputText value="#{customerOverview.currentPage}"/>
+                <h:commandButton value="Go" action="#{customerOverview.go(customerOverview.currentPage)}"/>
+            </div>
+            <h:messages globalOnly="true" styleClass="error-message"/>
+        </h:form>
+    </div>
 
 </h:body>
 </html>

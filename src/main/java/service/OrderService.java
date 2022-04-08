@@ -1,13 +1,10 @@
 package service;
 
-import entities.Customer;
 import entities.Order;
-import entities.Product;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Stateless
@@ -29,8 +26,8 @@ public class OrderService {
 
     public boolean save(Order order) {
 //        Product product = em.find(Product.class, order.getProduct_id());
-//        Customer customer = em.find(Customer.class, order.getCustomer_id());
-//        if (product == null || customer == null) return false;
+//        Order order = em.find(Order.class, order.getOrder_id());
+//        if (product == null || order == null) return false;
 //        else if (product.getAmount() >= order.getAmount()){
 //                product.setAmount(product.getAmount() - order.getAmount());
 //                em.merge(product);
@@ -43,8 +40,20 @@ public class OrderService {
         return true;
     }
 
-
     public List<Order> findAll() {
         return em.createQuery("SELECT o FROM Order o", Order.class).getResultList();
+    }
+
+    // 获取数据数量
+    public long count() {
+        return em.createQuery("SELECT COUNT(o) FROM Order o", Long.class).getSingleResult();
+    }
+
+    //分页查询
+    public List<Order> findAll(int page, int size) {
+        return em.createQuery("select o from Order o", Order.class)
+                .setFirstResult((page - 1) * size)
+                .setMaxResults(size)
+                .getResultList();
     }
 }

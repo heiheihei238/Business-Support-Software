@@ -1,6 +1,8 @@
 package entities;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Embeddable
@@ -28,4 +30,5 @@ public class OrderItemPK implements Serializable {
     public void setOrder_id(Integer order_id) {
         this.order_id = order_id;
     }
+
 }

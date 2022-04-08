@@ -1,18 +1,15 @@
 package boundary;
 
 
-import entities.Order;
 import entities.OrderItem;
 import service.OrderItemService;
-import service.OrderService;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Named
 @RequestScoped
@@ -20,11 +17,24 @@ public class OrderItemOverview {
 
     private OrderItem orderItem;
 
+    private Integer order_id;
+
     @Inject
     OrderItemService os;
 
     public OrderItemOverview() {
         orderItem = new OrderItem();
+        // 读取URL中的参数
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        order_id = Integer.parseInt(request.getParameter("order_id"));
+    }
+
+    public Integer getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(Integer order_id) {
+        this.order_id = order_id;
     }
 
     public OrderItem getOrderItem() {
@@ -60,6 +70,10 @@ public class OrderItemOverview {
 
     public List<OrderItem> getAll() {
         return os.findAll();
+    }
+
+    public List<OrderItem> getAllByOrderId(Integer order_id) {
+        return os.getOrderItemsByOrderId(order_id);
     }
 
 }

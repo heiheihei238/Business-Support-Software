@@ -4,22 +4,21 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@NamedQuery(name = "OrderItem.findByOrderId", query = "SELECT o FROM OrderItem o WHERE o.order.order_id = :orderId")
 @Entity
 @Table(name = "order_items")
-@NamedQuery(name = "OrderItem.findByOrderId", query = "SELECT o FROM OrderItem o WHERE o.order.order_id = :orderId")
-@NamedQuery(name = "OrderItem.findByOrderIdAndProductId", query = "SELECT o FROM OrderItem o WHERE o.order.order_id = :orderId AND o.product.product_id = :productId")
 public class OrderItem implements Serializable {
 
     @EmbeddedId
     private OrderItemPK id;
 
+//    @ManyToOne
+//    @JoinColumn(name = "product_id", insertable = false, updatable = false)
+//    private Product product;
+
     @ManyToOne
     @JoinColumn(name = "order_id", insertable = false, updatable = false)
     private Order order;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", insertable = false, updatable = false)
-    private Product product;
 
     private Integer product_id;
 
@@ -40,37 +39,23 @@ public class OrderItem implements Serializable {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
-    }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Order getOrders() {
-        return order;
-    }
-
-    public void setOrders(Order order) {
-        this.order = order;
-    }
-
-    public Product getProducts() {
-        return product;
-    }
-
-    public void setProducts(Product product) {
-        this.product = product;
-    }
+//    public Product getProduct() {
+//        return product;
+//    }
+//
+//    public void setProduct(Product product) {
+//        this.product = product;
+//    }
+//
+//
+//    public Product getProducts() {
+//        return product;
+//    }
+//
+//    public void setProducts(Product product) {
+//        this.product = product;
+//    }
 
     public Integer getProduct_id() {
         return product_id;
@@ -104,12 +89,19 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @Override
     public String toString() {
         return "Order_items{" +
                 "id=" + id +
-                ", order=" + order +
-                ", products=" + product +
+//                ", products=" + product +
                 ", product_id=" + product_id +
                 ", discount=" + discount +
                 ", list_price=" + list_price +

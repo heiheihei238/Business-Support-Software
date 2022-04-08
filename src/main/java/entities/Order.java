@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -135,13 +135,13 @@ public class Order {
         this.store_id = store_id;
     }
 
-    public List<OrderItem> getOrder_items() {
-        return order_items;
-    }
-
-    public void setOrder_items(List<OrderItem> order_items) {
-        this.order_items = order_items;
-    }
+//    public List<OrderItem> getOrder_items() {
+//        return order_items;
+//    }
+//
+//    public void setOrder_items(List<OrderItem> order_items) {
+//        this.order_items = order_items;
+//    }
 
     @Override
     public String toString() {
@@ -157,7 +157,7 @@ public class Order {
                 ", staff_id=" + staff_id +
                 ", stores=" + store +
                 ", store_id=" + store_id +
-                ", order_items=" + order_items +
+//                ", order_items=" + order_items +
                 '}';
     }
 }

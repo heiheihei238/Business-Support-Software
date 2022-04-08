@@ -34,12 +34,12 @@ public class OrderItemService {
 
     }
 
-    public OrderItem getOrderItem(int orderId, int productId) {
-        return em.createNamedQuery("OrderItem.findByOrderIdAndProductId", OrderItem.class)
-                .setParameter("orderId", orderId)
-                .setParameter("productId", productId)
-                .getSingleResult();
-    }
+//    public OrderItem getOrderItem(int orderId, int productId) {
+//        return em.createNamedQuery("OrderItem.findByOrderIdAndProductId", OrderItem.class)
+//                .setParameter("orderId", orderId)
+//                .setParameter("productId", productId)
+//                .getSingleResult();
+//    }
 
     public List<OrderItem> getOrderItemsByOrderId(int orderId) {
         return em.createNamedQuery("OrderItem.findByOrderId", OrderItem.class)

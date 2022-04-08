@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -33,6 +34,9 @@ public class Product {
     private Stock stocks;
 
     private Integer stock_id;
+
+//    @OneToMany(mappedBy = "product")
+//    private List<OrderItem> orderItems;
 
     public Product() {
     }
@@ -116,6 +120,14 @@ public class Product {
     public void setStock_id(Integer stock_id) {
         this.stock_id = stock_id;
     }
+
+//    public List<OrderItem> getOrderItems() {
+//        return orderItems;
+//    }
+//
+//    public void setOrderItems(List<OrderItem> orderItems) {
+//        this.orderItems = orderItems;
+//    }
 
     @Override
     public String toString() {

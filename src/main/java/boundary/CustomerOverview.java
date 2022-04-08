@@ -19,17 +19,11 @@ public class CustomerOverview {
 
     private Customer customer;
 
-    //上一页
-    private int previousPage;
-
     //当前页
     private static int currentPage = 1;
 
-    //下一页
-    private int nextPage;
-
     //总页数
-    private int totalPages;
+    private static int totalPages;
 
     //每页显示的数量
     private int pageSize = 10;
@@ -56,28 +50,12 @@ public class CustomerOverview {
         this.customer = customer;
     }
 
-    public int getPreviousPage() {
-        return previousPage;
-    }
-
-    public void setPreviousPage(int previousPage) {
-        this.previousPage = previousPage;
-    }
-
     public int getCurrentPage() {
         return currentPage;
     }
 
     public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public int getNextPage() {
-        return nextPage;
-    }
-
-    public void setNextPage(int nextPage) {
-        this.nextPage = nextPage;
+        CustomerOverview.currentPage = currentPage;
     }
 
     public int getTotalPages() {
@@ -86,7 +64,7 @@ public class CustomerOverview {
 
     public void setTotalPages() {
         setTotalCount();
-        this.totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
+        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
     }
 
     public int getPageSize() {
@@ -158,22 +136,18 @@ public class CustomerOverview {
         }
     }
 
-    public Customer find(Long customer_id) {
-        return cs.find(customer_id);
-    }
-
     public List<Customer> getAllCustomer() {
         return cs.findAll();
     }
 
+    public void init() {
+        setTotalPages();
+    }
 
     public String next() {
-        setTotalPages();
         if (currentPage < totalPages) {
             currentPage++;
         }
-//        currentPage++;
-
         return null;
     }
 
@@ -190,16 +164,25 @@ public class CustomerOverview {
     }
 
     public String last() {
-//        totalCount = getAllCustomer().size();
-//        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
         setTotalPages();
         currentPage = totalPages;
         return null;
     }
 
-
     // 分页展示
     public List<Customer> getAll(int page, int pageSize) {
         return cs.findAll(page, pageSize);
+    }
+
+    // 页码跳转
+    public String go(int page) {
+        if (page > 0 && page <= totalPages) {
+            currentPage = page;
+            return "customer_list";
+        } else {
+            FacesMessage msg = new FacesMessage("invalid page number");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return null;
+        }
     }
 }

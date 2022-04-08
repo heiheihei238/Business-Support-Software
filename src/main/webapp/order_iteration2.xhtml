@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>order</title>
+    <f:metadata>
+<!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
+        <f:viewAction action="#{orderOverview.init}" />
+    </f:metadata>
+</h:head>
+<h:body>
+   <div class="bodystyle">
+      <!--分页列表展示-->
+      <h:dataTable id="list" value="#{orderOverview.getAll(orderOverview.currentPage, orderOverview.pageSize)}" var="order">
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Order ID"/>
+               </f:facet>
+               <h:outputText value="#{order.order_id}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Order date"/>
+               </f:facet>
+               <h:outputText value="#{order.order_date}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Order orderStatus"/>
+               </f:facet>
+               <h:outputText value="#{order.order_status}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Order requiredDate"/>
+               </f:facet>
+               <h:outputText value="#{order.required_date}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Order shippedDate"/>
+               </f:facet>
+               <h:outputText value="#{order.shipped_date}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                  <h:outputText value="Order customerName"/>
+               </f:facet>
+               <h:outputText value="#{order.customer_id}"/>
+            </h:column>
+          <h:column>
+              <f:facet name="header">
+                  <h:outputText value="Order staffName"/>
+              </f:facet>
+              <h:outputText value="#{order.staff_id}"/>
+          </h:column>
+          <h:column>
+              <f:facet name="header">
+                  <h:outputText value="Order storeName"/>
+              </f:facet>
+              <h:outputText value="#{order.store_id}"/>
+          </h:column>
+          <h:column>
+              <f:facet name="header">
+                  <h:outputText value="Order details"/>
+              </f:facet>
+
+                  <!--URL参数传递-->
+                  <h:outputLink value="order_item.xhtml?order_id=#{order.order_id}">order_item</h:outputLink>
+
+          </h:column>
+      </h:dataTable>
+   </div>
+
+    <!--分页按钮-->
+    <div>
+        <h:form id="page">
+            <div>
+                current page: <h:outputText value="#{orderOverview.currentPage}"/>
+            </div>
+            <div>
+                <h:commandButton value="First" action="#{orderOverview.first}"/>
+                <h:commandButton value="Previous" action="#{orderOverview.previous}"/>
+                <h:commandButton value="Next" action="#{orderOverview.next}"/>
+                <h:commandButton value="Last" action="#{orderOverview.last}"/>
+                <h:inputText value="#{orderOverview.currentPage}"/>
+                <h:commandButton value="Go" action="#{orderOverview.go(orderOverview.currentPage)}"/>
+            </div>
+            <h:messages globalOnly="true" styleClass="error-message"/>
+        </h:form>
+    </div>
+
+
+</h:body>
+</html>

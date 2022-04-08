@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<!--    <f:metadata>-->
+<!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
+<!--        <f:viewAction action="#{searchTest.init}" />-->
+<!--    </f:metadata>-->
+</h:head>
+<h:body>
+    <div class="bodystyle">
+        <!--分页列表展示-->
+        <h:dataTable value="#{orderItemOverview.getAllByOrderId(orderItemOverview.order_id)}" var="order_item">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Order ID"/>
+                </f:facet>
+                <h:outputText value="#{order_item.id.order_id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Orderitem id"/>
+                </f:facet>
+                <h:outputText value="#{order_item.id.item_id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="product id"/>
+                </f:facet>
+                <h:outputText value="#{order_item.product_id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="discount"/>
+                </f:facet>
+                <h:outputText value="#{order_item.discount}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="listprice"/>
+                </f:facet>
+                <h:outputText value="#{order_item.list_price}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="quantity"/>
+                </f:facet>
+                <h:outputText value="#{order_item.quantity}"/>
+            </h:column>
+        </h:dataTable>
+    </div>
+
+</h:body>
+</html>
