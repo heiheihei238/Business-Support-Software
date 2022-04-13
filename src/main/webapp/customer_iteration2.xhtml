@@ -11,11 +11,16 @@
 <!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
         <f:viewAction action="#{customerOverview.init}" />
     </f:metadata>
+    <h:outputStylesheet library="css" name="interation2_style.css"/>
 </h:head>
 <h:body>
    <div class="bodystyle">
       <!--分页列表展示-->
-      <h:dataTable value="#{customerOverview.getAll(customerOverview.currentPage, customerOverview.pageSize)}" var="customer">
+      <h:dataTable
+              styleClass = "allTable"
+              headerClass = "allTableHeader"
+              rowClasses = "allTableOddRow,allTableEvenRow"
+              value="#{customerOverview.getAll(customerOverview.currentPage, customerOverview.pageSize)}" var="customer" >
             <h:column>
                <f:facet name="header">
                   <h:outputText value="Customer ID"/>

@@ -11,11 +11,16 @@
 <!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
         <f:viewAction action="#{orderOverview.init}" />
     </f:metadata>
+    <h:outputStylesheet library="css" name="interation2_style.css"/>
 </h:head>
 <h:body>
    <div class="bodystyle">
       <!--分页列表展示-->
-      <h:dataTable id="list" value="#{orderOverview.getAll(orderOverview.currentPage, orderOverview.pageSize)}" var="order">
+      <h:dataTable id="list"
+                   styleClass = "allTable"
+                   headerClass = "allTableHeader"
+                   rowClasses = "allTableOddRow,allTableEvenRow"
+                   value="#{orderOverview.getAll(orderOverview.currentPage, orderOverview.pageSize)}" var="order">
             <h:column>
                <f:facet name="header">
                   <h:outputText value="Order ID"/>
@@ -82,8 +87,8 @@
             <div>
                 current page: <h:outputText value="#{orderOverview.currentPage}"/>
             </div>
-            <div>
-                <h:commandButton value="First" action="#{orderOverview.first}"/>
+            <div class="commandbutton">
+                <h:commandButton styleClass="commandbutton" value="First" action="#{orderOverview.first}"/>
                 <h:commandButton value="Previous" action="#{orderOverview.previous}"/>
                 <h:commandButton value="Next" action="#{orderOverview.next}"/>
                 <h:commandButton value="Last" action="#{orderOverview.last}"/>

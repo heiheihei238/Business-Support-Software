@@ -10,11 +10,16 @@
 <!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
 <!--        <f:viewAction action="#{searchTest.init}" />-->
 <!--    </f:metadata>-->
+    <h:outputStylesheet library="css" name="interation2_style.css"/>
 </h:head>
 <h:body>
     <div class="bodystyle">
         <!--分页列表展示-->
-        <h:dataTable value="#{orderItemOverview.getAllByOrderId(orderItemOverview.order_id)}" var="order_item">
+        <h:dataTable
+                styleClass = "allTable"
+                headerClass = "allTableHeader"
+                rowClasses = "allTableOddRow,allTableEvenRow"
+                value="#{orderItemOverview.getAllByOrderId(orderItemOverview.order_id)}" var="order_item">
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Order ID"/>
