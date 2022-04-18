@@ -4,29 +4,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html" >
+      xmlns:h="http://java.sun.com/jsf/html"
+      xml:lang="">
 
 <h:head>
     <title>sale_system</title>
-    <h:outputStylesheet library="css" name="navigation.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/Index.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/ball.css" />
 </h:head>
 
-<h:body style="background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); background-size: cover;">
-<!--
-<h:body style="background-image: url('resources/image/thumb-1920-373654.jpg'); background-size: cover;">
--->
-    <div class="text2">WELCOME TO TEAM 09</div>
-    <!--<ul class="navigation">
-        <li><a href="customer_iteration1.xhtml">customer</a></li>
-        <li><a href="product.xhtml">product</a></li>
-        <li><a href="order_iteration1.xhtml">bestellung</a></li>
-    </ul>-->
-    <div class="container">
-
-        <h:button styleClass="buttonCustomer" value="Customer" outcome="customer_iteration2"/>
-        <h:button styleClass="buttonProdukt" value="Product" outcome="product"/>
-        <h:button styleClass="buttonBestellung" value="Orders" outcome="order_iteration2"/>
+<h:body>
+    <div class="navbar">
+        <ul>
+            <li><a href="index.xhtml">Home</a></li>
+            <li><a style="cursor: pointer">Customer</a>
+                <ul>
+                    <li><a href="customer_iteration1.xhtml">New Customer</a></li>
+                    <li><a href="customer_iteration2.xhtml">Customers</a></li>
+                </ul>
+            </li>
+            <li><a style="cursor: pointer">Product</a>
+                <ul>
+                    <li><a href="product.xhtml">New Product</a></li>
+                    <li><a href="product.xhtml">Products</a></li>
+                </ul>
+            </li>
+            <li><a style="cursor: pointer">Order</a>
+                <ul>
+                    <li><a href="order_iteration1.xhtml">New Order</a></li>
+                    <li><a href="order_iteration2.xhtml">Oders</a></li>
+                </ul>
+            </li>
+            <li><a style="cursor: pointer">About</a>
+                <ul>
+                    <li><a href="index.php">About Project</a></li>
+                    <li><a href="about.php">About us</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
-    <div class="text1">Designed and produced by Tang,Wang,Li,Chen</div>
+    <div class="text">WELCOME TO BIKES</div>
+    <div class="container">
+        <div class="bubble"></div>
+        <div class="shadow"></div>
+    </div>
+    <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>
 </h:body>
 </html>

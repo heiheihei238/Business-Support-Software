@@ -11,11 +11,18 @@
 <!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
         <f:viewAction action="#{orderOverview.init}" />
     </f:metadata>
+    <h:outputStylesheet library="css" name="interation2_style.css"/>
 </h:head>
 <h:body>
    <div class="bodystyle">
-      <!--show list-->
-      <h:dataTable id="list" value="#{orderOverview.getAll(orderOverview.currentPage, orderOverview.pageSize)}" var="order">
+      <!--分页列表展示-->
+      <h:dataTable id="list"
+                   styleClass = "allTable"
+                   headerClass = "allTableHeader"
+                   rowClasses = "allTableOddRow,allTableEvenRow"
+                   border="10"
+                   cellpadding="10"
+                   value="#{orderOverview.getAll(orderOverview.currentPage, orderOverview.pageSize)}" var="order">
             <h:column>
                <f:facet name="header">
                   <h:outputText value="Order ID"/>
@@ -69,21 +76,21 @@
                   <h:outputText value="Order details"/>
               </f:facet>
 
-                  <!--URL param-->
+                  <!--URL参数传递-->
                   <h:outputLink value="order_item.xhtml?order_id=#{order.order_id}">order_item</h:outputLink>
 
           </h:column>
       </h:dataTable>
    </div>
 
-    <!--page button-->
+    <!--分页按钮-->
     <div>
         <h:form id="page">
             <div>
                 current page: <h:outputText value="#{orderOverview.currentPage}"/>
             </div>
-            <div>
-                <h:commandButton value="First" action="#{orderOverview.first}"/>
+            <div class="commandbutton">
+                <h:commandButton styleClass="commandbutton" value="First" action="#{orderOverview.first}"/>
                 <h:commandButton value="Previous" action="#{orderOverview.previous}"/>
                 <h:commandButton value="Next" action="#{orderOverview.next}"/>
                 <h:commandButton value="Last" action="#{orderOverview.last}"/>

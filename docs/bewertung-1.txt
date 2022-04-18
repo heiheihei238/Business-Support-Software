@@ -1,0 +1,15 @@
+- Kein Readme
+- Team-Organisation verbesserungsfähig
+- Wahrscheinlich Verständnisprobleme mit Deutsch. Benötigen Sie Hilfe von mir? Fragen Sie nach!
+- SQL-Typen im Business-Modell
+- java.util.Date
+- POM geändert: postgresql, damit Deployment riesig im Vergleich zu den anderen
+- Sie haben GANZ alte JSF-Beispiele kopiert, die haben noch java.sun als Namespace
+- falscher Deployment-Name
+- Keine/wenig Kommentare
+- Double für Preis
+- Fehlermeldungen gemacht, wie es soll. Super
+- Tätigkeitsprotokoll von 70469953 leer, 70474758 entspricht nicht Namenskonvention
+- Keine Data-Source-Definition, damit nicht deploybar. Das sind eigentlich 0 Punkte
+- Aufwand gleichverteilt
+Bewertung: 63%
