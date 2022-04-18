@@ -24,7 +24,7 @@ public class OrderItemOverview {
 
     public OrderItemOverview() {
         orderItem = new OrderItem();
-        // 读取URL中的参数
+        // read parameter from URL
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         order_id = Integer.parseInt(request.getParameter("order_id"));
     }

@@ -14,7 +14,7 @@
 </h:head>
 <h:body>
    <div class="bodystyle">
-      <!--分页列表展示-->
+      <!--show list-->
       <h:dataTable id="list" value="#{orderOverview.getAll(orderOverview.currentPage, orderOverview.pageSize)}" var="order">
             <h:column>
                <f:facet name="header">
@@ -69,14 +69,14 @@
                   <h:outputText value="Order details"/>
               </f:facet>
 
-                  <!--URL参数传递-->
+                  <!--URL param-->
                   <h:outputLink value="order_item.xhtml?order_id=#{order.order_id}">order_item</h:outputLink>
 
           </h:column>
       </h:dataTable>
    </div>
 
-    <!--分页按钮-->
+    <!--page button-->
     <div>
         <h:form id="page">
             <div>

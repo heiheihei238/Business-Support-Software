@@ -44,12 +44,12 @@ public class OrderService {
         return em.createQuery("SELECT o FROM Order o", Order.class).getResultList();
     }
 
-    // 获取数据数量
+    // data count
     public long count() {
         return em.createQuery("SELECT COUNT(o) FROM Order o", Long.class).getSingleResult();
     }
 
-    //分页查询
+    // pagination
     public List<Order> findAll(int page, int size) {
         return em.createQuery("select o from Order o", Order.class)
                 .setFirstResult((page - 1) * size)

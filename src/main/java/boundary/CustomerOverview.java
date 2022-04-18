@@ -19,19 +19,16 @@ public class CustomerOverview {
 
     private Customer customer;
 
-    //当前页
     private static int currentPage = 1;
 
-    //总页数
     private static int totalPages;
 
-    //每页显示的数量
+    // data amount in one page
     private int pageSize = 10;
 
-    //总数量
     private int totalCount;
 
-    //每页的数据
+    // data per page
     private List<Customer> customers;
 
     @Inject
@@ -169,12 +166,12 @@ public class CustomerOverview {
         return null;
     }
 
-    // 分页展示
+    // data list for pagination
     public List<Customer> getAll(int page, int pageSize) {
         return cs.findAll(page, pageSize);
     }
 
-    // 页码跳转
+    // jump to page
     public String go(int page) {
         if (page > 0 && page <= totalPages) {
             currentPage = page;
