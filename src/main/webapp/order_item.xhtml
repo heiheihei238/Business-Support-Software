@@ -10,54 +10,91 @@
 <!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
 <!--        <f:viewAction action="#{searchTest.init}" />-->
 <!--    </f:metadata>-->
-    <h:outputStylesheet library="css" name="interation2_style.css"/>
+    <h:outputStylesheet library="css" name="dataTable_style.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/navigation.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/oderItem.css"/>
 </h:head>
 <h:body>
-    <div class="bodystyle">
-        <!--分页列表展示-->
-        <h:dataTable
-                styleClass = "allTable"
-                headerClass = "allTableHeader"
-                rowClasses = "allTableOddRow,allTableEvenRow"
-                value="#{orderItemOverview.getAllByOrderId(orderItemOverview.order_id)}" var="order_item">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Order ID"/>
-                </f:facet>
-                <h:outputText value="#{order_item.id.order_id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Orderitem id"/>
-                </f:facet>
-                <h:outputText value="#{order_item.id.item_id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="product id"/>
-                </f:facet>
-                <h:outputText value="#{order_item.product_id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="discount"/>
-                </f:facet>
-                <h:outputText value="#{order_item.discount}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="listprice"/>
-                </f:facet>
-                <h:outputText value="#{order_item.list_price}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="quantity"/>
-                </f:facet>
-                <h:outputText value="#{order_item.quantity}"/>
-            </h:column>
-        </h:dataTable>
+    <div class="header">
+        <div class="navbar">
+            <ul>
+                <li><a href="index.xhtml">Home</a></li>
+                <li><a style="cursor: pointer">Customer</a>
+                    <ul>
+                        <!--                        <li><a href="customer_iteration1.xhtml">New Customer</a></li>-->
+                        <li><a href="customer_iteration2.xhtml">Customers</a></li>
+                    </ul>
+                </li>
+                <li><a style="cursor: pointer">Product</a>
+                    <ul>
+                        <!--                        <li><a href="product_iteration1.xhtml">New Product</a></li>-->
+                        <li><a href="product_iteration2.xhtml">Products</a></li>
+                    </ul>
+                </li>
+                <li><a style="cursor: pointer">Order</a>
+                    <ul>
+                        <!--                        <li><a href="order_iteration1.xhtml">New Order</a></li>-->
+                        <li><a href="order_iteration2.xhtml">Oders</a></li>
+                    </ul>
+                </li>
+                <li><a style="cursor: pointer">About</a>
+                    <ul>
+                        <li><a href="index.php">About Project</a></li>
+                        <li><a href="about.php">About us</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-
+    <div class="bodystyle">
+        <div class="dataTable">
+            <!--分页列表展示-->
+            <h:dataTable
+                    styleClass = "allTable"
+                    headerClass = "allTableHeader"
+                    rowClasses = "allTableOddRow,allTableEvenRow"
+                    border="20"
+                    cellspacing="20"
+                    value="#{orderItemOverview.getAllByOrderId(orderItemOverview.order_id)}" var="order_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Order ID"/>
+                    </f:facet>
+                    <h:outputText value="#{order_item.id.order_id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Orderitem id"/>
+                    </f:facet>
+                    <h:outputText value="#{order_item.id.item_id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="product id"/>
+                    </f:facet>
+                    <h:outputText value="#{order_item.product_id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="discount"/>
+                    </f:facet>
+                    <h:outputText value="#{order_item.discount}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="listprice"/>
+                    </f:facet>
+                    <h:outputText value="#{order_item.list_price}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="quantity"/>
+                    </f:facet>
+                    <h:outputText value="#{order_item.quantity}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </div>
+    <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>
 </h:body>
 </html>

@@ -1,14 +1,10 @@
 .container{
     width: 200px;
     height: 200px;
-    position: relative;
-    top: 28vh;
-    left: 74vw;
 }
 .bubble{
-    width: 100%;
-    height: 100%;
-    position: relative;
+    width: calc(100% - 50px);
+    height: calc(100% - 50px);
     /*径向渐变*/
     background: radial-gradient(circle at 75% 30%, #fff 5px,#ff21c0 8%, #5b5b5b 60%, #ff21c0 100%);
     border-radius: 50%;
@@ -27,11 +23,6 @@
     width: 150px;
     height: 40px;
     border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    bottom: -50px;
-    /*一点点模糊效果*/
     filter: blur(1px);
     animation: shadow 3s ease-in-out infinite;
 }

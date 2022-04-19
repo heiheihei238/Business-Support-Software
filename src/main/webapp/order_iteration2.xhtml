@@ -11,96 +11,136 @@
 <!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
         <f:viewAction action="#{orderOverview.init}" />
     </f:metadata>
-    <h:outputStylesheet library="css" name="interation2_style.css"/>
+    <h:outputStylesheet library="css" name="dataTable_style.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/navigation.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/displayPageGeneral.css"/>
 </h:head>
 <h:body>
-   <div class="bodystyle">
-      <!--分页列表展示-->
-      <h:dataTable id="list"
-                   styleClass = "allTable"
-                   headerClass = "allTableHeader"
-                   rowClasses = "allTableOddRow,allTableEvenRow"
-                   border="10"
-                   cellpadding="10"
-                   value="#{orderOverview.getAll(orderOverview.currentPage, orderOverview.pageSize)}" var="order">
-            <h:column>
-               <f:facet name="header">
-                  <h:outputText value="Order ID"/>
-               </f:facet>
-               <h:outputText value="#{order.order_id}"/>
-            </h:column>
-            <h:column>
-               <f:facet name="header">
-                  <h:outputText value="Order date"/>
-               </f:facet>
-               <h:outputText value="#{order.order_date}"/>
-            </h:column>
-            <h:column>
-               <f:facet name="header">
-                  <h:outputText value="Order orderStatus"/>
-               </f:facet>
-               <h:outputText value="#{order.order_status}"/>
-            </h:column>
-            <h:column>
-               <f:facet name="header">
-                  <h:outputText value="Order requiredDate"/>
-               </f:facet>
-               <h:outputText value="#{order.required_date}"/>
-            </h:column>
-            <h:column>
-               <f:facet name="header">
-                  <h:outputText value="Order shippedDate"/>
-               </f:facet>
-               <h:outputText value="#{order.shipped_date}"/>
-            </h:column>
-            <h:column>
-               <f:facet name="header">
-                  <h:outputText value="Order customerName"/>
-               </f:facet>
-               <h:outputText value="#{order.customer_id}"/>
-            </h:column>
-          <h:column>
-              <f:facet name="header">
-                  <h:outputText value="Order staffName"/>
-              </f:facet>
-              <h:outputText value="#{order.staff_id}"/>
-          </h:column>
-          <h:column>
-              <f:facet name="header">
-                  <h:outputText value="Order storeName"/>
-              </f:facet>
-              <h:outputText value="#{order.store_id}"/>
-          </h:column>
-          <h:column>
-              <f:facet name="header">
-                  <h:outputText value="Order details"/>
-              </f:facet>
-
-                  <!--URL参数传递-->
-                  <h:outputLink value="order_item.xhtml?order_id=#{order.order_id}">order_item</h:outputLink>
-
-          </h:column>
-      </h:dataTable>
-   </div>
-
-    <!--分页按钮-->
-    <div>
-        <h:form id="page">
-            <div>
-                current page: <h:outputText value="#{orderOverview.currentPage}"/>
-            </div>
-            <div class="commandbutton">
-                <h:commandButton styleClass="commandbutton" value="First" action="#{orderOverview.first}"/>
-                <h:commandButton value="Previous" action="#{orderOverview.previous}"/>
-                <h:commandButton value="Next" action="#{orderOverview.next}"/>
-                <h:commandButton value="Last" action="#{orderOverview.last}"/>
-                <h:inputText value="#{orderOverview.currentPage}"/>
-                <h:commandButton value="Go" action="#{orderOverview.go(orderOverview.currentPage)}"/>
-            </div>
-            <h:messages globalOnly="true" styleClass="error-message"/>
-        </h:form>
+    <div class="header">
+        <div class="navbar">
+            <ul>
+                <li><a href="index.xhtml">Home</a></li>
+                <li><a style="cursor: pointer">Customer</a>
+                    <ul>
+                        <!--                        <li><a href="customer_iteration1.xhtml">New Customer</a></li>-->
+                        <li><a href="customer_iteration2.xhtml">Customers</a></li>
+                    </ul>
+                </li>
+                <li><a style="cursor: pointer">Product</a>
+                    <ul>
+                        <!--                        <li><a href="product_iteration1.xhtml">New Product</a></li>-->
+                        <li><a href="product.product_iteration1.xhtml">Products</a></li>
+                    </ul>
+                </li>
+                <li><a style="cursor: pointer">Order</a>
+                    <ul>
+                        <!--                        <li><a href="order_iteration1.xhtml">New Order</a></li>-->
+                        <li><a href="order_iteration2.xhtml">Oders</a></li>
+                    </ul>
+                </li>
+                <li><a style="cursor: pointer">About</a>
+                    <ul>
+                        <li><a href="index.php">About Project</a></li>
+                        <li><a href="about.php">About us</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
+    <div class="mainteil">
+        <!--这是一个填充框，用于解决表格覆盖二级导航栏导致二级导航栏无法被选中的问题-->
+        <div class="fill"></div>
+        <!--分页列表展示-->
+        <div class="table">
+            <div>
+                <div class="text">ORDER</div>
+                    <h:dataTable id="list"
+                                 styleClass = "allTable"
+                                 headerClass = "allTableHeader"
+                                 rowClasses = "allTableOddRow,allTableEvenRow"
+                                 border="10"
+                                 cellpadding="10"
+                                 value="#{orderOverview.getAll(orderOverview.currentPage, orderOverview.pageSize)}" var="order">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order ID"/>
+                            </f:facet>
+                            <h:outputText value="#{order.order_id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order date"/>
+                            </f:facet>
+                            <h:outputText value="#{order.order_date}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order orderStatus"/>
+                            </f:facet>
+                            <h:outputText value="#{order.order_status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order requiredDate"/>
+                            </f:facet>
+                            <h:outputText value="#{order.required_date}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order shippedDate"/>
+                            </f:facet>
+                            <h:outputText value="#{order.shipped_date}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order customerName"/>
+                            </f:facet>
+                            <h:outputText value="#{order.customer_id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order staffName"/>
+                            </f:facet>
+                            <h:outputText value="#{order.staff_id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order storeName"/>
+                            </f:facet>
+                            <h:outputText value="#{order.store_id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Order details"/>
+                            </f:facet>
 
+                            <!--URL参数传递-->
+                            <h:outputLink style="text-decoration: none" value="order_item.xhtml?order_id=#{order.order_id}">order_item</h:outputLink>
 
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        <!--分页按钮-->
+        <div class="FormControl">
+            <h:form style="width: 100%" id="page">
+                <div class="showPage">
+                    current page: <h:outputText value="#{orderOverview.currentPage}"/>
+                </div>
+                <div class="showError">
+                    <h:messages globalOnly="true" styleClass="error-message"/>
+                </div>
+                <div class="control">
+                    <h:commandButton styleClass="commandButton1" value="First" action="#{orderOverview.first}"/>
+                    <h:commandButton styleClass="commandButton2" value="Previous" action="#{orderOverview.previous}"/>
+                    <h:commandButton styleClass="commandButton1" value="Next" action="#{orderOverview.next}"/>
+                    <h:commandButton styleClass="commandButton1" value="Last" action="#{orderOverview.last}"/>
+                    <h:inputText style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{orderOverview.currentPage}">Go To: </h:inputText>
+                    <h:commandButton styleClass="commandButton1" value="Go" action="#{orderOverview.go(orderOverview.currentPage)}"/>
+                </div>
+            </h:form>
+        </div>
+    </div>
+    <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>
 </h:body>
 </html>
