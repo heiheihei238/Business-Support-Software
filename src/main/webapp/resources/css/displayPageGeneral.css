@@ -14,6 +14,7 @@ body {
 }
 .mainteil{
     /*width: 100vw;*/
+    height: calc(100vh - 80px);
     /*height: calc(100vh - 160px);*/
     background: linear-gradient(200deg,#a8edea,#fed6e3);
     display: flex;
