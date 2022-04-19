@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+}
+.header{
+    width: 100vw;
+    height: 80px;
+
+}
+.bodystyle{
+    width: 100vw;
+    height: calc(100vh - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../image/blockchain3a-1700x800.jpg");
+    background-size: cover;
+}
+.dataTable{
+    text-align: center;
+    font-weight: bolder;
+    font-size:20px;
+    padding: 20px;
+}
+.footer{
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-style: oblique;
+    background: linear-gradient(to right,black,white,black);
+}

@@ -6,10 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-   <title>customer</title>
+    <title>product</title>
     <f:metadata>
-<!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
-        <f:viewAction action="#{customerOverview.init}" />
+        <!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
+        <f:viewAction action="#{productOverview.init}" />
     </f:metadata>
     <h:outputStylesheet library="css" name="dataTable_style.css"/>
     <link rel="stylesheet" type="text/css" href="resources/css/navigation.css"/>
@@ -30,7 +30,7 @@
                 <li><a style="cursor: pointer">Product</a>
                     <ul>
                         <!--                        <li><a href="product_iteration1.xhtml">New Product</a></li>-->
-                        <li><a href="product_iteration2.xhtml">Products</a></li>
+                        <li><a href="product_iteration1.xhtml">Products</a></li>
                     </ul>
                 </li>
                 <li><a style="cursor: pointer">Order</a>
@@ -54,67 +54,55 @@
         <!--分页列表展示-->
         <div class="table">
             <div>
-                <div class="text">CUSTOMER</div>
+                <div class="text">PRODUCT</div>
                 <h:dataTable
                         styleClass = "allTable"
                         headerClass = "allTableHeader"
                         rowClasses = "allTableOddRow,allTableEvenRow"
                         border="10"
                         cellpadding="10"
-                        value="#{customerOverview.getAll(customerOverview.currentPage, customerOverview.pageSize)}" var="customer" >
+                        value="#{productOverview.getAll(productOverview.currentPage, productOverview.pageSize)}" var="product" >
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Customer ID"/>
+                            <h:outputText value="Product ID"/>
                         </f:facet>
-                        <h:outputText value="#{customer.customer_id}"/>
+                        <h:outputText value="#{product.product_id}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Customer firstName"/>
+                            <h:outputText value="Product name"/>
                         </f:facet>
-                        <h:outputText value="#{customer.first_name}"/>
+                        <h:outputText value="#{product.product_name}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Customer lastName"/>
+                            <h:outputText value="Price"/>
                         </f:facet>
-                        <h:outputText value="#{customer.last_name}"/>
+                        <h:outputText value="#{product.list_price}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Customer city"/>
+                            <h:outputText value="Model year"/>
                         </f:facet>
-                        <h:outputText value="#{customer.city}"/>
+                        <h:outputText value="#{product.model_year}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Customer Address"/>
+                            <h:outputText value="Category"/>
                         </f:facet>
-                        <h:outputText value="#{customer.street}"/>
+                        <h:outputText value="#{product.category}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Customer Phone"/>
+                            <h:outputText value="Brand"/>
                         </f:facet>
-                        <h:outputText value="#{customer.phone}"/>
+                        <h:outputText value="#{product.brand}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Customer Email"/>
+                            <h:outputText value="Stocks"/>
                         </f:facet>
-                        <h:outputText value="#{customer.email}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer Status"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.state}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer zipCode"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.zip_code}"/>
+                        <h:outputText value="#{product.stocks}"/>
                     </h:column>
                 </h:dataTable>
             </div>
@@ -123,18 +111,18 @@
         <div class="FormControl">
             <h:form style="width: 100%">
                 <div class="showPage">
-                    current page: <h:outputText value="#{customerOverview.currentPage}"/>
+                    current page: <h:outputText value="#{productOverview.currentPage}"/>
                 </div>
                 <div class="showError">
                     <h:messages globalOnly="true" styleClass="error-message"/>
                 </div>
                 <div class="control">
-                    <h:commandButton styleClass="commandButton1" value="First" action="#{customerOverview.first}"/>
-                    <h:commandButton styleClass="commandButton2" value="Previous" action="#{customerOverview.previous}"/>
-                    <h:commandButton styleClass="commandButton1" value="Next" action="#{customerOverview.next}"/>
-                    <h:commandButton styleClass="commandButton1" value="Last" action="#{customerOverview.last}"/>
-                    <h:inputText style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{customerOverview.currentPage}">Go To: </h:inputText>
-                    <h:commandButton styleClass="commandButton1" value="Go" action="#{customerOverview.go(customerOverview.currentPage)}"/>
+                    <h:commandButton styleClass="commandButton1" value="First" action="#{productOverview.first}"/>
+                    <h:commandButton styleClass="commandButton2" value="Previous" action="#{productOverview.previous}"/>
+                    <h:commandButton styleClass="commandButton1" value="Next" action="#{productOverview.next}"/>
+                    <h:commandButton styleClass="commandButton1" value="Last" action="#{productOverview.last}"/>
+                    <h:inputText style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{productOverview.currentPage}">Go To: </h:inputText>
+                    <h:commandButton styleClass="commandButton1" value="Go" action="#{productOverview.go(productOverview.currentPage)}"/>
                 </div>
             </h:form>
         </div>
