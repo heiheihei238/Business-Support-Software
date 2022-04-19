@@ -8,18 +8,28 @@ body {
     font-family: sans-serif;
 }
 .header{
-    width: 100vw;
+    /*width: 100vw;*/
     height: 80px;
     z-index: 1;
 }
 .mainteil{
-    width: 100vw;
-    height: calc(100vh - 160px);
+    /*width: 100vw;*/
+    /*height: calc(100vh - 160px);*/
     background: linear-gradient(200deg,#a8edea,#fed6e3);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+.footer{
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-style: oblique;
+    background: linear-gradient(to right,black,white,black);
 }
 .fill{
     width: 100vw;
@@ -35,8 +45,8 @@ body {
     margin-bottom: 10px;
 }
 .table{
-    width: 100vw;
-    height: 45%;
+    /*width: 100vw;*/
+    /*height: 45%;*/
     display: flex;
     text-align: center;
     font-weight: bolder;
@@ -45,7 +55,7 @@ body {
 }
 .FormControl{
     width: 100vw;
-    height: 40%;
+    /*height: 40%;*/
     display: flex;
     align-items: flex-start;
 }
@@ -94,14 +104,4 @@ form {
 }
 .commandButton1:hover,.commandButton2:hover{
     background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
-}
-.footer{
-    width: 100vw;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bolder;
-    font-style: oblique;
-    background: linear-gradient(to right,black,white,black);
 }

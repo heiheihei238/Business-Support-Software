@@ -62,3 +62,6 @@
     display: block;
     /*border-top: 1px solid #000;*/
 }
+.navbar ul li:nth-child(5) {
+    display: none;
+}
