@@ -47,7 +47,7 @@ public class Brand {
         return "Brands{" +
                 "brand_id=" + brand_id +
                 ", brand_name='" + brand_name + '\'' +
-                ", products=" + products +
+//                ", products=" + products +
                 '}';
     }
 }

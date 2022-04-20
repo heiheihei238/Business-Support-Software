@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "stocks")
@@ -9,9 +10,9 @@ public class Stock implements Serializable {
     @EmbeddedId
     private StockPK stockPK;
 
-    @OneToOne
+    @ManyToMany
     @JoinColumn(name = "product_id", insertable = false, updatable = false)
-    private Product product;
+    private List<Product> products;
 
     @ManyToOne
     @JoinColumn(name = "store_id", insertable = false, updatable = false)
@@ -30,12 +31,12 @@ public class Stock implements Serializable {
         this.stockPK = stockPK;
     }
 
-    public Product getProduct() {
-        return product;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Store getStore() {

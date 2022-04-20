@@ -21,36 +21,36 @@
         <div class="navbar">
             <ul>
                 <li><a href="index.xhtml">Home</a></li>
-                <li><a style="cursor: pointer">Customer</a>
-                    <ul>
-                        <!--                        <li><a href="customer_iteration1.xhtml">New Customer</a></li>-->
-                        <li><a href="customer_iteration2.xhtml">Customers</a></li>
-                    </ul>
+                <li><a href="customer_iteration2.xhtml" style="cursor: pointer">Customer</a>
+<!--                    <ul>-->
+<!--                        &lt;!&ndash;                        <li><a href="customer_iteration1.xhtml">New Customer</a></li>&ndash;&gt;-->
+<!--                        <li><a href="customer_iteration2.xhtml">Customers</a></li>-->
+<!--                    </ul>-->
                 </li>
-                <li><a style="cursor: pointer; background-color:#6dd47d;">Product</a>
-                    <ul>
-                        <!--                        <li><a href="product_iteration1.xhtml">New Product</a></li>-->
-                        <li><a href="product_iteration1.xhtml">Products</a></li>
-                    </ul>
+                <li><a href="product_iteration2.xhtml" style="cursor: pointer; background-color:#6dd47d;">Product</a>
+<!--                    <ul>-->
+<!--                        &lt;!&ndash;                        <li><a href="product_iteration1.xhtml">New Product</a></li>&ndash;&gt;-->
+<!--                        <li><a href="product_iteration1.xhtml">Products</a></li>-->
+<!--                    </ul>-->
                 </li>
-                <li><a style="cursor: pointer">Order</a>
-                    <ul>
-                        <!--                        <li><a href="order_iteration1.xhtml">New Order</a></li>-->
-                        <li><a href="order_iteration2.xhtml">Oders</a></li>
-                    </ul>
+                <li><a href="order_iteration2.xhtml" style="cursor: pointer">Order</a>
+<!--                    <ul>-->
+<!--                        &lt;!&ndash;                        <li><a href="order_iteration1.xhtml">New Order</a></li>&ndash;&gt;-->
+<!--                        <li><a href="order_iteration2.xhtml">Oders</a></li>-->
+<!--                    </ul>-->
                 </li>
-                <li><a style="cursor: pointer">About</a>
-                    <ul>
-                        <li><a href="index.php">About Project</a></li>
-                        <li><a href="about.php">About us</a></li>
-                    </ul>
+                <li><a href="" style="cursor: pointer">About</a>
+<!--                    <ul>-->
+<!--                        <li><a href="index.php">About Project</a></li>-->
+<!--                        <li><a href="about.php">About us</a></li>-->
+<!--                    </ul>-->
                 </li>
             </ul>
         </div>
     </div>
     <div class="mainteil">
         <!--这是一个填充框，用于解决表格覆盖二级导航栏导致二级导航栏无法被选中的问题-->
-        <div class="fill"></div>
+<!--        <div class="fill"></div>-->
         <!--分页列表展示-->
         <div class="table">
             <div>
@@ -90,19 +90,19 @@
                         <f:facet name="header">
                             <h:outputText value="Category"/>
                         </f:facet>
-                        <h:outputText value="#{product.category}"/>
+                        <h:outputText value="#{product.category_id}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Brand"/>
                         </f:facet>
-                        <h:outputText value="#{product.brand}"/>
+                        <h:outputText value="#{product.brand_id}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Stocks"/>
                         </f:facet>
-                        <h:outputText value="#{product.stocks}"/>
+                        <h:outputText value="#{product.stock_id}"/>
                     </h:column>
                 </h:dataTable>
             </div>

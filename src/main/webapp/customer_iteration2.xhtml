@@ -26,7 +26,7 @@
 <!--                        <li><a href="customer_iteration2.xhtml">Customers</a></li>-->
 <!--                    </ul>-->
                 </li>
-                <li><a href="" style="cursor: pointer">Product</a>
+                <li><a href="product_iteration2.xhtml" style="cursor: pointer">Product</a>
 <!--                    <ul>-->
 <!--                        &lt;!&ndash;                        <li><a href="product_iteration1.xhtml">New Product</a></li>&ndash;&gt;-->
 <!--                        <li><a href="product_iteration2.xhtml">Products</a></li>-->
@@ -128,6 +128,7 @@
                     <h:messages globalOnly="true" styleClass="error-message"/>
                 </div>
                 <div class="control">
+                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />
                     <h:commandButton styleClass="commandButton1" value="First" action="#{customerOverview.first}"/>
                     <h:commandButton styleClass="commandButton2" value="Previous" action="#{customerOverview.previous}"/>
                     <h:commandButton styleClass="commandButton1" value="Next" action="#{customerOverview.next}"/>

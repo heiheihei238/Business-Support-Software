@@ -30,13 +30,14 @@ public class Product {
 
     private Integer category_id;
 
-    @OneToOne(mappedBy = "product")
-    private Stock stocks;
+    @ManyToMany
+    @JoinColumn(name = "stock_id", insertable = false, updatable = false)
+    private List<Stock> stocks;
 
     private Integer stock_id;
 
-//    @OneToMany(mappedBy = "product")
-//    private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems;
 
     public Product() {
     }
@@ -73,14 +74,6 @@ public class Product {
         this.product_name = product_name;
     }
 
-    public Brand getBrands() {
-        return brand;
-    }
-
-    public void setBrands(Brand brand) {
-        this.brand = brand;
-    }
-
     public Integer getBrand_id() {
         return brand_id;
     }
@@ -105,11 +98,27 @@ public class Product {
         this.category_id = category_id;
     }
 
-    public Stock getStocks() {
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(Stock stocks) {
+    public void setStocks(List<Stock> stocks) {
         this.stocks = stocks;
     }
 
@@ -121,13 +130,13 @@ public class Product {
         this.stock_id = stock_id;
     }
 
-//    public List<OrderItem> getOrderItems() {
-//        return orderItems;
-//    }
-//
-//    public void setOrderItems(List<OrderItem> orderItems) {
-//        this.orderItems = orderItems;
-//    }
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 
     @Override
     public String toString() {

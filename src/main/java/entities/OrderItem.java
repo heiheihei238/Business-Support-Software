@@ -12,13 +12,13 @@ public class OrderItem implements Serializable {
     @EmbeddedId
     private OrderItemPK id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "product_id", insertable = false, updatable = false)
-//    private Product product;
-
     @ManyToOne
     @JoinColumn(name = "order_id", insertable = false, updatable = false)
     private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
+    private Product product;
 
     private Integer product_id;
 
@@ -40,22 +40,13 @@ public class OrderItem implements Serializable {
     }
 
 
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
-//
-//
-//    public Product getProducts() {
-//        return product;
-//    }
-//
-//    public void setProducts(Product product) {
-//        this.product = product;
-//    }
+    public Product getProducts() {
+        return product;
+    }
+
+    public void setProducts(Product product) {
+        this.product = product;
+    }
 
     public Integer getProduct_id() {
         return product_id;
@@ -101,7 +92,7 @@ public class OrderItem implements Serializable {
     public String toString() {
         return "Order_items{" +
                 "id=" + id +
-//                ", products=" + product +
+                ", products=" + product +
                 ", product_id=" + product_id +
                 ", discount=" + discount +
                 ", list_price=" + list_price +
