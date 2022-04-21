@@ -1,7 +1,8 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -12,15 +13,15 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer order_id;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     private Date order_date;
 
     private Integer order_status;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     private Date required_date;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     private Date shipped_date;
 
     @ManyToOne
