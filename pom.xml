@@ -43,17 +43,10 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.3.1</version>
-        </dependency>
-
-
     </dependencies>
 
     <build>
-        <finalName>second-iteration</finalName>
+        <finalName>team-9</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -84,8 +77,8 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
-                    <header>First Iteration</header>
-                    <doctitle>First Iteration</doctitle>
+                    <header>Second Iteration</header>
+                    <doctitle>Second Iteration</doctitle>
                     <bottom>Copyright &#169; 2022 Bernd Müller</bottom>
                     <doclint>none</doclint>
                     <release>17</release>
