@@ -42,7 +42,7 @@
             <property name="hibernate.show_sql" value="true" /> &lt;!&ndash; Show SQL in console &ndash;&gt;
             <property name="hibernate.format_sql" value="true" /> &lt;!&ndash; Show SQL formatted &ndash;&gt;
         </properties>
-    </persistence-unit>-->
+    </persistence-unit>
 
 
-</persistence>
+</persistence>-->
