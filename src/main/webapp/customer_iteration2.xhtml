@@ -55,6 +55,7 @@
             <div>
                 <div class="text">CUSTOMER</div>
                 <h:dataTable
+                        id="data"
                         styleClass = "allTable"
                         headerClass = "allTableHeader"
                         rowClasses = "allTableOddRow,allTableEvenRow"
@@ -122,19 +123,31 @@
         <div class="FormControl">
             <h:form>
                 <div class="showPage">
-                    current page: <h:outputText value="#{customerOverview.currentPage}"/>
+                    current page: <h:outputText id="current" value="#{customerOverview.currentPage}"/>
                 </div>
                 <div class="showError">
                     <h:messages globalOnly="true" styleClass="error-message"/>
                 </div>
                 <div class="control">
 <!--                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />-->
-                    <h:commandButton styleClass="commandButton1" value="First" action="#{customerOverview.first}"/>
-                    <h:commandButton styleClass="commandButton2" value="Previous" action="#{customerOverview.previous}"/>
-                    <h:commandButton styleClass="commandButton1" value="Next" action="#{customerOverview.next}"/>
-                    <h:commandButton styleClass="commandButton1" value="Last" action="#{customerOverview.last}"/>
-                    <h:inputText style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{customerOverview.currentPage}">Go To: </h:inputText>
-                    <h:commandButton styleClass="commandButton1" value="Go" action="#{customerOverview.go(customerOverview.currentPage)}"/>
+                    <h:commandButton styleClass="commandButton1" value="First" action="#{customerOverview.first}">
+                        <f:ajax render="data input current"/>
+                    </h:commandButton>
+                    <h:commandButton styleClass="commandButton2" value="Previous" action="#{customerOverview.previous}">
+                        <f:ajax render="data input current"/>
+                    </h:commandButton>
+                    <h:commandButton styleClass="commandButton1" value="Next" action="#{customerOverview.next}">
+                        <f:ajax render="data input current"/>
+                    </h:commandButton>
+                    <h:commandButton styleClass="commandButton1" value="Last" action="#{customerOverview.last}">
+                        <f:ajax render="data input current"/>
+                    </h:commandButton>
+                    <h:inputText id="input" style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{customerOverview.currentPage}">Go To:
+                        <f:ajax render="data input current"/>
+                    </h:inputText>
+                    <h:commandButton styleClass="commandButton1" value="Go" action="#{customerOverview.go(customerOverview.currentPage)}">
+                        <f:ajax render="data input current"/>
+                    </h:commandButton>
                 </div>
             </h:form>
         </div>
