@@ -1,0 +1,17 @@
+
+Planung for Interaktion3
+
+1. die Implementierung von CRUD-Funktionen für Customer, Order und Produkt
+2. Seiten auf denen Mitarbeiter, Marken und Kategorietabellen vorgestellt
+3. Hinzufügen und Löschen von Marken und Kategorien
+4. Anmeldebildschirm (Daten aus der Tabelle Staff)
+      Benutzername：Email Adresse
+      Passwort：Telefonnummer (ohne Vorwahl)
+5. Berechtigungen für verschiedene Rollen festlegen（ADMIN, USER1, USER2)
+     ADMIN: alles lesen und schreiben 
+          -------------->Jackson ist admin
+     USER1: Filialleiter，lesen und schreiben Master- und Detail-Seiten (Tabelle Staff ist nicht betreibsbereit)
+           -------------->Der erste Mitarbeiter in jedem Store ist USER1：Copeland，David，Vargas
+     USER2: Handlungsgehilfe，lesen Master-Seiten, keine Detail-Seiten schauen kann
+           -------------->Die übrigen sind USER2
+6. implemetieren Master-Detail-Darstellungen
