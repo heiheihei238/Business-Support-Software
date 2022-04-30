@@ -1,0 +1,13 @@
+- Commit Messages inkonsistent Deutsch/Englisch
+- teils riesige Code-Blöcke auskommentiert (auf Master-Branch!) (z.B. OrderOveriew, CustomerOverview);
+  auch häufig einzelne Methoden oder Teile im xhtml - inakzeptabel
+- Möglichkeiten des git nicht ausgenutzt (keine Nutzung von Branches, etc.)
+- Code-Kommentare teils in Chinesisch (z.B. ProductOverview)
+- Reflexion ist Text-Datei, nicht PDF
+- Methoden könnten teils besser benamt sein (z.B. statt "next()" "nextPage")
+- Doppelung der Frontend-Dateien für jede Iteration erscheint nicht sinnvoll
+- Zusammengesetzte Primärschlüssen mussen equals() und hashCode() überschreiben
+- Sie ändern die produktive Datenbank. Das ist ein Kündigungsgrund!
+- SQL-Typen im Business-Modell  und Temporal auskommentiert
+- XzyOverview unschöner Name für eine JSF-Managed-Bean
+Bewertung: 68%
