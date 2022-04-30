@@ -9,15 +9,15 @@
     <ui:composition>
         <h:form>
             <div>
-                current page: <h:outputText value="#{customerOverview.currentPage}"/>
+                current page: <h:outputText value="#{customerController.currentPage}"/>
             </div>
             <div>
-                <h:commandButton value="First" action="#{customerOverview.first}"/>
-                <h:commandButton value="Previous" action="#{customerOverview.previous}"/>
-                <h:commandButton value="Next" action="#{customerOverview.next}"/>
-                <h:commandButton value="Last" action="#{customerOverview.last}"/>
-                <h:inputText value="#{customerOverview.currentPage}"/>
-                <h:commandButton value="Go" action="#{customerOverview.go(customerOverview.currentPage)}"/>
+                <h:commandButton value="First" action="#{customerController.first}"/>
+                <h:commandButton value="Previous" action="#{customerController.previous}"/>
+                <h:commandButton value="Next" action="#{customerController.next}"/>
+                <h:commandButton value="Last" action="#{customerController.last}"/>
+                <h:inputText value="#{customerController.currentPage}"/>
+                <h:commandButton value="Go" action="#{customerController.go(customerController.currentPage)}"/>
             </div>
             <h:messages globalOnly="true" styleClass="error-message"/>
         </h:form>

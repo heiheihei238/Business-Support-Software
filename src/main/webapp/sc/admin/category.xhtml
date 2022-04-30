@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>customer</title>
+  <f:metadata>
+    <f:viewAction action="#{categoryController.init}"/>
+  </f:metadata>
+  <h:outputStylesheet library="css" name="dataTable_style.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+</h:head>
+<h:body>
+
+  <div class="header">
+    <div class="navbar">
+      <ul>
+        <li><a href="home.xhtml">Home</a></li>
+        <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
+        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
+        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
+        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
+        <li><a href="category.xhtml" style="cursor: pointer; background-color:#6dd47d;">Category</a></li>
+        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mainteil">
+    <div class="table">
+      <div>
+        <div class="text">CATEGORY</div>
+        <h:dataTable
+                id="data"
+                styleClass = "allTable"
+                headerClass = "allTableHeader"
+                rowClasses = "allTableOddRow,allTableEvenRow"
+                border="10"
+                cellpadding="10"
+                value="#{categoryController.getAll(categoryController.currentPage, categoryController.pageSize)}" var="category" >
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Category ID"/>
+            </f:facet>
+            <h:outputText value="#{category.category_id}"/>
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Category name"/>
+            </f:facet>
+            <h:outputText value="#{category.category_name}"/>
+          </h:column>
+
+
+        </h:dataTable>
+      </div>
+    </div>
+
+    <!--分页按钮-->
+    <div class="FormControl">
+      <h:form>
+        <div class="showPage">
+          current page: <h:outputText id="current" value="#{categoryController.currentPage}"/>
+        </div>
+        <div class="showError">
+          <h:messages globalOnly="true" styleClass="error-message"/>
+        </div>
+        <div class="control">
+          <!--                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />-->
+          <h:commandButton styleClass="commandButton1" value="First" action="#{categoryController.first}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton2" value="Previous" action="#{categoryController.previous}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton1" value="Next" action="#{categoryController.next}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton1" value="Last" action="#{categoryController.last}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:inputText id="input" style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{categoryController.currentPage}">Go To:
+            <f:ajax render="data input current"/>
+          </h:inputText>
+          <h:commandButton styleClass="commandButton1" value="Go" action="#{categoryController.go(categoryController.currentPage)}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+        </div>
+      </h:form>
+    </div>
+  </div>
+</h:body>
+</html>

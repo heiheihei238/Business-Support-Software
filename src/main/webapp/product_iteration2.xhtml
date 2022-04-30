@@ -9,7 +9,7 @@
     <title>product</title>
     <f:metadata>
         <!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
-        <f:viewAction action="#{productOverview.init}" />
+        <f:viewAction action="#{productController.init}" />
     </f:metadata>
     <h:outputStylesheet library="css" name="dataTable_style.css"/>
     <link rel="stylesheet" type="text/css" href="resources/css/navigation.css"/>
@@ -24,7 +24,7 @@
                 <li><a href="customer_iteration2.xhtml" style="cursor: pointer">Customer</a>
 <!--                    <ul>-->
 <!--                        &lt;!&ndash;                        <li><a href="customer_iteration1.xhtml">New Customer</a></li>&ndash;&gt;-->
-<!--                        <li><a href="customer_iteration2.xhtml">Customers</a></li>-->
+<!--                        <li><a href="customer.xhtml">Customers</a></li>-->
 <!--                    </ul>-->
                 </li>
                 <li><a href="product_iteration2.xhtml" style="cursor: pointer; background-color:#6dd47d;">Product</a>
@@ -36,7 +36,7 @@
                 <li><a href="order_iteration2.xhtml" style="cursor: pointer">Order</a>
 <!--                    <ul>-->
 <!--                        &lt;!&ndash;                        <li><a href="order_iteration1.xhtml">New Order</a></li>&ndash;&gt;-->
-<!--                        <li><a href="order_iteration2.xhtml">Oders</a></li>-->
+<!--                        <li><a href="order.xhtml">Oders</a></li>-->
 <!--                    </ul>-->
                 </li>
                 <li><a href="" style="cursor: pointer">About</a>
@@ -62,7 +62,7 @@
                         rowClasses = "allTableOddRow,allTableEvenRow"
                         border="10"
                         cellpadding="10"
-                        value="#{productOverview.getAll(productOverview.currentPage, productOverview.pageSize)}" var="product" >
+                        value="#{productController.getAll(productController.currentPage, productController.pageSize)}" var="product" >
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Product ID"/>
@@ -112,28 +112,28 @@
         <div class="FormControl">
             <h:form id="page" style="width: 100%">
                 <div class="showPage">
-                    current page: <h:outputText value="#{productOverview.currentPage}"/>
+                    current page: <h:outputText value="#{productController.currentPage}"/>
                 </div>
                 <div class="showError">
                     <h:messages globalOnly="true" styleClass="error-message"/>
                 </div>
                 <div class="control">
-                    <h:commandButton styleClass="commandButton1" value="First" action="#{productOverview.first}">
+                    <h:commandButton styleClass="commandButton1" value="First" action="#{productController.first}">
                         <f:ajax render="list page"/>
                     </h:commandButton>
-                    <h:commandButton styleClass="commandButton2" value="Previous" action="#{productOverview.previous}">
+                    <h:commandButton styleClass="commandButton2" value="Previous" action="#{productController.previous}">
                         <f:ajax render="list page"/>
                     </h:commandButton>
-                    <h:commandButton styleClass="commandButton1" value="Next" action="#{productOverview.next}">
+                    <h:commandButton styleClass="commandButton1" value="Next" action="#{productController.next}">
                         <f:ajax render="list page"/>
                     </h:commandButton>
-                    <h:commandButton styleClass="commandButton1" value="Last" action="#{productOverview.last}">
+                    <h:commandButton styleClass="commandButton1" value="Last" action="#{productController.last}">
                         <f:ajax render="list page"/>
                     </h:commandButton>
-                    <h:inputText style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{productOverview.currentPage}">Go To:
+                    <h:inputText style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{productController.currentPage}">Go To:
                         <f:ajax render="list page"/>
                     </h:inputText>
-                    <h:commandButton styleClass="commandButton1" value="Go" action="#{productOverview.go(productOverview.currentPage)}">
+                    <h:commandButton styleClass="commandButton1" value="Go" action="#{productController.go(productController.currentPage)}">
                         <f:ajax render="list page"/>
                     </h:commandButton>
                 </div>

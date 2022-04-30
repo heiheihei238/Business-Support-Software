@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>product</title>
+  <f:metadata>
+    <f:viewAction action="#{productController.init}"/>
+  </f:metadata>
+  <h:outputStylesheet library="css" name="dataTable_style.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+</h:head>
+<h:body>
+  <div class="header">
+    <div class="navbar">
+      <ul>
+        <li><a href="home.xhtml">Home</a></li>
+        <li><a href="category.xhtml" style="cursor: pointer;">Customer</a></li>
+        <li><a href="product.xhtml" style="cursor: pointer; background-color:#6dd47d;">Product</a></li>
+        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
+        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
+        <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
+        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainteil">
+    <div class="table">
+      <div>
+        <div class="text">PRODUCT</div>
+        <h:dataTable
+                id="list"
+                styleClass="allTable"
+                headerClass="allTableHeader"
+                rowClasses="allTableOddRow,allTableEvenRow"
+                border="10"
+                cellpadding="10"
+                value="#{productController.getAll(productController.currentPage, productController.pageSize)}"
+                var="product">
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Product ID"/>
+            </f:facet>
+            <h:outputText value="#{product.product_id}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Product name"/>
+            </f:facet>
+            <h:outputText value="#{product.product_name}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Price"/>
+            </f:facet>
+            <h:outputText value="#{product.list_price}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Model year"/>
+            </f:facet>
+            <h:outputText value="#{product.model_year}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Category"/>
+            </f:facet>
+            <h:outputText value="#{product.category_id}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Brand"/>
+            </f:facet>
+            <h:outputText value="#{product.brand_id}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Stocks"/>
+            </f:facet>
+            <h:outputText value="#{product.stock_id}"/>
+          </h:column>
+        </h:dataTable>
+      </div>
+    </div>
+    <!--分页按钮-->
+    <div class="FormControl">
+      <h:form id="page" style="width: 100%">
+        <div class="showPage">
+          current page: <h:outputText value="#{productController.currentPage}"/>
+        </div>
+        <div class="showError">
+          <h:messages globalOnly="true" styleClass="error-message"/>
+        </div>
+        <div class="control">
+          <h:commandButton styleClass="commandButton1" value="First" action="#{productController.first}">
+            <f:ajax render="list page"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton2" value="Previous" action="#{productController.previous}">
+            <f:ajax render="list page"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton1" value="Next" action="#{productController.next}">
+            <f:ajax render="list page"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton1" value="Last" action="#{productController.last}">
+            <f:ajax render="list page"/>
+          </h:commandButton>
+          <h:inputText style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center"
+                       value="#{productController.currentPage}">Go To:
+            <f:ajax render="list page"/>
+          </h:inputText>
+          <h:commandButton styleClass="commandButton1" value="Go"
+                           action="#{productController.go(productController.currentPage)}">
+            <f:ajax render="list page"/>
+          </h:commandButton>
+        </div>
+      </h:form>
+    </div>
+  </div>
+  <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>
+</h:body>
+</html>

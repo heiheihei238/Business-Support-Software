@@ -1,9 +1,7 @@
-package boundary;
+package controller;
 
-
-import entities.Customer;
-import entities.Product;
-import service.ProductService;
+import entities.Category;
+import service.CategoryService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -11,42 +9,35 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Named
 @RequestScoped
-public class ProductOverview {
+public class CategoryController {
 
-    private Product product;
+    private Category category;
 
-    //当前页
     private static int currentPage = 1;
 
-    //总页数
     private static int totalPages;
 
-    //每页显示的数量
-    private int pageSize = 10;
+    // data amount in one page
+    private int pageSize = 5;
 
-    //总数量
     private int totalCount;
 
-    //每页的数据
-    private List<Product> products;
-
     @Inject
-    ProductService ps;
+    private CategoryService cs;
 
-    public ProductOverview() {
-        product = new Product();
+    public CategoryController() {
+        category = new Category();
     }
 
-    public Product getProduct() {
-        return product;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getCurrentPage() {
@@ -54,7 +45,7 @@ public class ProductOverview {
     }
 
     public void setCurrentPage(int currentPage) {
-        ProductOverview.currentPage = currentPage;
+        CategoryController.currentPage = currentPage;
     }
 
     public int getTotalPages() {
@@ -79,42 +70,24 @@ public class ProductOverview {
     }
 
     public void setTotalCount() {
-        this.totalCount = getAllProduct().size();
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
+        this.totalCount = getAllCategory().size();
     }
 
 
 
-    public Product update() {
-        return ps.update(this.product);
+    // add category
+    public String addCategory() {
+        cs.save(category);
+        return "index";
     }
 
-    public String save() {
-        Logger.getLogger(ProductOverview.class.getCanonicalName()).info("product saved: "+ product);
-        ps.save(product);
-        return null;
+    public List<Category> getAllCategory() {
+        return cs.findAll();
     }
 
-    public String remove(Product product) {
-        try {
-            ps.remove(product);
-            return null;
-        } catch (Exception e) {
-            FacesMessage msg = new FacesMessage("foreign Key violation");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            return null;
-        }
-    }
-
-    public List<Product> getAllProduct() {
-        return ps.findAll();
+    // pagination
+    public List<Category> getAll(int page, int pageSize) {
+        return cs.findAll(page, pageSize);
     }
 
     public void init() {
@@ -146,16 +119,11 @@ public class ProductOverview {
         return null;
     }
 
-    // 分页展示
-    public List<Product> getAll(int page, int pageSize) {
-        return ps.findAll(page, pageSize);
-    }
-
-    // 页码跳转
+    // jump to page
     public String go(int page) {
         if (page > 0 && page <= totalPages) {
             currentPage = page;
-            return "product_list";
+            return "customer_list";
         } else {
             FacesMessage msg = new FacesMessage("invalid page number");
             FacesContext.getCurrentInstance().addMessage(null, msg);

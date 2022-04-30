@@ -12,45 +12,24 @@
         <f:viewAction action="#{orderController.init}" />
     </f:metadata>
     <h:outputStylesheet library="css" name="dataTable_style.css"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/navigation.css"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/displayPageGeneral.css"/>
+    <h:outputStylesheet library="css" name="navigation.css"/>
+    <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
 </h:head>
 <h:body>
     <div class="header">
         <div class="navbar">
             <ul>
-                <li><a href="index.xhtml">Home</a></li>
-                <li><a href="customer_iteration2.xhtml" style="cursor: pointer">Customer</a>
-<!--                    <ul>-->
-<!--                        &lt;!&ndash;                        <li><a href="customer_iteration1.xhtml">New Customer</a></li>&ndash;&gt;-->
-<!--                        <li><a href="customer.xhtml">Customers</a></li>-->
-<!--                    </ul>-->
-                </li>
-                <li><a href="product_iteration2.xhtml" style="cursor: pointer">Product</a>
-<!--                    <ul>-->
-<!--                        &lt;!&ndash;                        <li><a href="product_iteration1.xhtml">New Product</a></li>&ndash;&gt;-->
-<!--                        <li><a href="product.product_iteration1.xhtml">Products</a></li>-->
-<!--                    </ul>-->
-                </li>
-                <li><a href="order_iteration2.xhtml" style="cursor: pointer; background-color:#6dd47d;">Order</a>
-<!--                    <ul>-->
-<!--                        &lt;!&ndash;                        <li><a href="order_iteration1.xhtml">New Order</a></li>&ndash;&gt;-->
-<!--                        <li><a href="order.xhtml">Oders</a></li>-->
-<!--                    </ul>-->
-                </li>
-                <li><a href="" style="cursor: pointer">About</a>
-<!--                    <ul>-->
-<!--                        <li><a href="index.php">About Project</a></li>-->
-<!--                        <li><a href="about.php">About us</a></li>-->
-<!--                    </ul>-->
-                </li>
+                <li><a href="home.xhtml">Home</a></li>
+                <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
+                <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
+                <li><a href="order.xhtml" style="cursor: pointer; background-color:#6dd47d">Order</a></li>
+                <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
+                <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
+                <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
             </ul>
         </div>
     </div>
     <div class="mainteil">
-        <!--这是一个填充框，用于解决表格覆盖二级导航栏导致二级导航栏无法被选中的问题-->
-<!--        <div class="fill"></div>-->
-        <!--分页列表展示-->
         <div class="table">
             <div>
                 <div class="text">ORDER</div>

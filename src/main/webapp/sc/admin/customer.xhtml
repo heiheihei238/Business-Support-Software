@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>customer</title>
+  <f:metadata>
+    <!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
+    <f:viewAction action="#{customerController.init}"/>
+  </f:metadata>
+  <h:outputStylesheet library="css" name="dataTable_style.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+</h:head>
+<h:body>
+  <div class="header">
+    <div class="navbar">
+      <ul>
+        <li><a href="home.xhtml">Home</a></li>
+        <li><a href="customer.xhtml" style="cursor: pointer; background-color:#6dd47d;">Customer</a></li>
+        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
+        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
+        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
+        <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
+        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainteil">
+    <div class="table">
+      <div>
+        <div class="text">CUSTOMER</div>
+        <h:dataTable
+                id="data"
+                styleClass="allTable"
+                headerClass="allTableHeader"
+                rowClasses="allTableOddRow,allTableEvenRow"
+                border="10"
+                cellpadding="10"
+                value="#{customerController.getAll(customerController.currentPage, customerController.pageSize)}"
+                var="customer">
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer ID"/>
+            </f:facet>
+            <h:outputText value="#{customer.customer_id}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer firstName"/>
+            </f:facet>
+            <h:outputText value="#{customer.first_name}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer lastName"/>
+            </f:facet>
+            <h:outputText value="#{customer.last_name}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer city"/>
+            </f:facet>
+            <h:outputText value="#{customer.city}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer Address"/>
+            </f:facet>
+            <h:outputText value="#{customer.street}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer Phone"/>
+            </f:facet>
+            <h:outputText value="#{customer.phone}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer Email"/>
+            </f:facet>
+            <h:outputText value="#{customer.email}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer Status"/>
+            </f:facet>
+            <h:outputText value="#{customer.state}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="Customer zipCode"/>
+            </f:facet>
+            <h:outputText value="#{customer.zip_code}"/>
+          </h:column>
+        </h:dataTable>
+      </div>
+    </div>
+    <!--分页按钮-->
+    <div class="FormControl">
+      <h:form>
+        <div class="showPage">
+          current page: <h:outputText id="current" value="#{customerController.currentPage}"/>
+        </div>
+        <div class="showError">
+          <h:messages globalOnly="true" styleClass="error-message"/>
+        </div>
+        <div class="control">
+          <!--                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />-->
+          <h:commandButton styleClass="commandButton1" value="First" action="#{customerController.first}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton2" value="Previous" action="#{customerController.previous}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton1" value="Next" action="#{customerController.next}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton1" value="Last" action="#{customerController.last}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:inputText id="input" style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center"
+                       value="#{customerController.currentPage}">Go To:
+            <f:ajax render="data input current"/>
+          </h:inputText>
+          <h:commandButton styleClass="commandButton1" value="Go"
+                           action="#{customerController.go(customerController.currentPage)}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+        </div>
+      </h:form>
+    </div>
+  </div>
+</h:body>
+</html>
