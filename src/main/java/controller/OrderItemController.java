@@ -1,4 +1,4 @@
-package boundary;
+package controller;
 
 
 import entities.OrderItem;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Named
 @RequestScoped
-public class OrderItemOverview {
+public class OrderItemController {
 
     private OrderItem orderItem;
 
@@ -22,7 +22,7 @@ public class OrderItemOverview {
     @Inject
     OrderItemService os;
 
-    public OrderItemOverview() {
+    public OrderItemController() {
         orderItem = new OrderItem();
         // read parameter from URL
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

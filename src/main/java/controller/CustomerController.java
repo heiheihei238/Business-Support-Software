@@ -1,10 +1,11 @@
-package boundary;
+package controller;
 
 
-import entities.Order;
-import service.OrderService;
+import entities.Customer;
+import service.CustomerService;
 
 import javax.enterprise.context.RequestScoped;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -14,9 +15,9 @@ import java.util.logging.Logger;
 
 @Named
 @RequestScoped
-public class OrderOverview {
+public class CustomerController {
 
-    private Order order;
+    private Customer customer;
 
     private static int currentPage = 1;
 
@@ -27,23 +28,23 @@ public class OrderOverview {
 
     private int totalCount;
 
-    // Data per page
-    private List<Order> orders;
+    // data per page
+    private List<Customer> customers;
 
     @Inject
-    private OrderService os;
+    private CustomerService cs;
 
 
-    public OrderOverview() {
-        order = new Order();
+    public CustomerController() {
+        customer = new Customer();
     }
 
-    public Order getOrder() {
-        return order;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public int getCurrentPage() {
@@ -51,7 +52,7 @@ public class OrderOverview {
     }
 
     public void setCurrentPage(int currentPage) {
-        OrderOverview.currentPage = currentPage;
+        CustomerController.currentPage = currentPage;
     }
 
     public int getTotalPages() {
@@ -76,32 +77,32 @@ public class OrderOverview {
     }
 
     public void setTotalCount() {
-        this.totalCount = getAllOrder().size();
+        this.totalCount = getAllCustomer().size();
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
 
 
-    public Order update() {
-        return os.update(this.order);
+    public Customer update() {
+        return cs.update(this.customer);
     }
 
     public String save() {
-        Logger.getLogger(OrderOverview.class.getCanonicalName()).info("order saved: "+ order);
-        os.save(order);
+        Logger.getLogger(CustomerController.class.getCanonicalName()).info("customer saved: "+ customer);
+        cs.save(customer);
         return null;
     }
 
-    public String remove(Order order){
+    public String remove(Customer customer){
         try {
-            os.remove(order);
+            cs.remove(customer);
             return null;
         } catch (Exception e) {
             FacesMessage msg = new FacesMessage("foreign Key violation");
@@ -132,14 +133,13 @@ public class OrderOverview {
         }
     }
 
-    public void init(){
+    public List<Customer> getAllCustomer() {
+        return cs.findAll();
+    }
+
+    public void init() {
         setTotalPages();
     }
-
-    public List<Order> getAllOrder() {
-        return os.findAll();
-    }
-
 
     public String next() {
         if (currentPage < totalPages) {
@@ -166,20 +166,22 @@ public class OrderOverview {
         return null;
     }
 
-    // data list for pagination
-    public List<Order> getAll(int page, int pageSize) {
-        return os.findAll(page, pageSize);
-    }
-
     // jump to page
     public String go(int page) {
         if (page > 0 && page <= totalPages) {
             currentPage = page;
-            return "order_list";
+            return "customer_list";
         } else {
             FacesMessage msg = new FacesMessage("invalid page number");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
         }
     }
+
+    // data list for pagination
+    public List<Customer> getAll(int page, int pageSize) {
+        return cs.findAll(page, pageSize);
+    }
+
+
 }
