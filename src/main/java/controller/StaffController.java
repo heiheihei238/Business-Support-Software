@@ -1,8 +1,7 @@
 package controller;
 
-import entities.Category;
-import entities.Customer;
-import service.CategoryService;
+import entities.Staff;
+import service.StaffService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -10,13 +9,12 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Named
 @RequestScoped
-public class CategoryController {
+public class StaffController {
 
-    private Category category;
+    private Staff staff;
 
     private static int currentPage = 1;
 
@@ -28,18 +26,18 @@ public class CategoryController {
     private int totalCount;
 
     @Inject
-    private CategoryService cs;
+    private StaffService cs;
 
-    public CategoryController() {
-        category = new Category();
+    public StaffController() {
+        staff = new Staff();
     }
 
-    public Category getCategory() {
-        return category;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setStaff(Staff staff) {
+        this.staff = StaffController.this.staff;
     }
 
     public int getCurrentPage() {
@@ -47,7 +45,7 @@ public class CategoryController {
     }
 
     public void setCurrentPage(int currentPage) {
-        CategoryController.currentPage = currentPage;
+        StaffController.currentPage = currentPage;
     }
 
     public int getTotalPages() {
@@ -72,23 +70,23 @@ public class CategoryController {
     }
 
     public void setTotalCount() {
-        this.totalCount = getAllCategory().size();
+        this.totalCount = getAllStaff().size();
     }
 
 
 
-    // add category
-    public String addCategory() {
-        cs.save(category);
+    // add staff
+    public String addStaff() {
+        cs.save(staff);
         return "index";
     }
 
-    public List<Category> getAllCategory() {
+    public List<Staff> getAllStaff() {
         return cs.findAll();
     }
 
     // pagination
-    public List<Category> getAll(int page, int pageSize) {
+    public List<Staff> getAll(int page, int pageSize) {
         return cs.findAll(page, pageSize);
     }
 
@@ -132,30 +130,4 @@ public class CategoryController {
             return null;
         }
     }
-
-    // add a new category
-    public String save() {
-        Logger.getLogger(CategoryController.class.getCanonicalName()).info("category saved: "+ category);
-        cs.save(category);
-        return null;
-    }
-
-    // delete a category
-    public String remove(Category category){
-        try {
-            cs.remove(category);
-            return null;
-        } catch (Exception e) {
-            FacesMessage msg = new FacesMessage("foreign Key violation");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            return null;
-        }
-    }
-
-    // show products by category
-    public String showProducts(Category category) {
-        ProductController.setCurrentPage(1);
-        return "/sc/admin/product.xhtml?category_id=" + category.getCategory_id() + "&faces-redirect=true";
-    }
-
 }

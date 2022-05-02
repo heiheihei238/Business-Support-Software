@@ -35,21 +35,44 @@ public class ProductService {
         return em.createQuery("select c from Product c", Product.class).getResultList();
     }
 
-    public long count() {
-        return em.createQuery("select count (c) from Product c", Long.class).getSingleResult();
-    }
-
-//    public Product findByName(String name) {
-//        Query query = em.createQuery("SELECT p FROM Product p WHERE p.product_name = :name");
-//        query.setParameter("name", name);
-//        return (Product) query.getSingleResult();
-//    }
-
     public List<Product> findAll(int page, int size) {
         return em.createQuery("select c from Product c", Product.class)
                 .setFirstResult((page - 1) * size)
                 .setMaxResults(size)
                 .getResultList();
+    }
+
+    // find products by category
+    public List<Product> findAllByCategory(Integer categoryId) {
+        Query query = em.createQuery("select c from Product c where c.category_id = :category_id", Product.class);
+        query.setParameter("category_id", categoryId);
+        return query.getResultList();
+    }
+
+
+    // find products by category and show as page
+    public List<Product> findAllByCategory(int page, int size, Integer categoryId) {
+        Query query = em.createQuery("select c from Product c where c.category_id = :category_id", Product.class);
+        query.setParameter("category_id", categoryId);
+        query.setFirstResult((page - 1) * size);
+        query.setMaxResults(size);
+        return query.getResultList();
+    }
+
+    // find products by brand
+    public List<Product> findAllByBrand(Integer brandId) {
+        Query query = em.createQuery("select c from Product c where c.brand_id = :brand_id", Product.class);
+        query.setParameter("brand_id", brandId);
+        return query.getResultList();
+    }
+
+    // find products by brand and show as page
+    public List<Product> findAllByBrand(int page, int size, Integer brandId) {
+        Query query = em.createQuery("select c from Product c where c.brand_id = :brand_id", Product.class);
+        query.setParameter("brand_id", brandId);
+        query.setFirstResult((page - 1) * size);
+        query.setMaxResults(size);
+        return query.getResultList();
     }
 
 }

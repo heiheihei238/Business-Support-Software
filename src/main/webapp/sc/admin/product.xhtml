@@ -13,13 +13,16 @@
   <h:outputStylesheet library="css" name="dataTable_style.css"/>
   <h:outputStylesheet library="css" name="navigation.css"/>
   <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+  <script type="javascript">
+
+  </script>
 </h:head>
 <h:body>
   <div class="header">
     <div class="navbar">
       <ul>
         <li><a href="home.xhtml">Home</a></li>
-        <li><a href="category.xhtml" style="cursor: pointer;">Customer</a></li>
+        <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
         <li><a href="product.xhtml" style="cursor: pointer; background-color:#6dd47d;">Product</a></li>
         <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
         <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
@@ -120,6 +123,10 @@
       </h:form>
     </div>
   </div>
-  <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>
+  <div class="footer">
+    <h:form>
+      <h:commandButton value="add a new product" action="/sc/admin/addProduct.xhtml" />
+    </h:form>
+  </div>
 </h:body>
 </html>

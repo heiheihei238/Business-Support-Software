@@ -24,7 +24,7 @@ public class CustomerController {
     private static int totalPages;
 
     // data amount in one page
-    private int pageSize = 10;
+    private int pageSize = 8;
 
     private int totalCount;
 

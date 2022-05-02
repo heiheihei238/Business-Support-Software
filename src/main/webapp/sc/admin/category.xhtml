@@ -6,8 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-  <title>customer</title>
-  <f:metadata>
+  <title>category</title>
+  <f:metadata id="init">
     <f:viewAction action="#{categoryController.init}"/>
   </f:metadata>
   <h:outputStylesheet library="css" name="dataTable_style.css"/>
@@ -15,7 +15,6 @@
   <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
 </h:head>
 <h:body>
-
   <div class="header">
     <div class="navbar">
       <ul>
@@ -56,6 +55,20 @@
             <h:outputText value="#{category.category_name}"/>
           </h:column>
 
+          <h:column>
+            <f:facet name="header">delete</f:facet>
+            <h:form>
+              <h:commandButton value="delete" action="#{categoryController.remove(category)}" style="border-radius: 5px"/>
+            </h:form>
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">show product</f:facet>
+            <h:form>
+              <h:commandButton value="show products" action="#{categoryController.showProducts(category)}" style="border-radius: 5px"/>
+            </h:form>
+          </h:column>
+
 
         </h:dataTable>
       </div>
@@ -93,6 +106,12 @@
         </div>
       </h:form>
     </div>
+  </div>
+
+  <div class="footer">
+    <h:form>
+      <h:commandButton value="add a new category" action="/sc/admin/addCategory.xhtml" />
+    </h:form>
   </div>
 </h:body>
 </html>

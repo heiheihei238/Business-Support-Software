@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+
+</h:head>
+<h:body>
+  <h:form>
+    product_name: <h:inputText value="#{productController.product.product_name}" />
+    list_price: <h:inputText value="#{productController.product.list_price}" />
+    model_year: <h:inputText value="#{productController.product.model_year}" />
+    brand_id: <h:inputText value="#{productController.product.brand_id}" />
+    category_id: <h:inputText value="#{productController.product.category_id}" />
+    <h:commandButton action="#{productController.save()}" value="add"/>
+    <h:commandButton value="return" action="/sc/admin/product.xhtml?faces-redirect=true" />
+  </h:form>
+</h:body>
+</html>
