@@ -12,10 +12,12 @@ public class BrandService {
     @PersistenceContext
     EntityManager em;
 
-    public Brand find(Long brand_id) {
+    // find by id
+    public Brand find(Integer brand_id) {
         return em.find(Brand.class,brand_id);
     }
 
+    // update
     public Brand update(Brand brand) {
         return em.merge(brand);
     }

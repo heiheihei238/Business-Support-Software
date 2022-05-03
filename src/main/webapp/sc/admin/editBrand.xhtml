@@ -6,11 +6,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
+  <f:metadata>
+    <f:viewAction action="#{brandController.initEdit}"/>
+  </f:metadata>
 </h:head>
 <h:body>
   <h:form>
+    brand_id: <h:outputText value="#{brandController.brand.brand_id}" />
     brand_name: <h:inputText value="#{brandController.brand.brand_name}" />
-    <h:commandButton action="#{brandController.save()}" value="add"/>
+    <h:commandButton action="#{brandController.update()}" value="update brand" />
     <h:commandButton value="return" action="/sc/admin/brand.xhtml?faces-redirect=true" />
   </h:form>
 </h:body>

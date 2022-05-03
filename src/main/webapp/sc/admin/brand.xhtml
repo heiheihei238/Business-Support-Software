@@ -43,13 +43,13 @@
                 value="#{brandController.getAll(brandController.currentPage, brandController.pageSize)}" var="brand">
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Brand ID"/>
+              <h:outputText value="ID"/>
             </f:facet>
             <h:outputText value="#{brand.brand_id}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Brand name"/>
+              <h:outputText value="name"/>
             </f:facet>
             <h:outputText value="#{brand.brand_name}"/>
           </h:column>
@@ -60,10 +60,14 @@
             </h:form>
           </h:column>
           <h:column>
-            <f:facet name="header">show brand</f:facet>
+            <f:facet name="header">show products</f:facet>
             <h:form>
               <h:commandButton value="show brands" action="#{brandController.showProducts(brand)}" style="border-radius: 5px"/>
             </h:form>
+          </h:column>
+          <h:column>
+            <f:facet name="header">edit</f:facet>
+            <h:outputLink value="editBrand.xhtml?brand_id=#{brand.brand_id}" style="border-radius: 5px">edit brand</h:outputLink>
           </h:column>
         </h:dataTable>
       </div>

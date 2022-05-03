@@ -9,6 +9,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.PathParam;
 import java.util.List;
 
 @Named
@@ -95,6 +97,16 @@ public class BrandController {
         setTotalPages();
     }
 
+    public void initEdit() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("brand_id") != null) {
+            int brand_id = Integer.parseInt(request.getParameter("brand_id"));
+            this.brand = bs.find(brand_id);
+            this.brand.setBrand_id(brand_id);
+        }
+    }
+
     public String next() {
         if (currentPage < totalPages) {
             currentPage++;
@@ -141,6 +153,19 @@ public class BrandController {
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
         }
+    }
+
+    // update brand
+    public String update() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("brand_id") != null) {
+            int brand_id = Integer.parseInt(request.getParameter("brand_id"));
+            this.brand = bs.find(brand_id);
+            this.brand.setBrand_id(brand_id);
+        }
+        System.out.println(brand);
+        bs.update(this.brand);
+        return null;
     }
 
     // show products by category
