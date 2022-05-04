@@ -5,6 +5,7 @@ import entities.Brand;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Stateless
@@ -18,6 +19,7 @@ public class BrandService {
     }
 
     // update
+    @Transactional
     public Brand update(Brand brand) {
         return em.merge(brand);
     }

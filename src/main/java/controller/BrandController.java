@@ -1,7 +1,6 @@
 package controller;
 
 import entities.Brand;
-import entities.Category;
 import service.BrandService;
 
 import javax.enterprise.context.RequestScoped;
@@ -9,8 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.PathParam;
 import java.util.List;
 
 @Named
@@ -51,14 +48,7 @@ public class BrandController {
         BrandController.currentPage = currentPage;
     }
 
-    public int getTotalPages() {
-        return totalPages;
-    }
 
-    public void setTotalPages() {
-        setTotalCount();
-        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
-    }
 
     public int getPageSize() {
         return pageSize;
@@ -68,15 +58,21 @@ public class BrandController {
         this.pageSize = pageSize;
     }
 
+    public static int getTotalPages() {
+        return totalPages;
+    }
+
+    public static void setTotalPages(int totalPages) {
+        BrandController.totalPages = totalPages;
+    }
+
     public int getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount() {
-        this.totalCount = getAllBrand().size();
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
-
-
 
     // add brand
     public String save() {
@@ -94,17 +90,8 @@ public class BrandController {
     }
 
     public void init() {
-        setTotalPages();
-    }
-
-    public void initEdit() {
-        // read parameter from URL
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        if (request.getParameter("brand_id") != null) {
-            int brand_id = Integer.parseInt(request.getParameter("brand_id"));
-            this.brand = bs.find(brand_id);
-            this.brand.setBrand_id(brand_id);
-        }
+        totalCount = bs.findAll().size();
+        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
     }
 
     public String next() {
@@ -127,7 +114,6 @@ public class BrandController {
     }
 
     public String last() {
-        setTotalPages();
         currentPage = totalPages;
         return null;
     }
@@ -153,19 +139,6 @@ public class BrandController {
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
         }
-    }
-
-    // update brand
-    public String update() {
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        if (request.getParameter("brand_id") != null) {
-            int brand_id = Integer.parseInt(request.getParameter("brand_id"));
-            this.brand = bs.find(brand_id);
-            this.brand.setBrand_id(brand_id);
-        }
-        System.out.println(brand);
-        bs.update(this.brand);
-        return null;
     }
 
     // show products by category

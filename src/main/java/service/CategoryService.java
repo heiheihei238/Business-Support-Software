@@ -20,7 +20,7 @@ public class CategoryService {
     }
 
     // find category by id
-    public Category findOne(Long id) {
+    public Category find(Integer id) {
         return em.find(Category.class, id);
     }
 

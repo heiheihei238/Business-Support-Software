@@ -20,23 +20,24 @@ public class ProductController {
 
     private Product product;
 
+    private static Integer productId;
+
     private static Integer categoryId = 0;
 
     private static Integer brandId = 0;
 
-    //当前页
+    // current page
     private static int currentPage = 1;
 
-    //总页数
+    // total page
     private static int totalPages;
 
-    //每页显示的数量
+    // data amount on each page
     private int pageSize = 8;
 
-    //总数量
+    // the total amount of data
     private int totalCount;
 
-    //每页的数据
     private List<Product> products;
 
     @Inject
@@ -104,8 +105,11 @@ public class ProductController {
 
 
 
-    public Product update() {
-        return ps.update(this.product);
+    public String update() {
+        product.setProduct_id(productId);
+        ps.update(this.product);
+        return "/sc/admin/editProduct.xhtml?product_id=" + productId + "&faces-redirect=true";
+
     }
 
     public String save() {
@@ -129,6 +133,7 @@ public class ProductController {
         return ps.findAll();
     }
 
+    // calculate the number of pages and set categoryId and brandId(findByBrand or findByCategory)
     public void init() {
         // read parameter from URL
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -155,6 +160,26 @@ public class ProductController {
         }
     }
 
+    // show details of a product
+    public void initDetails() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("product_id") != null) {
+            productId = Integer.parseInt(request.getParameter("product_id"));
+            this.product = ps.find(productId);
+        }
+    }
+
+    // edit product
+    public void initEdit() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("product_id") != null) {
+            productId = Integer.parseInt(request.getParameter("product_id"));
+            this.product = ps.find(productId);
+        }
+    }
+
     public String next() {
         if (currentPage < totalPages) {
             currentPage++;
@@ -175,7 +200,6 @@ public class ProductController {
     }
 
     public String last() {
-//        setTotalPages();
         currentPage = totalPages;
         return null;
     }

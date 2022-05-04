@@ -62,39 +62,24 @@
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="city"/>
+              <h:outputText value="detail"/>
             </f:facet>
-            <h:outputText value="#{customer.city}"/>
+            <h:outputLink value="customerDetails.xhtml?customer_id=#{customer.customer_id}">details</h:outputLink>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Address"/>
+              <h:outputText value="delete"/>
             </f:facet>
-            <h:outputText value="#{customer.street}"/>
+            <h:form>
+              <h:commandButton value="delete" action="#{customerController.remove(customer)}"/>
+            </h:form>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Phone"/>
+              <h:outputText value="edit"/>
             </f:facet>
-            <h:outputText value="#{customer.phone}"/>
-          </h:column>
-          <h:column>
-            <f:facet name="header">
-              <h:outputText value="Email"/>
-            </f:facet>
-            <h:outputText value="#{customer.email}"/>
-          </h:column>
-          <h:column>
-            <f:facet name="header">
-              <h:outputText value="Status"/>
-            </f:facet>
-            <h:outputText value="#{customer.state}"/>
-          </h:column>
-          <h:column>
-            <f:facet name="header">
-              <h:outputText value="zipCode"/>
-            </f:facet>
-            <h:outputText value="#{customer.zip_code}"/>
+            <h:outputLink value="editCustomer.xhtml?customer_id=#{customer.customer_id}"
+                          style="border-radius: 5px">edit customer</h:outputLink>
           </h:column>
         </h:dataTable>
       </div>
@@ -135,7 +120,7 @@
   </div>
   <div class="footer">
     <h:form>
-      <h:commandButton value="add a new customer" action="/sc/admin/addCustomer.xhtml" />
+      <h:commandButton value="add a new customer" action="/sc/admin/addCustomer.xhtml"/>
     </h:form>
   </div>
 </h:body>

@@ -10,11 +10,12 @@
 </h:head>
 <h:body>
   <h:form>
-    product_name: <h:inputText value="#{productController.product.product_name}" />
-    list_price: <h:inputText value="#{productController.product.list_price}" />
-    model_year: <h:inputText value="#{productController.product.model_year}" />
-    brand_id: <h:inputText value="#{productController.product.brand_id}" />
-    category_id: <h:inputText value="#{productController.product.category_id}" />
+    product_name: <h:inputText value="#{productController.product.product_name}" /><br/>
+    list_price: <h:inputText value="#{productController.product.list_price}" /><br/>
+    model_year: <h:inputText value="#{productController.product.model_year}" /><br/>
+    brand_id: <h:inputText value="#{productController.product.brand_id}" /><br/>
+    category_id: <h:inputText value="#{productController.product.category_id}" /><br/>
+    stock_id: <h:inputText value="#{productController.product.stock_id}" /><br/>
     <h:commandButton action="#{productController.save()}" value="add"/>
     <h:commandButton value="return" action="/sc/admin/product.xhtml?faces-redirect=true" />
   </h:form>

@@ -1,7 +1,6 @@
 package controller;
 
 import entities.Category;
-import entities.Customer;
 import service.CategoryService;
 
 import javax.enterprise.context.RequestScoped;
@@ -76,13 +75,6 @@ public class CategoryController {
     }
 
 
-
-    // add category
-    public String addCategory() {
-        cs.save(category);
-        return "index";
-    }
-
     public List<Category> getAllCategory() {
         return cs.findAll();
     }
@@ -93,7 +85,8 @@ public class CategoryController {
     }
 
     public void init() {
-        setTotalPages();
+        totalCount = cs.findAll().size();
+        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
     }
 
     public String next() {

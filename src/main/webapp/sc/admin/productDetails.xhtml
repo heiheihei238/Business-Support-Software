@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>product</title>
+  <f:metadata>
+    <f:viewAction action="#{productController.initDetails()}"/>
+  </f:metadata>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+</h:head>
+<h:body>
+  <div class="header">
+    <div class="navbar">
+      <ul>
+        <li><a href="home.xhtml">Home</a></li>
+        <li><a href="customer.xhtml" style="cursor: pointer">Customer</a></li>
+        <li><a href="product.xhtml" style="cursor: pointer; background-color:#6dd47d;">Product</a></li>
+        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
+        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
+        <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
+        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainteil">
+    product id:<h:outputText value="#{productController.product.product_id}"/><br/>
+    product name:<h:outputText value="#{productController.product.product_name}"/><br/>
+    price:<h:outputText value="#{productController.product.list_price}"/><br/>
+    model year:<h:outputText value="#{productController.product.model_year}"/><br/>
+    category id:<h:outputText value="#{productController.product.category_id}"/><br/>
+    brand id:<h:outputText value="#{productController.product.brand_id}"/><br/>
+    stocks:<h:outputText value="#{productController.product.stock_id}"/><br/>
+  </div>
+  <div class="footer">
+    <h:outputLink value="product.xhtml">return</h:outputLink>
+  </div>
+</h:body>
+</html>

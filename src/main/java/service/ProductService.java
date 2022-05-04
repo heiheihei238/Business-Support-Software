@@ -14,7 +14,7 @@ public class ProductService {
     @PersistenceContext
     EntityManager em;
 
-    public Product find(Long product_id) {
+    public Product find(Integer product_id) {
         return em.find(Product.class,product_id);
     }
 
