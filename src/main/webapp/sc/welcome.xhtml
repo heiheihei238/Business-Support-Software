@@ -6,17 +6,26 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
 >
 <h:head>
-
+  <h:outputStylesheet library="css" name="welcomeStyle.css"/>
 </h:head>
 
-
 <h:body>
-  <h:form id="form1">
-    <h:commandButton value="I am a administrator" action="#{welcomeController.goAdmin()}"/>
-    <h:commandButton value="I am a shop manager" action="#{welcomeController.goManager()}"/>
-    <h:commandButton value="I am a user" action="#{welcomeController.goUser()}"/>
-  </h:form>
-
+   <div class="container">
+       <div class="card">
+           <div class="front-content">
+               <h3>WELCOME TO BIKES</h3>
+               <p>Mouse over to learn more</p>
+           </div>
+           <div class="back-content">
+               <h:form styleClass="form" id="form1">
+                   <h:commandButton value="I am a administrator" action="#{welcomeController.goAdmin()}"/>
+                   <h:commandButton value="I am a shop manager" action="#{welcomeController.goManager()}"/>
+                   <h:commandButton value="I am a user" action="#{welcomeController.goUser()}"/>
+               </h:form>
+           </div>
+       </div>
+   </div>
+    <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>
 </h:body>
 
 </html>

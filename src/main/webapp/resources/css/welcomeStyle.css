@@ -1,0 +1,165 @@
+/* Introduction of web fonts */
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Set font to web font */
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #161626;
+}
+
+/* Forming the circle in the background */
+body::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#2193b0, #6dd5ed);
+    clip-path: circle(30% at right 70%);
+}
+
+/* Forming the circle in the background */
+body::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#ee9ca7, #ffdde1);
+    clip-path: circle(20% at 10% 10%);
+}
+
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.container .card{
+    position: relative;
+    min-width: 30vw;
+    width: 50vw;
+    min-height: 36vh;
+    height: 60vh;
+    background-color: rgba(255,255,255,0.1);
+    margin: 30px;
+    border-radius: 15px;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-left: 1px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.container .card .front-content{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.container .card .back-content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    transform: translateY(110px);
+    transition: all 0.5s ease;
+}
+
+.container .card .front-content h3{
+    font-size: 75px;
+    color: #fff;
+    font-weight: bolder;
+}
+
+.container .card .front-content p{
+    font-size: 25px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.container .card .back-content form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .card .back-content form input{
+    cursor: pointer;
+    width: 70%;
+    height: 20%;
+    position: relative;
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 50px;
+    font-size: 25px;
+    color: #000;
+    text-decoration: none;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    box-shadow: rgb(173, 173, 173) -3px -3px 1px,
+                rgb(0,0,0,0.5) 4px 4px 1px;
+    border-radius: 40px;
+    font-weight: bolder;
+}
+
+.container .card .back-content form input:hover{
+    background: rgba(255,255,255,0.1);
+    box-shadow: rgb(180,180,180) 3px 3px 1px,
+                rgb(0,0,0,0.5) -4px -4px 1px;
+}
+
+.container .card:hover .back-content{
+    opacity: 1;
+    display: block;
+    transform: translateY(0px);
+}
+
+.container .card:hover .front-content{
+    opacity: 0;
+    transform: translateY(-110px);
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-style: oblique;
+    background: linear-gradient(to right,black,white,black);
+}
