@@ -4,29 +4,37 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
 >
-<h:head/>
+<h:head>
+    <h:outputStylesheet library="css" name="loginStyle.css" />
+</h:head>
 
 <h:messages/>
 
 <body>
-<p>
-    Custom Form-based Authentication
-</p>
-
-<form jsf:id="form">
-    <p>
-        <strong>Username</strong>
-        <input jsf:id="username" type="text" jsf:value="#{loginBean.username}"/>
-    </p>
-    <p>
-        <strong>Password</strong>
-        <input jsf:id="password" type="text" jsf:value="#{loginBean.password}"/>
-    </p>
-    <p>
-        <input type="submit" value="Login" jsf:action="#{loginBean.login}"/>
-    </p>
-</form>
+<div class="container">
+    <div class="card">
+        <h2>Login</h2>
+        <form jsf:id="form">
+            <div class="login_box">
+                <input required="required" jsf:id="username" type="text" jsf:value="#{loginBean.username}"/>
+                <label>Username</label>
+            </div>
+            <div class="login_box">
+                <input required="required" jsf:id="password" type="text" jsf:value="#{loginBean.password}"/>
+                <label>Password</label>
+            </div>
+            <div class="button">
+                <input type="submit" value="Login to account" jsf:action="#{loginBean.login}"/>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 
 </html>
+

@@ -9,32 +9,74 @@
 
 <h:head>
   <title>sale_system</title>
-  <h:outputStylesheet library="css" name="Index.css"/>
-  <h:outputStylesheet library="css" name="ball.css"/>
-  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="homeStyle.css" />
 </h:head>
 
 <h:body>
-  <div class="header">
-    <div class="navbar">
-      <ul>
-        <li><a href="home.xhtml" style="background-color:#6dd47d;">Home</a></li>
-        <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
-        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
-        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
-        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
-        <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
-        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
-      </ul>
+  <div class="container">
+    <div class="card">
+      <div class="front-content">
+        <h2>01</h2>
+        <h3>Brand</h3>
+        <p>Here is a summary of all the bikes belonging to the brand.</p>
+      </div>
+      <div class="back-content">
+        <a href="brand.xhtml">Brand</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="front-content">
+        <h2>02</h2>
+        <h3>Category</h3>
+        <p>Here is a summary of all bicycle categories, such as mountain bikes, road bikes.</p>
+      </div>
+      <div class="back-content">
+        <a href="category.xhtml">Category</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="front-content">
+        <h2>03</h2>
+        <h3>Customer</h3>
+        <p>Here is a summary of all customer information, including names, phone numbers, etc..</p>
+      </div>
+      <div class="backDouble-content">
+        <a href="customer.xhtml">Customer</a>
+        <a href="customerCreat.xhtml">Creat customer</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="front-content">
+        <h2>04</h2>
+        <h3>Order</h3>
+        <p>Here is a summary of all order information, including creation time and details.</p>
+      </div>
+      <div class="backDouble-content">
+        <a href="order.xhtml">Order</a>
+        <a href="orderCreat.xhtml">Creat order</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="front-content">
+        <h2>05</h2>
+        <h3>Product</h3>
+        <p>All product information is summarized here, including the brand to which the product belongs and the product number.</p>
+      </div>
+      <div class="backDouble-content">
+        <a href="product.xhtml">Product</a>
+        <a href="productCreat.xhtml">Creat product</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="front-content">
+        <h2>06</h2>
+        <h3>Staff</h3>
+        <p>Here is a summary of all employee information, including their name, phone number and rank.</p>
+      </div>
+      <div class="back-content">
+        <a href="staff.xhtml">Staff</a>
+      </div>
     </div>
   </div>
-  <div class="main">
-    <div class="text">WELCOME TO BIKES</div>
-    <div class="container">
-      <div class="bubble"></div>
-      <div class="shadow"></div>
-    </div>
-  </div>
-  <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>
 </h:body>
 </html>
