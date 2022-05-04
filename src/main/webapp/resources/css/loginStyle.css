@@ -117,6 +117,7 @@ body::after{
     top: -20px;
     color: #03e9f4;
     font-size: 12px;
+    background: transparent;
 }
 
 .container .card form .button{
