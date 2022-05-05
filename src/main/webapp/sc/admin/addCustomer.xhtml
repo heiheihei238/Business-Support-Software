@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+
+</h:head>
+<h:body>
+  <h:form>
+    first_name: <h:inputText value="#{customerController.customer.first_name}" />
+    last_name: <h:inputText value="#{customerController.customer.last_name}" />
+    city: <h:inputText value="#{customerController.customer.city}" />
+    email: <h:inputText value="#{customerController.customer.email}" />
+    phone: <h:inputText value="#{customerController.customer.phone}" />
+    state: <h:inputText value="#{customerController.customer.state}" />
+    street: <h:inputText value="#{customerController.customer.street}" />
+    zip_code: <h:inputText value="#{customerController.customer.zip_code}" />
+    <h:commandButton action="#{customerController.save()}" value="add"/>
+    <h:commandButton value="return" action="/sc/admin/customer.xhtml?faces-redirect=true" />
+  </h:form>
+</h:body>
+</html>

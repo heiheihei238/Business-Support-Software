@@ -44,57 +44,42 @@
                 var="customer">
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Customer ID"/>
+              <h:outputText value="ID"/>
             </f:facet>
             <h:outputText value="#{customer.customer_id}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Customer firstName"/>
+              <h:outputText value="firstName"/>
             </f:facet>
             <h:outputText value="#{customer.first_name}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Customer lastName"/>
+              <h:outputText value="lastName"/>
             </f:facet>
             <h:outputText value="#{customer.last_name}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Customer city"/>
+              <h:outputText value="detail"/>
             </f:facet>
-            <h:outputText value="#{customer.city}"/>
+            <h:outputLink value="customerDetails.xhtml?customer_id=#{customer.customer_id}">details</h:outputLink>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Customer Address"/>
+              <h:outputText value="delete"/>
             </f:facet>
-            <h:outputText value="#{customer.street}"/>
+            <h:form>
+              <h:commandButton value="delete" action="#{customerController.remove(customer)}"/>
+            </h:form>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Customer Phone"/>
+              <h:outputText value="edit"/>
             </f:facet>
-            <h:outputText value="#{customer.phone}"/>
-          </h:column>
-          <h:column>
-            <f:facet name="header">
-              <h:outputText value="Customer Email"/>
-            </f:facet>
-            <h:outputText value="#{customer.email}"/>
-          </h:column>
-          <h:column>
-            <f:facet name="header">
-              <h:outputText value="Customer Status"/>
-            </f:facet>
-            <h:outputText value="#{customer.state}"/>
-          </h:column>
-          <h:column>
-            <f:facet name="header">
-              <h:outputText value="Customer zipCode"/>
-            </f:facet>
-            <h:outputText value="#{customer.zip_code}"/>
+            <h:outputLink value="editCustomer.xhtml?customer_id=#{customer.customer_id}"
+                          style="border-radius: 5px">edit customer</h:outputLink>
           </h:column>
         </h:dataTable>
       </div>
@@ -109,7 +94,6 @@
           <h:messages globalOnly="true" styleClass="error-message"/>
         </div>
         <div class="control">
-          <!--                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />-->
           <h:commandButton styleClass="commandButton1" value="First" action="#{customerController.first}">
             <f:ajax render="data input current"/>
           </h:commandButton>
@@ -133,6 +117,11 @@
         </div>
       </h:form>
     </div>
+  </div>
+  <div class="footer">
+    <h:form>
+      <h:commandButton value="add a new customer" action="/sc/admin/addCustomer.xhtml"/>
+    </h:form>
   </div>
 </h:body>
 </html>

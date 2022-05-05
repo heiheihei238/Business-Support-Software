@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <f:metadata>
+    <f:viewAction action="#{productController.initEdit}"/>
+  </f:metadata>
+</h:head>
+<h:body>
+  <h:form>
+    product id:<h:inputText value="#{productController.product.product_id}" disabled="true"/><br/>
+    product name:<h:inputText value="#{productController.product.product_name}"/><br/>
+    price:<h:inputText value="#{productController.product.list_price}"/><br/>
+    year:<h:inputText value="#{productController.product.model_year}"/><br/>
+    brand id:<h:inputText value="#{productController.product.brand_id}"/><br/>
+    category id:<h:inputText value="#{productController.product.category_id}"/><br/>
+    stock id:<h:inputText value="#{productController.product.stock_id}"/><br/>
+    <h:commandButton action="#{productController.update()}" value="update product" />
+  </h:form>
+  <h:outputLink value="product.xhtml">return</h:outputLink>
+</h:body>
+</html>

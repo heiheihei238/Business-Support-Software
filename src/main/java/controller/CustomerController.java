@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,12 +20,14 @@ public class CustomerController {
 
     private Customer customer;
 
+    private static Integer customerId;
+
     private static int currentPage = 1;
 
     private static int totalPages;
 
     // data amount in one page
-    private int pageSize = 10;
+    private int pageSize = 8;
 
     private int totalCount;
 
@@ -55,14 +58,6 @@ public class CustomerController {
         CustomerController.currentPage = currentPage;
     }
 
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages() {
-        setTotalCount();
-        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
-    }
 
     public int getPageSize() {
         return pageSize;
@@ -72,12 +67,20 @@ public class CustomerController {
         this.pageSize = pageSize;
     }
 
+    public static int getTotalPages() {
+        return totalPages;
+    }
+
+    public static void setTotalPages(int totalPages) {
+        CustomerController.totalPages = totalPages;
+    }
+
     public int getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount() {
-        this.totalCount = getAllCustomer().size();
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 
     public List<Customer> getCustomers() {
@@ -90,8 +93,11 @@ public class CustomerController {
 
 
 
-    public Customer update() {
-        return cs.update(this.customer);
+    // update customer
+    public String update() {
+        customer.setCustomer_id(customerId);
+        cs.update(this.customer);
+        return "/sc/admin/editCustomer.xhtml?customer_id=" + customerId + "&faces-redirect=true";
     }
 
     public String save() {
@@ -108,28 +114,6 @@ public class CustomerController {
             FacesMessage msg = new FacesMessage("foreign Key violation");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
-            /*System.out.println("=========================================================================================== from Service");
-            for (Throwable t = e.getCause(); t != null; t = t.getCause()) {
-                System.out.println("reason is " + t.getClass().toString());
-                if (t.getClass().equals(PSQLException.class)){
-                    System.out.println("reason is PSQL");
-                }
-                if (t.getClass().equals(ConstraintViolationException.class)){
-                    System.out.println("reason is CVException");
-                }
-                if (t.getClass().equals(PersistenceException.class)){
-                    System.out.println("reason is PersistenceException");
-                }
-                if (PSQLException.class.equals(t.getClass())) {
-                    PSQLException postgresException = (PSQLException) t;
-
-                    // In Postgres SQLState 23505=unique_violation
-                    if ("23505".equals(postgresException.getSQLState())) {
-                        System.out.println("===========================================================================================");
-                    }
-                }
-
-            }*/
         }
     }
 
@@ -137,8 +121,30 @@ public class CustomerController {
         return cs.findAll();
     }
 
+    // calculate the number of pages
     public void init() {
-        setTotalPages();
+        totalCount = cs.findAll().size();
+        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+    }
+
+    // show details of a customer
+    public void initDetails() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("customer_id") != null) {
+            customerId = Integer.parseInt(request.getParameter("customer_id"));
+            this.customer = cs.find(customerId);
+        }
+    }
+
+    // edit customer
+    public void initEdit() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("customer_id") != null) {
+            customerId = Integer.parseInt(request.getParameter("customer_id"));
+            this.customer = cs.find(customerId);
+        }
     }
 
     public String next() {
@@ -161,7 +167,6 @@ public class CustomerController {
     }
 
     public String last() {
-        setTotalPages();
         currentPage = totalPages;
         return null;
     }

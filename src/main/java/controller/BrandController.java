@@ -1,7 +1,7 @@
 package controller;
 
-import entities.Category;
-import service.CategoryService;
+import entities.Brand;
+import service.BrandService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -9,13 +9,12 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Named
 @RequestScoped
-public class CategoryController {
+public class BrandController {
 
-    private Category category;
+    private Brand brand;
 
     private static int currentPage = 1;
 
@@ -27,18 +26,18 @@ public class CategoryController {
     private int totalCount;
 
     @Inject
-    private CategoryService cs;
+    private BrandService bs;
 
-    public CategoryController() {
-        category = new Category();
+    public BrandController() {
+        brand = new Brand();
     }
 
-    public Category getCategory() {
-        return category;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setBrand(Brand brand) {
+        this.brand = BrandController.this.brand;
     }
 
     public int getCurrentPage() {
@@ -46,17 +45,10 @@ public class CategoryController {
     }
 
     public void setCurrentPage(int currentPage) {
-        CategoryController.currentPage = currentPage;
+        BrandController.currentPage = currentPage;
     }
 
-    public int getTotalPages() {
-        return totalPages;
-    }
 
-    public void setTotalPages() {
-        setTotalCount();
-        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
-    }
 
     public int getPageSize() {
         return pageSize;
@@ -66,26 +58,39 @@ public class CategoryController {
         this.pageSize = pageSize;
     }
 
+    public static int getTotalPages() {
+        return totalPages;
+    }
+
+    public static void setTotalPages(int totalPages) {
+        BrandController.totalPages = totalPages;
+    }
+
     public int getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount() {
-        this.totalCount = getAllCategory().size();
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 
+    // add brand
+    public String save() {
+        bs.save(brand);
+        return null;
+    }
 
-    public List<Category> getAllCategory() {
-        return cs.findAll();
+    public List<Brand> getAllBrand() {
+        return bs.findAll();
     }
 
     // pagination
-    public List<Category> getAll(int page, int pageSize) {
-        return cs.findAll(page, pageSize);
+    public List<Brand> getAll(int page, int pageSize) {
+        return bs.findAll(page, pageSize);
     }
 
     public void init() {
-        totalCount = cs.findAll().size();
+        totalCount = bs.findAll().size();
         totalPages = (int) Math.ceil(totalCount / (double) pageSize);
     }
 
@@ -109,7 +114,6 @@ public class CategoryController {
     }
 
     public String last() {
-        setTotalPages();
         currentPage = totalPages;
         return null;
     }
@@ -126,17 +130,9 @@ public class CategoryController {
         }
     }
 
-    // add a new category
-    public String save() {
-        Logger.getLogger(CategoryController.class.getCanonicalName()).info("category saved: "+ category);
-        cs.save(category);
-        return null;
-    }
-
-    // delete a category
-    public String remove(Category category){
+    public String remove(Brand brand){
         try {
-            cs.remove(category);
+            bs.remove(brand);
             return null;
         } catch (Exception e) {
             FacesMessage msg = new FacesMessage("foreign Key violation");
@@ -146,9 +142,8 @@ public class CategoryController {
     }
 
     // show products by category
-    public String showProducts(Category category) {
+    public String showProducts(Brand brand) {
         ProductController.setCurrentPage(1);
-        return "/sc/admin/product.xhtml?category_id=" + category.getCategory_id() + "&faces-redirect=true";
+        return "/sc/admin/product.xhtml?brand_id=" + brand.getBrand_id() + "&faces-redirect=true";
     }
-
 }

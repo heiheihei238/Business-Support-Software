@@ -1,6 +1,7 @@
 package controller;
 
 
+import entities.Category;
 import entities.Product;
 import service.ProductService;
 
@@ -9,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,19 +20,24 @@ public class ProductController {
 
     private Product product;
 
-    //当前页
+    private static Integer productId;
+
+    private static Integer categoryId = 0;
+
+    private static Integer brandId = 0;
+
+    // current page
     private static int currentPage = 1;
 
-    //总页数
+    // total page
     private static int totalPages;
 
-    //每页显示的数量
-    private int pageSize = 10;
+    // data amount on each page
+    private int pageSize = 8;
 
-    //总数量
+    // the total amount of data
     private int totalCount;
 
-    //每页的数据
     private List<Product> products;
 
     @Inject
@@ -38,6 +45,14 @@ public class ProductController {
 
     public ProductController() {
         product = new Product();
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        ProductController.categoryId = categoryId;
     }
 
     public Product getProduct() {
@@ -52,7 +67,7 @@ public class ProductController {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public static void setCurrentPage(int currentPage) {
         ProductController.currentPage = currentPage;
     }
 
@@ -60,9 +75,8 @@ public class ProductController {
         return totalPages;
     }
 
-    public void setTotalPages() {
-        setTotalCount();
-        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
+    public void setTotalPages(Integer totalPages) {
+        ProductController.totalPages = totalPages;
     }
 
     public int getPageSize() {
@@ -77,8 +91,8 @@ public class ProductController {
         return totalCount;
     }
 
-    public void setTotalCount() {
-        this.totalCount = getAllProduct().size();
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
     }
 
     public List<Product> getProducts() {
@@ -91,8 +105,11 @@ public class ProductController {
 
 
 
-    public Product update() {
-        return ps.update(this.product);
+    public String update() {
+        product.setProduct_id(productId);
+        ps.update(this.product);
+        return "/sc/admin/editProduct.xhtml?product_id=" + productId + "&faces-redirect=true";
+
     }
 
     public String save() {
@@ -116,8 +133,51 @@ public class ProductController {
         return ps.findAll();
     }
 
+    // calculate the number of pages and set categoryId and brandId(findByBrand or findByCategory)
     public void init() {
-        setTotalPages();
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        // the page jumped not from brand
+        if (request.getParameter("category_id") != null) {
+            brandId = 0;
+            categoryId = Integer.parseInt(request.getParameter("category_id"));
+            totalCount = ps.findAllByCategory(categoryId).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
+        // the page jumped not from category
+        else if (request.getParameter("brand_id") != null) {
+            categoryId = 0;
+            brandId = Integer.parseInt(request.getParameter("brand_id"));
+            totalCount = ps.findAllByBrand(brandId).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
+        // show all products
+        else {
+            brandId = 0;
+            categoryId = 0;
+            totalCount = ps.findAll().size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
+    }
+
+    // show details of a product
+    public void initDetails() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("product_id") != null) {
+            productId = Integer.parseInt(request.getParameter("product_id"));
+            this.product = ps.find(productId);
+        }
+    }
+
+    // edit product
+    public void initEdit() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("product_id") != null) {
+            productId = Integer.parseInt(request.getParameter("product_id"));
+            this.product = ps.find(productId);
+        }
     }
 
     public String next() {
@@ -140,17 +200,20 @@ public class ProductController {
     }
 
     public String last() {
-        setTotalPages();
         currentPage = totalPages;
         return null;
     }
 
-    // 分页展示
+    // pagination
     public List<Product> getAll(int page, int pageSize) {
-        return ps.findAll(page, pageSize);
+        if (categoryId == 0 && brandId == 0) return ps.findAll(page, pageSize);
+        // the page is jumped from category.
+        else if(categoryId != 0) return ps.findAllByCategory(page, pageSize, categoryId);
+        // the page is jumped from brand.
+        else return ps.findAllByBrand(page, pageSize, brandId);
     }
 
-    // 页码跳转
+    // jump to page
     public String go(int page) {
         if (page > 0 && page <= totalPages) {
             currentPage = page;

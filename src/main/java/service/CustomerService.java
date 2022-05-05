@@ -12,7 +12,7 @@ public class CustomerService {
     @PersistenceContext
     EntityManager em;
 
-    public Customer find(Long customer_id) {
+    public Customer find(Integer customer_id) {
         return em.find(Customer.class,customer_id);
     }
 

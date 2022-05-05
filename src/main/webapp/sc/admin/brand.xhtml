@@ -6,152 +6,108 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-   <title>customer</title>
-    <f:metadata>
-<!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
-        <f:viewAction action="#{customerController.init}" />
-    </f:metadata>
-    <h:outputStylesheet library="css" name="dataTable_style.css"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/navigation.css"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/displayPageGeneral.css"/>
+  <title>brand</title>
+  <f:metadata>
+    <f:viewAction action="#{brandController.init}"/>
+  </f:metadata>
+  <h:outputStylesheet library="css" name="dataTable_style.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
 </h:head>
 <h:body>
-    <div class="header">
-        <div class="navbar">
-            <ul>
-                <li><a href="index.xhtml">Home</a></li>
-                <li><a href="customer_iteration2.customer.xhtml" style="cursor: pointer; background-color:#6dd47d;">Customer</a>
-<!--                    <ul>-->
-<!--                        &lt;!&ndash;                        <li><a href="customer_iteration1.xhtml">New Customer</a></li>&ndash;&gt;-->
-<!--                        <li><a href="customer.xhtml">Customers</a></li>-->
-<!--                    </ul>-->
-                </li>
-                <li><a href="product_iteration2.product.xhtml" style="cursor: pointer">Product</a>
-<!--                    <ul>-->
-<!--                        &lt;!&ndash;                        <li><a href="product_iteration1.xhtml">New Product</a></li>&ndash;&gt;-->
-<!--                        <li><a href="product.xhtml">Products</a></li>-->
-<!--                    </ul>-->
-                </li>
-                <li><a href="order_iteration2.order.xhtml" style="cursor: pointer">Order</a>
-<!--                    <ul>-->
-<!--                        &lt;!&ndash;                        <li><a href="order_iteration1.xhtml">New Order</a></li>&ndash;&gt;-->
-<!--                        <li><a href="order.xhtml">Oders</a></li>-->
-<!--                    </ul>-->
-                </li>
-                <li><a style="cursor: pointer;">About</a>
-<!--                    <ul>-->
-<!--                        <li><a href="index.php">About Project</a></li>-->
-<!--                        <li><a href="about.php">About us</a></li>-->
-<!--                    </ul>-->
-                </li>
-            </ul>
-        </div>
+  <div class="header">
+    <div class="navbar">
+      <ul>
+        <li><a href="home.xhtml">Home</a></li>
+        <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
+        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
+        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
+        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
+        <li><a href="category.xhtml" style="cursor: pointer">Category</a></li>
+        <li><a href="brand.xhtml" style="cursor: pointer; background-color:#6dd47d;">Brand</a></li>
+      </ul>
     </div>
-    <div class="mainteil">
-        <!--This is a filler box to solve the problem of the secondary navigation bar not being selected due to the table overlaying the secondary navigation bar-->
-<!--        <div class="fill"></div>-->
-        <!--Pagination list display-->
-        <div class="table">
-            <div>
-                <div class="text">CUSTOMER</div>
-                <h:dataTable
-                        id="data"
-                        styleClass = "allTable"
-                        headerClass = "allTableHeader"
-                        rowClasses = "allTableOddRow,allTableEvenRow"
-                        border="10"
-                        cellpadding="10"
-                        value="#{customerController.getAll(customerController.currentPage, customerController.pageSize)}" var="customer" >
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer ID"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.customer_id}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer firstName"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.first_name}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer lastName"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.last_name}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer city"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.city}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer Address"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.street}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer Phone"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.phone}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer Email"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.email}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer Status"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.state}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Customer zipCode"/>
-                        </f:facet>
-                        <h:outputText value="#{customer.zip_code}"/>
-                    </h:column>
-                </h:dataTable>
-            </div>
-        </div>
-        <!--分页按钮-->
-        <div class="FormControl">
+  </div>
+
+  <div class="mainteil">
+    <div class="table">
+      <div>
+        <div class="text">BRAND</div>
+        <h:dataTable
+                id="data"
+                styleClass="allTable"
+                headerClass="allTableHeader"
+                rowClasses="allTableOddRow,allTableEvenRow"
+                border="10"
+                cellpadding="10"
+                value="#{brandController.getAll(brandController.currentPage, brandController.pageSize)}" var="brand">
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="ID"/>
+            </f:facet>
+            <h:outputText value="#{brand.brand_id}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="name"/>
+            </f:facet>
+            <h:outputText value="#{brand.brand_name}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">delete</f:facet>
             <h:form>
-                <div class="showPage">
-                    current page: <h:outputText id="current" value="#{customerController.currentPage}"/>
-                </div>
-                <div class="showError">
-                    <h:messages globalOnly="true" styleClass="error-message"/>
-                </div>
-                <div class="control">
-<!--                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />-->
-                    <h:commandButton styleClass="commandButton1" value="First" action="#{customerController.first}">
-                        <f:ajax render="data input current"/>
-                    </h:commandButton>
-                    <h:commandButton styleClass="commandButton2" value="Previous" action="#{customerController.previous}">
-                        <f:ajax render="data input current"/>
-                    </h:commandButton>
-                    <h:commandButton styleClass="commandButton1" value="Next" action="#{customerController.next}">
-                        <f:ajax render="data input current"/>
-                    </h:commandButton>
-                    <h:commandButton styleClass="commandButton1" value="Last" action="#{customerController.last}">
-                        <f:ajax render="data input current"/>
-                    </h:commandButton>
-                    <h:inputText id="input" style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center" value="#{customerController.currentPage}">Go To:
-                        <f:ajax render="data input current"/>
-                    </h:inputText>
-                    <h:commandButton styleClass="commandButton1" value="Go" action="#{customerController.go(customerController.currentPage)}">
-                        <f:ajax render="data input current"/>
-                    </h:commandButton>
-                </div>
+              <h:commandButton value="delete" action="#{brandController.remove(brand)}" style="border-radius: 5px"/>
             </h:form>
-        </div>
+          </h:column>
+          <h:column>
+            <f:facet name="header">show products</f:facet>
+            <h:form>
+              <h:commandButton value="show brands" action="#{brandController.showProducts(brand)}" style="border-radius: 5px"/>
+            </h:form>
+          </h:column>
+        </h:dataTable>
+      </div>
     </div>
-<!--    <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>-->
+    <!--分页按钮-->
+    <div class="FormControl">
+      <h:form>
+        <div class="showPage">
+          current page: <h:outputText id="current" value="#{brandController.currentPage}"/>
+        </div>
+        <div class="showError">
+          <h:messages globalOnly="true" styleClass="error-message"/>
+        </div>
+        <div class="control">
+          <!--                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />-->
+          <h:commandButton styleClass="commandButton1" value="First" action="#{brandController.first}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton2" value="Previous" action="#{brandController.previous}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton1" value="Next" action="#{brandController.next}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:commandButton styleClass="commandButton1" value="Last" action="#{brandController.last}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+          <h:inputText id="input" style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center"
+                       value="#{brandController.currentPage}">Go To:
+            <f:ajax render="data input current"/>
+          </h:inputText>
+          <h:commandButton styleClass="commandButton1" value="Go"
+                           action="#{brandController.go(brandController.currentPage)}">
+            <f:ajax render="data input current"/>
+          </h:commandButton>
+        </div>
+      </h:form>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h:form>
+      <h:commandButton value="add a new brand" action="/sc/admin/addBrand.xhtml" />
+    </h:form>
+  </div>
 </h:body>
 </html>

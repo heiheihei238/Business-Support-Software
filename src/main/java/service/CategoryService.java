@@ -1,6 +1,7 @@
 package service;
 
 import entities.Category;
+import entities.Product;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,7 +20,7 @@ public class CategoryService {
     }
 
     // find category by id
-    public Category findOne(Long id) {
+    public Category find(Integer id) {
         return em.find(Category.class, id);
     }
 
@@ -34,8 +35,9 @@ public class CategoryService {
     }
 
     // delete category
-    public void remove(Long id) {
-        em.remove(em.getReference(Category.class, id));
+    public void remove(Category category) {
+        em.remove(em.merge(category));
+        em.flush();
     }
 
     // pagination
@@ -46,5 +48,11 @@ public class CategoryService {
                 .getResultList();
     }
 
+    // show products by category
+    public List<Product> findProductsByCategory(Category category) {
+        return em.createQuery("select p from Product p where p.category = :category", Product.class)
+                .setParameter("category", category)
+                .getResultList();
+    }
 
 }
