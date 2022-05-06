@@ -12,13 +12,12 @@
 </h:head>
 <h:body>
   <h:form>
-    product id:<h:inputText value="#{productController.product.product_id}" disabled="true"/><br/>
-    product name:<h:inputText value="#{productController.product.product_name}"/><br/>
-    price:<h:inputText value="#{productController.product.list_price}"/><br/>
-    year:<h:inputText value="#{productController.product.model_year}"/><br/>
-    brand id:<h:inputText value="#{productController.product.brand_id}"/><br/>
-    category id:<h:inputText value="#{productController.product.category_id}"/><br/>
-    stock id:<h:inputText value="#{productController.product.stock_id}"/><br/>
+    product id:<h:inputText value="#{productController.product.productId}" disabled="true"/><br/>
+    product name:<h:inputText value="#{productController.product.productName}"/><br/>
+    price:<h:inputText value="#{productController.product.listPrice}"/><br/>
+    year:<h:inputText value="#{productController.product.modelYear}"/><br/>
+    brand id:<h:inputText value="#{productController.product.brandId}"/><br/>
+    category id:<h:inputText value="#{productController.product.categoryId}"/><br/>
     <h:commandButton action="#{productController.update()}" value="update product" />
   </h:form>
   <h:outputLink value="product.xhtml">return</h:outputLink>

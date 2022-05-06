@@ -1,47 +1,47 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "customers")
 public class Customer {
-
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer customer_id;
-
+    @Id
+    @Column(name = "customer_id")
+    private int customerId;
+    @Basic
+    @Column(name = "city")
     private String city;
-
+    @Basic
+    @Column(name = "email")
     private String email;
-
-    private String first_name;
-
-    private String last_name;
-
+    @Basic
+    @Column(name = "first_name")
+    private String firstName;
+    @Basic
+    @Column(name = "last_name")
+    private String lastName;
+    @Basic
+    @Column(name = "phone")
     private String phone;
-
+    @Basic
+    @Column(name = "state")
     private String state;
-
+    @Basic
+    @Column(name = "street")
     private String street;
+    @Basic
+    @Column(name = "zip_code")
+    private String zipCode;
 
-    private String zip_code;
-
-    @OneToMany(mappedBy = "customer")
-    private List<Order> order = new ArrayList<>();
-
-    public Customer() {
+    public int getCustomerId() {
+        return customerId;
     }
 
-
-
-    public Integer getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(Integer customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getCity() {
@@ -60,20 +60,20 @@ public class Customer {
         this.email = email;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {
@@ -100,34 +100,37 @@ public class Customer {
         this.street = street;
     }
 
-    public String getZip_code() {
-        return zip_code;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZip_code(String zip_code) {
-        this.zip_code = zip_code;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public List<Order> getOrders() {
-        return order;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return customerId == customer.customerId && Objects.equals(city, customer.city) && Objects.equals(email, customer.email) && Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(phone, customer.phone) && Objects.equals(state, customer.state) && Objects.equals(street, customer.street) && Objects.equals(zipCode, customer.zipCode);
     }
 
-    public void setOrders(List<Order> order) {
-        this.order = order;
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerId, city, email, firstName, lastName, phone, state, street, zipCode);
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "customer_id=" + customer_id +
+                "customerId=" + customerId +
                 ", city='" + city + '\'' +
                 ", email='" + email + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", state='" + state + '\'' +
-                ", street='" + street + '\'' +
-                ", zip_code='" + zip_code + '\'' +
-                '}';
+                ", street='" + street + '\'';
     }
 }

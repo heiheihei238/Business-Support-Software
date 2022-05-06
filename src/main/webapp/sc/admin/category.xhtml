@@ -45,14 +45,14 @@
             <f:facet name="header">
               <h:outputText value="Category ID"/>
             </f:facet>
-            <h:outputText value="#{category.category_id}"/>
+            <h:outputText value="#{category.categoryId}"/>
           </h:column>
 
           <h:column>
             <f:facet name="header">
               <h:outputText value="Category name"/>
             </f:facet>
-            <h:outputText value="#{category.category_name}"/>
+            <h:outputText value="#{category.categoryName}"/>
           </h:column>
 
           <h:column>
@@ -62,9 +62,9 @@
             </h:form>
           </h:column>
           <h:column>
-            <f:facet name="header">show products</f:facet>
+            <f:facet name="header">show product</f:facet>
             <h:form>
-              <h:commandButton value="show products" action="#{categoryController.showProducts(category)}" style="border-radius: 5px"/>
+              <h:commandButton value="find product" action="#{categoryController.showProducts(category)}" style="border-radius: 5px"/>
             </h:form>
           </h:column>
         </h:dataTable>
@@ -106,9 +106,7 @@
   </div>
 
   <div class="footer">
-    <h:form>
-      <h:commandButton value="add a new category" action="/sc/admin/addCategory.xhtml" />
-    </h:form>
+
   </div>
 </h:body>
 </html>

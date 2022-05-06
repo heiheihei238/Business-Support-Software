@@ -46,27 +46,27 @@
                 var="product">
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Product ID"/>
+              <h:outputText value="ID"/>
             </f:facet>
-            <h:outputText value="#{product.product_id}"/>
+            <h:outputText value="#{product.productId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Product name"/>
+              <h:outputText value="name"/>
             </f:facet>
-            <h:outputText value="#{product.product_name}"/>
+            <h:outputText value="#{product.productName}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Price"/>
+              <h:outputText value="price"/>
             </f:facet>
-            <h:outputText value="#{product.list_price}"/>
+            <h:outputText value="#{product.listPrice}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="detail"/>
             </f:facet>
-            <h:outputLink value="productDetails.xhtml?product_id=#{product.product_id}">details</h:outputLink>
+            <h:outputLink value="productDetails.xhtml?product_id=#{product.productId}">details</h:outputLink>
           </h:column>
           <h:column>
             <f:facet name="header">
@@ -80,7 +80,7 @@
             <f:facet name="header">
               <h:outputText value="edit"/>
             </f:facet>
-            <h:outputLink value="editProduct.xhtml?product_id=#{product.product_id}"
+            <h:outputLink value="editProduct.xhtml?product_id=#{product.productId}"
                           style="border-radius: 5px">edit product</h:outputLink>
           </h:column>
         </h:dataTable>

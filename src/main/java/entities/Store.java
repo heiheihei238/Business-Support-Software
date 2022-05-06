@@ -1,48 +1,44 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "stores")
 public class Store {
-
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer store_id;
-
+    @Id
+    @Column(name = "store_id")
+    private int storeId;
+    @Basic
+    @Column(name = "city")
     private String city;
-
+    @Basic
+    @Column(name = "email")
     private String email;
-
+    @Basic
+    @Column(name = "phone")
     private String phone;
-
+    @Basic
+    @Column(name = "state")
     private String state;
-
-    private String store_name;
-
+    @Basic
+    @Column(name = "store_name")
+    private String storeName;
+    @Basic
+    @Column(name = "street")
     private String street;
+    @Basic
+    @Column(name = "zip_code")
+    private String zipCode;
 
-    private String zip_code;
-
-    @OneToMany(mappedBy = "store")
-    private List<Order> orders;
-
-    @OneToMany(mappedBy = "store")
-    private List<Staff> staffs;
-
-    @OneToMany(mappedBy = "store")
-    private List<Stock> stocks;
-
-    public Store() {
+    public int getStoreId() {
+        return storeId;
     }
 
-    public Integer getStore_id() {
-        return store_id;
-    }
-
-    public void setStore_id(Integer store_id) {
-        this.store_id = store_id;
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
     }
 
     public String getCity() {
@@ -77,12 +73,12 @@ public class Store {
         this.state = state;
     }
 
-    public String getStore_name() {
-        return store_name;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setStore_name(String store_name) {
-        this.store_name = store_name;
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public String getStreet() {
@@ -93,52 +89,38 @@ public class Store {
         this.street = street;
     }
 
-    public String getZip_code() {
-        return zip_code;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZip_code(String zip_code) {
-        this.zip_code = zip_code;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Store store = (Store) o;
+        return storeId == store.storeId && Objects.equals(city, store.city) && Objects.equals(email, store.email) && Objects.equals(phone, store.phone) && Objects.equals(state, store.state) && Objects.equals(storeName, store.storeName) && Objects.equals(street, store.street) && Objects.equals(zipCode, store.zipCode);
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    public List<Staff> getStaffs() {
-        return staffs;
-    }
-
-    public void setStaffs(List<Staff> staffs) {
-        this.staffs = staffs;
-    }
-
-    public List<Stock> getStocks() {
-        return stocks;
-    }
-
-    public void setStocks(List<Stock> stocks) {
-        this.stocks = stocks;
+    @Override
+    public int hashCode() {
+        return Objects.hash(storeId, city, email, phone, state, storeName, street, zipCode);
     }
 
     @Override
     public String toString() {
         return "Store{" +
-                "store_id=" + store_id +
+                "storeId=" + storeId +
                 ", city='" + city + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", state='" + state + '\'' +
-                ", store_name='" + store_name + '\'' +
+                ", storeName='" + storeName + '\'' +
                 ", street='" + street + '\'' +
-                ", zip_code='" + zip_code + '\'' +
-                ", orders=" + orders +
-                ", staffs=" + staffs +
-                ", stocks=" + stocks +
-                '}';
+                ", zipCode='" + zipCode + '\'';
     }
+
 }

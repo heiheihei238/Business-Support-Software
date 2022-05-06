@@ -50,7 +50,7 @@ public class CategoryService {
 
     // show products by category
     public List<Product> findProductsByCategory(Category category) {
-        return em.createQuery("select p from Product p where p.category = :category", Product.class)
+        return em.createQuery("select p from Product p where p.categoryByCategoryId = :category", Product.class)
                 .setParameter("category", category)
                 .getResultList();
     }

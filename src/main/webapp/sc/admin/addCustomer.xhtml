@@ -10,14 +10,14 @@
 </h:head>
 <h:body>
   <h:form>
-    first_name: <h:inputText value="#{customerController.customer.first_name}" />
-    last_name: <h:inputText value="#{customerController.customer.last_name}" />
+    first_name: <h:inputText value="#{customerController.customer.firstName}" />
+    last_name: <h:inputText value="#{customerController.customer.lastName}" />
     city: <h:inputText value="#{customerController.customer.city}" />
     email: <h:inputText value="#{customerController.customer.email}" />
     phone: <h:inputText value="#{customerController.customer.phone}" />
     state: <h:inputText value="#{customerController.customer.state}" />
     street: <h:inputText value="#{customerController.customer.street}" />
-    zip_code: <h:inputText value="#{customerController.customer.zip_code}" />
+    zip_code: <h:inputText value="#{customerController.customer.zipCode}" />
     <h:commandButton action="#{customerController.save()}" value="add"/>
     <h:commandButton value="return" action="/sc/admin/customer.xhtml?faces-redirect=true" />
   </h:form>

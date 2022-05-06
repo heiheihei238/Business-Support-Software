@@ -1,6 +1,5 @@
 package service;
 
-import entities.Order;
 import entities.OrderItem;
 
 import javax.ejb.Stateless;

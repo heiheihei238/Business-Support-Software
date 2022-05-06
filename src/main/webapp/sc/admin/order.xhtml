@@ -45,49 +45,49 @@
             <f:facet name="header">
               <h:outputText value="ID"/>
             </f:facet>
-            <h:outputText value="#{order.order_id}"/>
+            <h:outputText value="#{order.orderId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="date"/>
             </f:facet>
-            <h:outputText value="#{order.order_date}"/>
+            <h:outputText value="#{order.orderDate}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="orderStatus"/>
             </f:facet>
-            <h:outputText value="#{order.order_status}"/>
+            <h:outputText value="#{order.orderStatus}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="requiredDate"/>
             </f:facet>
-            <h:outputText value="#{order.required_date}"/>
+            <h:outputText value="#{order.requiredDate}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="shippedDate"/>
             </f:facet>
-            <h:outputText value="#{order.shipped_date}"/>
+            <h:outputText value="#{order.shippedDate}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="customerName"/>
             </f:facet>
-            <h:outputText value="#{order.customer_id}"/>
+            <h:outputText value="#{order.customerId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="staffName"/>
             </f:facet>
-            <h:outputText value="#{order.staff_id}"/>
+            <h:outputText value="#{order.staffId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="storeName"/>
             </f:facet>
-            <h:outputText value="#{order.store_id}"/>
+            <h:outputText value="#{order.storeId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
@@ -96,7 +96,7 @@
 
             <!--URL参数传递-->
             <h:outputLink style="text-decoration: none"
-                          value="order_item.xhtml?order_id=#{order.order_id}">order_item</h:outputLink>
+                          value="order_item.xhtml?order_id=#{order.orderId}">order_item</h:outputLink>
 
           </h:column>
         </h:dataTable>

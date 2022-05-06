@@ -37,21 +37,21 @@
                     value="#{orderItemController.getAllByOrderId(orderItemController.order_id)}" var="order_item">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Order ID"/>
+                        <h:outputText value="order ID"/>
                     </f:facet>
-                    <h:outputText value="#{order_item.id.order_id}"/>
+                    <h:outputText value="#{order_item.id.orderId}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Orderitem id"/>
+                        <h:outputText value="orderItem id"/>
                     </f:facet>
-                    <h:outputText value="#{order_item.id.item_id}"/>
+                    <h:outputText value="#{order_item.id.itemId}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="product id"/>
                     </f:facet>
-                    <h:outputText value="#{order_item.product_id}"/>
+                    <h:outputText value="#{order_item.productId}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -63,7 +63,7 @@
                     <f:facet name="header">
                         <h:outputText value="listprice"/>
                     </f:facet>
-                    <h:outputText value="#{order_item.list_price}"/>
+                    <h:outputText value="#{order_item.listPrice}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">

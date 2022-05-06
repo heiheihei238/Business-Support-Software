@@ -95,7 +95,7 @@ public class CustomerController {
 
     // update customer
     public String update() {
-        customer.setCustomer_id(customerId);
+        customer.setCustomerId(customerId);
         cs.update(this.customer);
         return "/sc/admin/editCustomer.xhtml?customer_id=" + customerId + "&faces-redirect=true";
     }

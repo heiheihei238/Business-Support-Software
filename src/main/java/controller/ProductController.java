@@ -1,7 +1,6 @@
 package controller;
 
 
-import entities.Category;
 import entities.Product;
 import service.ProductService;
 
@@ -106,7 +105,7 @@ public class ProductController {
 
 
     public String update() {
-        product.setProduct_id(productId);
+        product.setProductId(productId);
         ps.update(this.product);
         return "/sc/admin/editProduct.xhtml?product_id=" + productId + "&faces-redirect=true";
 

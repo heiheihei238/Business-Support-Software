@@ -1,6 +1,5 @@
 package service;
 
-import entities.Customer;
 import entities.Product;
 
 import javax.ejb.Stateless;
@@ -44,7 +43,7 @@ public class ProductService {
 
     // find products by category
     public List<Product> findAllByCategory(Integer categoryId) {
-        Query query = em.createQuery("select c from Product c where c.category_id = :category_id", Product.class);
+        Query query = em.createQuery("select c from Product c where c.categoryId = :category_id", Product.class);
         query.setParameter("category_id", categoryId);
         return query.getResultList();
     }
@@ -52,7 +51,7 @@ public class ProductService {
 
     // find products by category and show as page
     public List<Product> findAllByCategory(int page, int size, Integer categoryId) {
-        Query query = em.createQuery("select c from Product c where c.category_id = :category_id", Product.class);
+        Query query = em.createQuery("select c from Product c where c.categoryId = :category_id", Product.class);
         query.setParameter("category_id", categoryId);
         query.setFirstResult((page - 1) * size);
         query.setMaxResults(size);
@@ -61,14 +60,14 @@ public class ProductService {
 
     // find products by brand
     public List<Product> findAllByBrand(Integer brandId) {
-        Query query = em.createQuery("select c from Product c where c.brand_id = :brand_id", Product.class);
+        Query query = em.createQuery("select c from Product c where c.brandId = :brand_id", Product.class);
         query.setParameter("brand_id", brandId);
         return query.getResultList();
     }
 
     // find products by brand and show as page
     public List<Product> findAllByBrand(int page, int size, Integer brandId) {
-        Query query = em.createQuery("select c from Product c where c.brand_id = :brand_id", Product.class);
+        Query query = em.createQuery("select c from Product c where c.brandId = :brand_id", Product.class);
         query.setParameter("brand_id", brandId);
         query.setFirstResult((page - 1) * size);
         query.setMaxResults(size);

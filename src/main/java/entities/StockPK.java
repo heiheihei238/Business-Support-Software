@@ -1,31 +1,48 @@
 package entities;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
-@Embeddable
 public class StockPK implements Serializable {
+    @Column(name = "product_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int productId;
+    @Column(name = "store_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int storeId;
 
-    private Integer product_id;
-
-    private Integer store_id;
-
-    public StockPK() {
+    public int getProductId() {
+        return productId;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public int getStoreId() {
+        return storeId;
     }
 
-    public Integer getStore_id() {
-        return store_id;
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
     }
 
-    public void setStore_id(Integer store_id) {
-        this.store_id = store_id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StockPK stockPK = (StockPK) o;
+        return productId == stockPK.productId && storeId == stockPK.storeId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, storeId);
     }
 }
