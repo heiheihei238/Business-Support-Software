@@ -30,6 +30,10 @@
         <param-name>javax.faces.ENABLE_CDI_RESOLVER_CHAIN</param-name>
         <param-value>true</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/second-iteration-ds.xml</param-value>
+    </context-param>
 
 
     <welcome-file-list>

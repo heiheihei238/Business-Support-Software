@@ -16,19 +16,13 @@
   <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
 </h:head>
 <h:body>
-  <div class="header">
-    <div class="navbar">
-      <ul>
-        <li><a href="home.xhtml">Home</a></li>
-        <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
-        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
-        <li><a href="order.xhtml" style="cursor: pointer; background-color:#6dd47d">Order</a></li>
-        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
-        <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
-        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
-      </ul>
-    </div>
-  </div>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const customer = document.getElementById("order");
+    customer.setAttribute('class','check');
+  </script>
   <div class="mainteil">
     <div class="table">
       <div>
