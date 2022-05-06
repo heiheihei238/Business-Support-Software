@@ -144,6 +144,6 @@ public class BrandController {
     // show products by category
     public String showProducts(Brand brand) {
         ProductController.setCurrentPage(1);
-        return "/sc/admin/product.xhtml?brand_id=" + brand.getBrand_id() + "&faces-redirect=true";
+        return "/sc/admin/product.xhtml?brand_id=" + brand.getBrandId() + "&faces-redirect=true";
     }
 }

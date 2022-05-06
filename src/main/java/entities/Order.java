@@ -1,164 +1,146 @@
 package entities;
 
 import javax.persistence.*;
-
-import java.sql.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "orders")
 public class Order {
-
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer order_id;
-
-//    @Temporal(TemporalType.DATE)
-    private Date order_date;
-
-    private Integer order_status;
-
-//    @Temporal(TemporalType.DATE)
-    private Date required_date;
-
-//    @Temporal(TemporalType.DATE)
-    private Date shipped_date;
-
+    @Id
+    @Column(name = "order_id")
+    private int orderId;
+    @Basic
+    @Column(name = "order_date")
+    private LocalDate orderDate;
+    @Basic
+    @Column(name = "order_status")
+    private Integer orderStatus;
+    @Basic
+    @Column(name = "required_date")
+    private LocalDate requiredDate;
+    @Basic
+    @Column(name = "shipped_date")
+    private LocalDate shippedDate;
+    @Basic
+    @Column(name = "customer_id")
+    private Integer customerId;
+    @Basic
+    @Column(name = "staff_id")
+    private Integer staffId;
+    @Basic
+    @Column(name = "store_id")
+    private Integer storeId;
     @ManyToOne
-    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
-    private Customer customer;
-
-    private Integer customer_id;
-
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
+    private Customer customerByCustomerId;
     @ManyToOne
-    @JoinColumn(name = "staff_id", insertable = false, updatable = false)
-    private Staff staff;
-
-    private Integer staff_id;
-
+    @JoinColumn(name = "staff_id", referencedColumnName = "staff_id", insertable = false, updatable = false)
+    private Staff staffByStaffId;
     @ManyToOne
-    @JoinColumn(name = "store_id", insertable = false, updatable = false)
-    private Store store;
+    @JoinColumn(name = "store_id", referencedColumnName = "store_id", insertable = false, updatable = false)
+    private Store storeByStoreId;
 
-    private Integer store_id;
-
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> order_items;
-
-    public Order() {
+    public int getOrderId() {
+        return orderId;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
-    public Date getOrder_date() {
-        return order_date;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public void setOrder_date(Date order_date) {
-        this.order_date = order_date;
+    public Integer getOrderStatus() {
+        return orderStatus;
     }
 
-    public Integer getOrder_status() {
-        return order_status;
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
-    public void setOrder_status(Integer order_status) {
-        this.order_status = order_status;
+    public LocalDate getRequiredDate() {
+        return requiredDate;
     }
 
-    public Date getRequired_date() {
-        return required_date;
+    public void setRequiredDate(LocalDate requiredDate) {
+        this.requiredDate = requiredDate;
     }
 
-    public void setRequired_date(Date required_date) {
-        this.required_date = required_date;
+    public LocalDate getShippedDate() {
+        return shippedDate;
     }
 
-    public Date getShipped_date() {
-        return shipped_date;
+    public void setShippedDate(LocalDate shippedDate) {
+        this.shippedDate = shippedDate;
     }
 
-    public void setShipped_date(Date shipped_date) {
-        this.shipped_date = shipped_date;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public Customer getCustomers() {
-        return customer;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public void setCustomers(Customer customer) {
-        this.customer = customer;
+    public Integer getStaffId() {
+        return staffId;
     }
 
-    public Integer getCustomer_id() {
-        return customer_id;
+    public void setStaffId(Integer staffId) {
+        this.staffId = staffId;
     }
 
-    public void setCustomer_id(Integer customer_id) {
-        this.customer_id = customer_id;
+    public Integer getStoreId() {
+        return storeId;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
     }
-
-    public void setStaff(Staff staff) {
-        this.staff = staff;
-    }
-
-    public Integer getStaff_id() {
-        return staff_id;
-    }
-
-    public void setStaff_id(Integer staff_id) {
-        this.staff_id = staff_id;
-    }
-
-    public Store getStores() {
-        return store;
-    }
-
-    public void setStores(Store store) {
-        this.store = store;
-    }
-
-    public Integer getStore_id() {
-        return store_id;
-    }
-
-    public void setStore_id(Integer store_id) {
-        this.store_id = store_id;
-    }
-
-//    public List<OrderItem> getOrder_items() {
-//        return order_items;
-//    }
-//
-//    public void setOrder_items(List<OrderItem> order_items) {
-//        this.order_items = order_items;
-//    }
 
     @Override
-    public String toString() {
-        return "Orders{" +
-                "order_id=" + order_id +
-                ", order_date=" + order_date +
-                ", order_status=" + order_status +
-                ", required_date=" + required_date +
-                ", shipped_date=" + shipped_date +
-                ", customers=" + customer +
-                ", customer_id=" + customer_id +
-                ", staffs=" + staff +
-                ", staff_id=" + staff_id +
-                ", stores=" + store +
-                ", store_id=" + store_id +
-//                ", order_items=" + order_items +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return orderId == order.orderId && Objects.equals(orderDate, order.orderDate) && Objects.equals(orderStatus, order.orderStatus) && Objects.equals(requiredDate, order.requiredDate) && Objects.equals(shippedDate, order.shippedDate) && Objects.equals(customerId, order.customerId) && Objects.equals(staffId, order.staffId) && Objects.equals(storeId, order.storeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, orderDate, orderStatus, requiredDate, shippedDate, customerId, staffId, storeId);
+    }
+
+    public Customer getCustomersByCustomerId() {
+        return customerByCustomerId;
+    }
+
+    public void setCustomersByCustomerId(Customer customerByCustomerId) {
+        this.customerByCustomerId = customerByCustomerId;
+    }
+
+    public Staff getStaffsByStaffId() {
+        return staffByStaffId;
+    }
+
+    public void setStaffsByStaffId(Staff staffByStaffId) {
+        this.staffByStaffId = staffByStaffId;
+    }
+
+    public Store getStoresByStoreId() {
+        return storeByStoreId;
+    }
+
+    public void setStoresByStoreId(Store storeByStoreId) {
+        this.storeByStoreId = storeByStoreId;
     }
 }

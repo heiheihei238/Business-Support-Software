@@ -1,59 +1,55 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
-@NamedQuery(name = "OrderItem.findByOrderId", query = "SELECT o FROM OrderItem o WHERE o.order.order_id = :orderId")
+@NamedQuery(name = "OrderItem.findByOrderId", query = "SELECT o FROM OrderItem o WHERE o.orderByOrderId.orderId = :orderId")
 @Entity
-@Table(name = "order_items")
-public class OrderItem implements Serializable {
-
-    @EmbeddedId
-    private OrderItemPK id;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id", insertable = false, updatable = false)
-    private Order order;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", insertable = false, updatable = false)
-    private Product product;
-
-    private Integer product_id;
-
+@Table(name = "order_items", schema = "public", catalog = "bikes")
+@IdClass(OrderItemPK.class)
+public class OrderItem {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "item_id")
+    private int itemId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "order_id")
+    private int orderId;
+    @Basic
+    @Column(name = "discount")
     private BigDecimal discount;
-
-    private BigDecimal list_price;
-
+    @Basic
+    @Column(name = "list_price")
+    private BigDecimal listPrice;
+    @Basic
+    @Column(name = "quantity")
     private Integer quantity;
+    @Basic
+    @Column(name = "product_id")
+    private Integer productId;
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false, insertable = false, updatable = false)
+    private Order orderByOrderId;
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id", insertable = false, updatable = false)
+    private Product productByProductId;
 
-    public OrderItem() {
+    public int getItemId() {
+        return itemId;
     }
 
-    public OrderItemPK getId() {
-        return id;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
-    public void setId(OrderItemPK id) {
-        this.id = id;
+    public int getOrderId() {
+        return orderId;
     }
 
-
-    public Product getProducts() {
-        return product;
-    }
-
-    public void setProducts(Product product) {
-        this.product = product;
-    }
-
-    public Integer getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public BigDecimal getDiscount() {
@@ -64,12 +60,12 @@ public class OrderItem implements Serializable {
         this.discount = discount;
     }
 
-    public BigDecimal getList_price() {
-        return list_price;
+    public BigDecimal getListPrice() {
+        return listPrice;
     }
 
-    public void setList_price(BigDecimal list_price) {
-        this.list_price = list_price;
+    public void setListPrice(BigDecimal listPrice) {
+        this.listPrice = listPrice;
     }
 
     public Integer getQuantity() {
@@ -80,23 +76,40 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public Order getOrder() {
-        return order;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     @Override
-    public String toString() {
-        return "Order_items{" +
-                "id=" + id +
-                ", products=" + product +
-                ", product_id=" + product_id +
-                ", discount=" + discount +
-                ", list_price=" + list_price +
-                ", quantity=" + quantity +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderItem that = (OrderItem) o;
+        return itemId == that.itemId && orderId == that.orderId && Objects.equals(discount, that.discount) && Objects.equals(listPrice, that.listPrice) && Objects.equals(quantity, that.quantity) && Objects.equals(productId, that.productId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId, orderId, discount, listPrice, quantity, productId);
+    }
+
+    public Order getOrdersByOrderId() {
+        return orderByOrderId;
+    }
+
+    public void setOrdersByOrderId(Order orderByOrderId) {
+        this.orderByOrderId = orderByOrderId;
+    }
+
+    public Product getProductsByProductId() {
+        return productByProductId;
+    }
+
+    public void setProductsByProductId(Product productByProductId) {
+        this.productByProductId = productByProductId;
     }
 }

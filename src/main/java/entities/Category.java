@@ -1,53 +1,47 @@
 package entities;
 
-
 import javax.persistence.*;
-import java.util.List;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "categories")
 public class Category {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer category_id;
+    @Id
+    @Column(name = "category_id")
+    private int categoryId;
+    @Basic
+    @Column(name = "category_name")
+    private String categoryName;
 
-    private String category_name;
-
-    @OneToMany(mappedBy = "category")
-    private List<Product> products;
-
-    public Category() {
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public Integer getCategory_id() {
-        return category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public String getCategory_name() {
-        return category_name;
-    }
-
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override
-    public String toString() {
-        return "Categories{" +
-                "category_id=" + category_id +
-                ", category_name='" + category_name + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category that = (Category) o;
+        return categoryId == that.categoryId && Objects.equals(categoryName, that.categoryName);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(categoryId, categoryName);
+    }
+
 }

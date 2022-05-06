@@ -148,7 +148,7 @@ public class CategoryController {
     // show products by category
     public String showProducts(Category category) {
         ProductController.setCurrentPage(1);
-        return "/sc/admin/product.xhtml?category_id=" + category.getCategory_id() + "&faces-redirect=true";
+        return "/sc/admin/product.xhtml?category_id=" + category.getCategoryId() + "&faces-redirect=true";
     }
 
 }

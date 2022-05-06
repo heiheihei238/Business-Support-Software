@@ -46,25 +46,25 @@
             <f:facet name="header">
               <h:outputText value="ID"/>
             </f:facet>
-            <h:outputText value="#{customer.customer_id}"/>
+            <h:outputText value="#{customer.customerId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="firstName"/>
+              <h:outputText value="first name"/>
             </f:facet>
-            <h:outputText value="#{customer.first_name}"/>
+            <h:outputText value="#{customer.firstName}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="lastName"/>
+              <h:outputText value="last name"/>
             </f:facet>
-            <h:outputText value="#{customer.last_name}"/>
+            <h:outputText value="#{customer.lastName}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="detail"/>
             </f:facet>
-            <h:outputLink value="customerDetails.xhtml?customer_id=#{customer.customer_id}">details</h:outputLink>
+            <h:outputLink value="customerDetails.xhtml?customer_id=#{customer.customerId}">details</h:outputLink>
           </h:column>
           <h:column>
             <f:facet name="header">
@@ -78,7 +78,7 @@
             <f:facet name="header">
               <h:outputText value="edit"/>
             </f:facet>
-            <h:outputLink value="editCustomer.xhtml?customer_id=#{customer.customer_id}"
+            <h:outputLink value="editCustomer.xhtml?customer_id=#{customer.customerId}"
                           style="border-radius: 5px">edit customer</h:outputLink>
           </h:column>
         </h:dataTable>

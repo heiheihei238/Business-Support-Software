@@ -1,57 +1,51 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "staffs")
 public class Staff {
-
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer staff_id;
-
+    @Id
+    @Column(name = "staff_id")
+    private int staffId;
+    @Basic
+    @Column(name = "active")
     private Integer active;
-
+    @Basic
+    @Column(name = "email")
     private String email;
-
-    private String first_name;
-
-    private String last_name;
-
+    @Basic
+    @Column(name = "first_name")
+    private String firstName;
+    @Basic
+    @Column(name = "last_name")
+    private String lastName;
+    @Basic
+    @Column(name = "phone")
     private String phone;
-
+    @Basic
+    @Column(name = "manager_id")
+    private Integer managerId;
+    @Basic
+    @Column(name = "store_id")
+    private Integer storeId;
     @ManyToOne
     @JoinColumn(name = "manager_id", insertable = false, updatable = false)
     private Staff manager;
-
-    private Integer manager_id;
-
     @ManyToOne
     @JoinColumn(name = "store_id", insertable = false, updatable = false)
     private Store store;
 
-    private Integer store_id;
 
-    public Staff() {
+    public int getStaffId() {
+        return staffId;
     }
 
-    public Staff(Integer staff_id, Integer active, String email, String first_name, String last_name, String phone, Integer manager_id, Integer store_id) {
-        this.staff_id = staff_id;
-        this.active = active;
-        this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.phone = phone;
-        this.manager_id = manager_id;
-        this.store_id = store_id;
-    }
-
-    public Integer getStaff_id() {
-        return staff_id;
-    }
-
-    public void setStaff_id(Integer staff_id) {
-        this.staff_id = staff_id;
+    public void setStaffId(int staffId) {
+        this.staffId = staffId;
     }
 
     public Integer getActive() {
@@ -70,20 +64,20 @@ public class Staff {
         this.email = email;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {
@@ -94,51 +88,38 @@ public class Staff {
         this.phone = phone;
     }
 
-    public Integer getManager_id() {
-        return manager_id;
+    public Integer getManagerId() {
+        return managerId;
     }
 
-    public void setManager_id(Integer manager_id) {
-        this.manager_id = manager_id;
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
     }
 
-    public Integer getStore_id() {
-        return store_id;
+    public Integer getStoreId() {
+        return storeId;
     }
 
-    public void setStore_id(Integer store_id) {
-        this.store_id = store_id;
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
     }
 
-    public Staff getManager() {
-        return manager;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Staff staff = (Staff) o;
+        return staffId == staff.staffId && Objects.equals(active, staff.active) && Objects.equals(email, staff.email) && Objects.equals(firstName, staff.firstName) && Objects.equals(lastName, staff.lastName) && Objects.equals(phone, staff.phone) && Objects.equals(managerId, staff.managerId) && Objects.equals(storeId, staff.storeId);
     }
 
-    public void setManager(Staff manager) {
-        this.manager = manager;
-    }
-
-    public Store getStore() {
-        return store;
-    }
-
-    public void setStore(Store store) {
-        this.store = store;
+    @Override
+    public int hashCode() {
+        return Objects.hash(staffId, active, email, firstName, lastName, phone, managerId, storeId);
     }
 
     @Override
     public String toString() {
-        return "Staffs{" +
-                "staff_id=" + staff_id +
-                ", active=" + active +
-                ", email='" + email + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", manager=" + manager +
-                ", manager_id=" + manager_id +
-                ", store=" + store +
-                ", store_id=" + store_id +
-                '}';
+    	return "Staff [staffId=" + staffId + ", active=" + active + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone + ", managerId=" + managerId + ", storeId=" + storeId + "]";
     }
+
 }

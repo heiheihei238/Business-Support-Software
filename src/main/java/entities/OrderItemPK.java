@@ -1,34 +1,48 @@
 package entities;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
-@Embeddable
 public class OrderItemPK implements Serializable {
+    @Column(name = "item_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int itemId;
+    @Column(name = "order_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int orderId;
 
-    private Integer item_id;
-
-    private Integer order_id;
-
-    public OrderItemPK() {
+    public int getItemId() {
+        return itemId;
     }
 
-    public Integer getItem_id() {
-        return item_id;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
-    public void setItem_id(Integer item_id) {
-        this.item_id = item_id;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderItemPK that = (OrderItemPK) o;
+        return itemId == that.itemId && orderId == that.orderId;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId, orderId);
+    }
 }

@@ -1,50 +1,47 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "stocks")
-public class Stock implements Serializable {
-    @EmbeddedId
-    private StockPK stockPK;
-
-    @ManyToMany
+@IdClass(StockPK.class)
+public class Stock {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "product_id")
+    private int productId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "store_id")
+    private int storeId;
+    @Basic
+    @Column(name = "quantity")
+    private Integer quantity;
+    @ManyToOne
     @JoinColumn(name = "product_id", insertable = false, updatable = false)
-    private List<Product> products;
-
+    private Product product;
     @ManyToOne
     @JoinColumn(name = "store_id", insertable = false, updatable = false)
     private Store store;
 
-    private Integer quantity;
 
-    public Stock() {
+    public int getProductId() {
+        return productId;
     }
 
-    public StockPK getStockPK() {
-        return stockPK;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public void setStockPK(StockPK stockPK) {
-        this.stockPK = stockPK;
+    public int getStoreId() {
+        return storeId;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public Store getStore() {
-        return store;
-    }
-
-    public void setStore(Store store) {
-        this.store = store;
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
     }
 
     public Integer getQuantity() {
@@ -53,5 +50,27 @@ public class Stock implements Serializable {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Stock stock = (Stock) o;
+        return productId == stock.productId && storeId == stock.storeId && Objects.equals(quantity, stock.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, storeId, quantity);
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "productId=" + productId +
+                ", storeId=" + storeId +
+                ", quantity=" + quantity +
+                '}';
     }
 }

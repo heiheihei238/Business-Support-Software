@@ -2,155 +2,111 @@ package entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "products")
 public class Product {
-
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer product_id;
-
-    private BigDecimal list_price;
-
-    private Integer model_year;
-
-    private String product_name;
-
+    @Id
+    @Column(name = "product_id")
+    private int productId;
+    @Basic
+    @Column(name = "list_price")
+    private BigDecimal listPrice;
+    @Basic
+    @Column(name = "model_year")
+    private Integer modelYear;
+    @Basic
+    @Column(name = "product_name")
+    private String productName;
+    @Basic
+    @Column(name = "brand_id")
+    private Integer brandId;
+    @Basic
+    @Column(name = "category_id")
+    private Integer categoryId;
     @ManyToOne
     @JoinColumn(name = "brand_id", insertable = false, updatable = false)
     private Brand brand;
-
-    private Integer brand_id;
-
     @ManyToOne
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
 
-    private Integer category_id;
 
-    @ManyToMany
-    @JoinColumn(name = "stock_id", insertable = false, updatable = false)
-    private List<Stock> stocks;
-
-    private Integer stock_id;
-
-    @OneToMany(mappedBy = "product")
-    private List<OrderItem> orderItems;
-
-    public Product() {
+    public int getProductId() {
+        return productId;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public BigDecimal getListPrice() {
+        return listPrice;
     }
 
-    public BigDecimal getList_price() {
-        return list_price;
+    public void setListPrice(BigDecimal listPrice) {
+        this.listPrice = listPrice;
     }
 
-    public void setList_price(BigDecimal list_price) {
-        this.list_price = list_price;
+    public Integer getModelYear() {
+        return modelYear;
     }
 
-    public Integer getModel_year() {
-        return model_year;
+    public void setModelYear(Integer modelYear) {
+        this.modelYear = modelYear;
     }
 
-    public void setModel_year(Integer model_year) {
-        this.model_year = model_year;
+    public String getProductName() {
+        return productName;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public Integer getBrandId() {
+        return brandId;
     }
 
-    public Integer getBrand_id() {
-        return brand_id;
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
     }
 
-    public void setBrand_id(Integer brand_id) {
-        this.brand_id = brand_id;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public Category getCategories() {
-        return category;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setCategories(Category category) {
-        this.category = category;
-    }
 
-    public Integer getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Stock> getStocks() {
-        return stocks;
-    }
-
-    public void setStocks(List<Stock> stocks) {
-        this.stocks = stocks;
-    }
-
-    public Integer getStock_id() {
-        return stock_id;
-    }
-
-    public void setStock_id(Integer stock_id) {
-        this.stock_id = stock_id;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productId == product.productId && Objects.equals(listPrice, product.listPrice) && Objects.equals(modelYear, product.modelYear) && Objects.equals(productName, product.productName) && Objects.equals(brandId, product.brandId) && Objects.equals(categoryId, product.categoryId);
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(productId, listPrice, modelYear, productName, brandId, categoryId);
+    }
+
+
+    @Override
     public String toString() {
-        return "Products{" +
-                "product_id=" + product_id +
-                ", list_price=" + list_price +
-                ", model_year=" + model_year +
-                ", product_name='" + product_name + '\'' +
-                ", brands=" + brand +
-                ", brand_id=" + brand_id +
-                ", categories=" + category +
-                ", category_id=" + category_id +
-                ", stocks=" + stocks +
-                ", stock_id=" + stock_id +
+        return "Product{" +
+                "productId=" + productId +
+                ", listPrice=" + listPrice +
+                ", modelYear=" + modelYear +
+                ", productName='" + productName + '\'' +
+                ", brandId=" + brandId +
+                ", categoryId=" + categoryId +
                 '}';
     }
 }

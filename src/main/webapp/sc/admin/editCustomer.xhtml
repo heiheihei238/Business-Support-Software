@@ -12,15 +12,15 @@
 </h:head>
 <h:body>
   <h:form>
-    customer id:<h:inputText value="#{customerController.customer.customer_id}" disabled="true"/><br/>
-    first name:<h:inputText value="#{customerController.customer.first_name}"/><br/>
-    last name:<h:inputText value="#{customerController.customer.last_name}"/><br/>
+    customer id:<h:inputText value="#{customerController.customer.customerId}" disabled="true"/><br/>
+    first name:<h:inputText value="#{customerController.customer.firstName}"/><br/>
+    last name:<h:inputText value="#{customerController.customer.lastName}"/><br/>
     city:<h:inputText value="#{customerController.customer.city}"/><br/>
     street:<h:inputText value="#{customerController.customer.street}"/><br/>
     phone:<h:inputText value="#{customerController.customer.phone}"/><br/>
     email:<h:inputText value="#{customerController.customer.email}"/><br/>
     state:<h:inputText value="#{customerController.customer.state}"/><br/>
-    zip_code:<h:inputText value="#{customerController.customer.zip_code}"/><br/>
+    zip_code:<h:inputText value="#{customerController.customer.zipCode}"/><br/>
     <h:commandButton action="#{customerController.update()}" value="update customer" />
   </h:form>
   <h:outputLink value="customer.xhtml">return</h:outputLink>

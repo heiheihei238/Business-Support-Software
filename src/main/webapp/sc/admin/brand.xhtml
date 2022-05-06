@@ -45,13 +45,13 @@
             <f:facet name="header">
               <h:outputText value="ID"/>
             </f:facet>
-            <h:outputText value="#{brand.brand_id}"/>
+            <h:outputText value="#{brand.brandId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="name"/>
             </f:facet>
-            <h:outputText value="#{brand.brand_name}"/>
+            <h:outputText value="#{brand.brandName}"/>
           </h:column>
           <h:column>
             <f:facet name="header">delete</f:facet>
@@ -60,9 +60,9 @@
             </h:form>
           </h:column>
           <h:column>
-            <f:facet name="header">show products</f:facet>
+            <f:facet name="header">show product</f:facet>
             <h:form>
-              <h:commandButton value="show brands" action="#{brandController.showProducts(brand)}" style="border-radius: 5px"/>
+              <h:commandButton value="find product" action="#{brandController.showProducts(brand)}" style="border-radius: 5px"/>
             </h:form>
           </h:column>
         </h:dataTable>
@@ -105,9 +105,7 @@
   </div>
 
   <div class="footer">
-    <h:form>
-      <h:commandButton value="add a new brand" action="/sc/admin/addBrand.xhtml" />
-    </h:form>
+
   </div>
 </h:body>
 </html>

@@ -1,53 +1,47 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "brands")
 public class Brand {
-
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer brand_id;
+    @Id
+    @Column(name = "brand_id")
+    private int brandId;
+    @Basic
+    @Column(name = "brand_name")
+    private String brandName;
 
-    private String brand_name;
-
-    @OneToMany(mappedBy = "brand")
-    private List<Product> products;
-
-    public Brand() {}
-
-    public Integer getBrand_id() {
-        return brand_id;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setBrand_id(Integer brand_id) {
-        this.brand_id = brand_id;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 
-    public String getBrand_name() {
-        return brand_name;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setBrand_name(String brand_name) {
-        this.brand_name = brand_name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     @Override
-    public String toString() {
-        return "Brands{" +
-                "brand_id=" + brand_id +
-                ", brand_name='" + brand_name + '\'' +
-//                ", products=" + products +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Brand brand = (Brand) o;
+        return brandId == brand.brandId && Objects.equals(brandName, brand.brandName);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brandId, brandName);
+    }
+
 }
