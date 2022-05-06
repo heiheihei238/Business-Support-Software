@@ -26,7 +26,7 @@ public class StaffController {
     private int totalCount;
 
     @Inject
-    private StaffService cs;
+    private StaffService ss;
 
     public StaffController() {
         staff = new Staff();
@@ -77,17 +77,17 @@ public class StaffController {
 
     // add staff
     public String addStaff() {
-        cs.save(staff);
+        ss.save(staff);
         return "index";
     }
 
     public List<Staff> getAllStaff() {
-        return cs.findAll();
+        return ss.findAll();
     }
 
     // pagination
     public List<Staff> getAll(int page, int pageSize) {
-        return cs.findAll(page, pageSize);
+        return ss.findAll(page, pageSize);
     }
 
     public void init() {

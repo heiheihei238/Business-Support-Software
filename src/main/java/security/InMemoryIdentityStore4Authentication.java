@@ -1,32 +1,40 @@
 package security;
 
-import javax.enterprise.context.ApplicationScoped;
+import service.StaffService;
+
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
 import javax.security.enterprise.identitystore.IdentityStore;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.*;
 
 import static javax.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
 
-@ApplicationScoped
-public class InMemoryIdentityStore4Authentication implements IdentityStore {
 
-    private Map<String, String> users = new HashMap<>();
+@Named
+@RequestScoped
+public class InMemoryIdentityStore4Authentication implements IdentityStore{
+
+    private static final Map<String, String> users = new HashMap<>();
+
+    @Inject
+    private StaffService ss;
 
     public InMemoryIdentityStore4Authentication() {
-        //Init users
-        // from a file or hardcoded
+        // init users and passwords
         init();
     }
 
-    private void init() {
-        //user1
-        users.put("fabiola.jackson@bikes.shop", "(831) 555-5554");
-        //user2
-        users.put("mireya.copeland@bikes.shop", "(831) 555-5555");
+    public void init() {
+        // init username and password
+        if (ss != null) {
+            ss.findAll().forEach(s -> users.put(s.getEmail(), s.getPhone()));
+        }
+        // users.put("fabiola.jackson@bikes.shop", "(831) 555-5554");
     }
 
     @Override

@@ -2,17 +2,19 @@ package service;
 
 import entities.Staff;
 
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.Serializable;
 import java.util.List;
 
 @Stateless
-public class StaffService {
+public class StaffService implements Serializable {
     @PersistenceContext
     EntityManager em;
 
-    public Staff find(Long staff_id) {
+    public Staff find(Integer staff_id) {
         return em.find(Staff.class,staff_id);
     }
 
@@ -33,16 +35,21 @@ public class StaffService {
         return em.createQuery("select s from Staff s", Staff.class).getResultList();
     }
 
-    // data count
-    public long count() {
-        return em.createQuery("select count(s) from Staff s", Long.class).getSingleResult();
-    }
-
     // pagination
     public List<Staff> findAll(int page, int size) {
         return em.createQuery("select s from Staff s", Staff.class)
                 .setFirstResult((page - 1) * size)
                 .setMaxResults(size)
                 .getResultList();
+    }
+
+    // find the staffs whose manager is the given manager
+    public List<Staff> findByManagerId(Integer manager_id) {
+        return (List<Staff>) em.createQuery("select s from Staff s where s.managerId = :manager_id", Staff.class);
+    }
+
+    // find the staffs whose manager is not the given manager
+    public List<Staff> findByManagerIdNot(Integer manager_id) {
+        return (List<Staff>) em.createQuery("select s from Staff s where s.managerId != :manager_id", Staff.class);
     }
 }
