@@ -1,3 +1,4 @@
+/*
 package security;
 
 import controller.StaffController;
@@ -75,3 +76,4 @@ class InMemoryIdentityStore4Authorization implements IdentityStore {
         return new HashSet<>(roles);
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package security;
 
 import service.StaffService;
@@ -55,3 +56,4 @@ public class InMemoryIdentityStore4Authentication implements IdentityStore{
         return INVALID_RESULT;
     }
 }
+*/
