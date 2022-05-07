@@ -9,7 +9,7 @@ import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 @CustomFormAuthenticationMechanismDefinition(
         loginToContinue = @LoginToContinue(
                 loginPage = "/sc/login.xhtml",
-                errorPage = "/sc/login-error.html"))
+                errorPage = "/sc/login-error.xhtml"))
 @DatabaseIdentityStoreDefinition(
         dataSourceLookup = "java:jboss/datasources/bikes9",
         callerQuery = "select password from users where username = ?",
