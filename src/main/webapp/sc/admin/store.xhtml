@@ -12,24 +12,17 @@
   <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
 </h:head>
 <h:body>
-  <div class="header">
-    <div class="navbar">
-      <ul>
-        <li><a href="home.xhtml">Home</a></li>
-        <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
-        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
-        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
-        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
-        <li><a href="category.xhtml" style="cursor: pointer">Category</a></li>
-        <li><a href="brand.xhtml" style="cursor: pointer;">Brand</a></li>
-      </ul>
-    </div>
-  </div>
-
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const customer = document.getElementById("store");
+    customer.setAttribute('class','check');
+  </script>
   <div class="mainteil">
     <div class="table">
       <div>
-        <div class="text">STORE</div>
+        <div class="text">STAFF</div>
         <h:dataTable
                 id="data"
                 styleClass="allTable"
@@ -37,10 +30,11 @@
                 rowClasses="allTableOddRow,allTableEvenRow"
                 border="10"
                 cellpadding="10"
-                value="#{storeController.getAll()}" var="store">
+                value="#{storeController.getAll()}"
+                var="store">
           <h:column>
             <f:facet name="header">
-              <h:outputText value="ID"/>
+              <h:outputText value="id"/>
             </f:facet>
             <h:outputText value="#{store.storeId}"/>
           </h:column>
@@ -59,10 +53,10 @@
         </h:dataTable>
       </div>
     </div>
+    <!--分页按钮-->
   </div>
 
   <div class="footer">
-
   </div>
 </h:body>
 </html>
