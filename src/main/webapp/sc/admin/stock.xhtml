@@ -8,7 +8,6 @@
 <h:head>
   <title>stock</title>
   <f:metadata>
-    <!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
     <f:viewAction action="#{stockController.init}"/>
   </f:metadata>
   <h:outputStylesheet library="css" name="dataTable_style.css"/>
@@ -16,23 +15,17 @@
   <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
 </h:head>
 <h:body>
-  <div class="header">
-    <div class="navbar">
-      <ul>
-        <li><a href="home.xhtml">Home</a></li>
-        <li><a href="customer.xhtml" style="cursor: pointer; background-color:#6dd47d;">Customer</a></li>
-        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
-        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
-        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
-        <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
-        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
-      </ul>
-    </div>
-  </div>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const customer = document.getElementById("stock");
+    customer.setAttribute('class','check');
+  </script>
   <div class="mainteil">
     <div class="table">
       <div>
-        <div class="text">STOCK</div>
+        <div class="text">STAFF</div>
         <h:dataTable
                 id="data"
                 styleClass="allTable"
@@ -72,7 +65,7 @@
             <f:facet name="header">
               <h:outputText value="edit"/>
             </f:facet>
-            <h:outputLink value="editStock.xhtml?product_id=#{stock.productId}&amp;store_id=#{stock.storeId}"
+            <h:outputLink value="editStock.xhtml?product_id=#{stock.productId}&amp;store_id=#{stock.storeId}">
                           style="border-radius: 5px">edit stock</h:outputLink>
           </h:column>
         </h:dataTable>
@@ -88,6 +81,7 @@
           <h:messages globalOnly="true" styleClass="error-message"/>
         </div>
         <div class="control">
+          <!--                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />-->
           <h:commandButton styleClass="commandButton1" value="First" action="#{stockController.first}">
             <f:ajax render="data input current"/>
           </h:commandButton>
@@ -112,6 +106,7 @@
       </h:form>
     </div>
   </div>
+
   <div class="footer">
     <h:form>
       <h:commandButton value="add a new stock" action="/sc/admin/addStock.xhtml"/>

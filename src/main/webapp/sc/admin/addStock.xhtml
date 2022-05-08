@@ -6,15 +6,35 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-
+  <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 <h:body>
-  <h:form>
-    product id: <h:inputText value="#{stockController.stock.productId}" /><br/>
-    store id: <h:inputText value="#{stockController.stock.storeId}" /><br/>
-    quantity: <h:inputText value="#{stockController.stock.quantity}" /><br/>
-    <h:commandButton action="#{stockController.save()}" value="add"/>
-    <h:commandButton value="return" action="/sc/admin/stock.xhtml?faces-redirect=true" />
-  </h:form>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const stock = document.getElementById("stock");
+    stock.setAttribute('class','check');
+  </script>
+  <div class="mainteil">
+    <div class="title">Add Stock</div>
+    <h:form>
+      <div class="inputTable">
+        <div>product id:</div>
+        <h:inputText value="#{stockController.stock.productId}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>store id:</div>
+        <h:inputText value="#{stockController.stock.storeId}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>quantity:</div>
+        <h:inputText value="#{stockController.stock.quantity}"/><br/>
+      </div>
+      <h:commandButton styleClass="add" action="#{stockController.save()}" value="add"/>
+      <h:commandButton styleClass="return" value="return" action="/sc/admin/stock.xhtml?faces-redirect=true" />
+    </h:form>
+  </div>
 </h:body>
 </html>

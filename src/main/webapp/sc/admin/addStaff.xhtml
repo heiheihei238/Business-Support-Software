@@ -6,19 +6,51 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-
+  <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 <h:body>
-  <h:form>
-    first_name: <h:inputText value="#{staffController.staff.firstName}" /><br/>
-    last_name: <h:inputText value="#{staffController.staff.lastName}" /><br/>
-    active: <h:inputText value="#{staffController.staff.active}" /><br/>
-    email: <h:inputText value="#{staffController.staff.email}" /><br/>
-    phone: <h:inputText value="#{staffController.staff.phone}" /><br/>
-    manager id:<h:inputText value="#{staffController.staff.managerId}"/><br/>
-    store id:<h:inputText value="#{staffController.staff.storeId}"/><br/>
-    <h:commandButton action="#{staffController.save()}" value="add"/>
-    <h:commandButton value="return" action="/sc/admin/staff.xhtml?faces-redirect=true" />
-  </h:form>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const staff = document.getElementById("staff");
+    staff.setAttribute('class','check');
+  </script>
+  <div class="mainteil">
+    <div class="title">Add Staff</div>
+    <h:form>
+      <div class="inputTable">
+        <div>first name:</div>
+        <h:inputText value="#{staffController.staff.firstName}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>last name:</div>
+        <h:inputText value="#{staffController.staff.lastName}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>active:</div>
+        <h:inputText value="#{staffController.staff.active}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>email:</div>
+        <h:inputText value="#{staffController.staff.email}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>phone:</div>
+        <h:inputText value="#{staffController.staff.phone}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>manager id:</div>
+        <h:inputText value="#{staffController.staff.managerId}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>store id:</div>
+        <h:inputText value="#{staffController.staff.storeId}"/><br/>
+      </div>
+      <h:commandButton styleClass="add" action="#{staffController.save()}" value="add"/>
+      <h:commandButton styleClass="return" value="return" action="/sc/admin/staff.xhtml?faces-redirect=true" />
+    </h:form>
+  </div>
 </h:body>
 </html>

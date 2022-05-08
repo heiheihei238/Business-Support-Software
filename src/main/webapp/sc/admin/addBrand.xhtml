@@ -6,9 +6,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-  <f:metadata>
-    <f:viewAction action="#{stockController.initEdit}"/>
-  </f:metadata>
   <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
   <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
@@ -17,27 +14,19 @@
     <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
   </ui:insert>
   <script type="text/javascript">
-    const stock = document.getElementById("stock");
-    stock.setAttribute('class','check');
+    const brand = document.getElementById("brand");
+    brand.setAttribute('class','check');
   </script>
   <div class="mainteil">
-    <div class="title">Edit Stock</div>
+    <div class="title">Add Brand</div>
     <h:form>
       <div class="inputTable">
-        <div>product id:</div>
-        <h:inputText value="#{stockController.stock.productId}" disabled="true"/><br/>
+        <div>name:</div>
+        <h:inputText value="#{brandController.brand.brandName}"/><br/>
       </div>
-      <div class="inputTable">
-        <div>store id:</div>
-        <h:inputText value="#{stockController.stock.storeId}"/><br/>
-      </div>
-      <div class="inputTable">
-        <div>quantity:</div>
-        <h:inputText value="#{stockController.stock.quantity}"/><br/>
-      </div>
-      <h:commandButton styleClass="add" action="#{stockController.update()}" value="update stock" />
+      <h:commandButton styleClass="add" action="#{brandController.save()}" value="add"/>
+      <h:commandButton styleClass="return" value="return" action="/sc/admin/brand.xhtml?faces-redirect=true" />
     </h:form>
-    <a class="return" href="stock.xhtml">Return</a>
   </div>
 </h:body>
 </html>

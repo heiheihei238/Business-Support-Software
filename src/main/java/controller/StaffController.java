@@ -1,6 +1,5 @@
 package controller;
 
-import entities.Customer;
 import entities.Staff;
 import service.StaffService;
 
@@ -86,7 +85,7 @@ public class StaffController {
     public String update() {
         staff.setStaffId(staffId);
         ss.update(this.staff);
-        return "/sc/admin/editCustomer.xhtml?staff_id=" + staffId + "&faces-redirect=true";
+        return "/sc/admin/editStaff.xhtml?staff_id=" + staffId + "&faces-redirect=true";
     }
 
     public String save() {

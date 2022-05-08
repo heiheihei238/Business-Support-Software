@@ -9,19 +9,55 @@
   <f:metadata>
     <f:viewAction action="#{staffController.initEdit}"/>
   </f:metadata>
+  <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 <h:body>
-  <h:form>
-    staff id:<h:inputText value="#{staffController.staff.staffId}" disabled="true"/><br/>
-    first name:<h:inputText value="#{staffController.staff.firstName}"/><br/>
-    last name:<h:inputText value="#{staffController.staff.lastName}"/><br/>
-    active:<h:inputText value="#{staffController.staff.active}"/><br/>
-    phone:<h:inputText value="#{staffController.staff.phone}"/><br/>
-    email:<h:inputText value="#{staffController.staff.email}"/><br/>
-    manager id:<h:inputText value="#{staffController.staff.managerId}"/><br/>
-    store id:<h:inputText value="#{staffController.staff.storeId}"/><br/>
-    <h:commandButton action="#{staffController.update()}" value="update staff" />
-  </h:form>
-  <h:outputLink value="staff.xhtml">return</h:outputLink>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const staff = document.getElementById("staff");
+    staff.setAttribute('class','check');
+  </script>
+  <div class="mainteil">
+    <div class="title">Edit Staff</div>
+    <h:form>
+      <div class="inputTable">
+        <div>staff id:</div>
+        <h:inputText value="#{staffController.staff.staffId}" disabled="true"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>first name:</div>
+        <h:inputText value="#{staffController.staff.firstName}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>last name:</div>
+        <h:inputText value="#{staffController.staff.lastName}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>active:</div>
+        <h:inputText value="#{staffController.staff.active}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>phone:</div>
+        <h:inputText value="#{staffController.staff.phone}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>email:</div>
+        <h:inputText value="#{staffController.staff.email}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>manager id:</div>
+        <h:inputText value="#{staffController.staff.managerId}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>store id:</div>
+        <h:inputText value="#{staffController.staff.storeId}"/><br/>
+      </div>
+      <h:commandButton styleClass="add" action="#{staffController.update()}" value="update staff" />
+    </h:form>
+    <a class="return" href="staff.xhtml">Return</a>
+  </div>
 </h:body>
 </html>

@@ -14,19 +14,13 @@
   <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
 </h:head>
 <h:body>
-  <div class="header">
-    <div class="navbar">
-      <ul>
-        <li><a href="home.xhtml">Home</a></li>
-        <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
-        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
-        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
-        <li><a href="staff.xhtml" style="cursor: pointer; background-color:#6dd47d;">Staff</a></li>
-        <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
-        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
-      </ul>
-    </div>
-  </div>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const staff = document.getElementById("staff");
+    staff.setAttribute('class','check');
+  </script>
   <div class="mainteil">
     staff id:<h:outputText value="#{staffController.staff.staffId}"/><br/>
     first name:<h:outputText value="#{staffController.staff.firstName}"/><br/>
@@ -38,7 +32,7 @@
     store id:<h:outputText value="#{staffController.staff.storeId}"/><br/>
   </div>
   <div class="footer">
-    <h:outputLink value="staff.xhtml">return</h:outputLink>
+    <a href="staff.xhtml">Return</a>
   </div>
 </h:body>
 </html>
