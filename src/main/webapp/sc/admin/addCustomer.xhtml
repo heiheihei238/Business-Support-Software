@@ -6,20 +6,55 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-
+  <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 <h:body>
-  <h:form>
-    first_name: <h:inputText value="#{customerController.customer.firstName}" /><br/>
-    last_name: <h:inputText value="#{customerController.customer.lastName}" /><br/>
-    city: <h:inputText value="#{customerController.customer.city}" /><br/>
-    email: <h:inputText value="#{customerController.customer.email}" /><br/>
-    phone: <h:inputText value="#{customerController.customer.phone}" /><br/>
-    state: <h:inputText value="#{customerController.customer.state}" /><br/>
-    street: <h:inputText value="#{customerController.customer.street}" /><br/>
-    zip_code: <h:inputText value="#{customerController.customer.zipCode}" /><br/>
-    <h:commandButton action="#{customerController.save()}" value="add"/>
-    <h:commandButton value="return" action="/sc/admin/customer.xhtml?faces-redirect=true" />
-  </h:form>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const customer = document.getElementById("customer");
+    customer.setAttribute('class','check');
+  </script>
+  <div class="mainteil">
+    <div class="title">Add Customer</div>
+    <h:form>
+      <div class="inputTable">
+        <div>first name:</div>
+        <h:inputText value="#{customerController.customer.firstName}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>last name:</div>
+        <h:inputText value="#{customerController.customer.lastName}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>city:</div>
+        <h:inputText value="#{customerController.customer.city}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>street:</div>
+        <h:inputText value="#{customerController.customer.street}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>phone:</div>
+        <h:inputText value="#{customerController.customer.phone}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>email:</div>
+        <h:inputText value="#{customerController.customer.email}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>state:</div>
+        <h:inputText value="#{customerController.customer.state}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>zip_code:</div>
+        <h:inputText value="#{customerController.customer.zipCode}"/><br/>
+      </div>
+      <h:commandButton styleClass="add" action="#{customerController.save()}" value="add"/>
+      <h:commandButton styleClass="return" value="return" action="/sc/admin/customer.xhtml?faces-redirect=true" />
+    </h:form>
+  </div>
 </h:body>
 </html>

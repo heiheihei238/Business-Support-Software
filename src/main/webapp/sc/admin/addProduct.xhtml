@@ -6,17 +6,42 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-
+  <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 <h:body>
-  <h:form>
-    product name: <h:inputText value="#{productController.product.productName}" /><br/>
-    list price: <h:inputText value="#{productController.product.listPrice}" /><br/>
-    model year: <h:inputText value="#{productController.product.modelYear}" /><br/>
-    brand id: <h:inputText value="#{productController.product.brandId}" /><br/>
-    category id: <h:inputText value="#{productController.product.categoryId}" /><br/>
-    <h:commandButton action="#{productController.save()}" value="add"/>
-    <h:commandButton value="return" action="/sc/admin/product.xhtml?faces-redirect=true" />
-  </h:form>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const customer = document.getElementById("product");
+    customer.setAttribute('class','check');
+  </script>
+  <div class="mainteil">
+    <h:form>
+      <div class="inputTable">
+        <div>product name:</div>
+        <h:inputText value="#{productController.product.productName}" /><br/>
+      </div>
+      <div class="inputTable">
+        <div>list price:</div>
+        <h:inputText value="#{productController.product.listPrice}" /><br/>
+      </div>
+      <div class="inputTable">
+        <div>model year:</div>
+        <h:inputText value="#{productController.product.modelYear}" /><br/>
+      </div>
+      <div class="inputTable">
+        <div>brand id:</div>
+        <h:inputText value="#{productController.product.brandId}" /><br/>
+      </div>
+      <div class="inputTable">
+        <div>category id:</div>
+        <h:inputText value="#{productController.product.categoryId}" /><br/>
+      </div>
+      <h:commandButton styleClass="add" action="#{productController.save()}" value="add"/>
+      <h:commandButton styleClass="return" value="return" action="/sc/admin/product.xhtml?faces-redirect=true" />
+    </h:form>
+  </div>
 </h:body>
 </html>

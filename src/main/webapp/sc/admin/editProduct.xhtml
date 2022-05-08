@@ -9,17 +9,46 @@
   <f:metadata>
     <f:viewAction action="#{productController.initEdit}"/>
   </f:metadata>
+  <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 <h:body>
-  <h:form>
-    product id:<h:inputText value="#{productController.product.productId}" disabled="true"/><br/>
-    product name:<h:inputText value="#{productController.product.productName}"/><br/>
-    price:<h:inputText value="#{productController.product.listPrice}"/><br/>
-    year:<h:inputText value="#{productController.product.modelYear}"/><br/>
-    brand id:<h:inputText value="#{productController.product.brandId}"/><br/>
-    category id:<h:inputText value="#{productController.product.categoryId}"/><br/>
-    <h:commandButton action="#{productController.update()}" value="update product" />
-  </h:form>
-  <h:outputLink value="product.xhtml">return</h:outputLink>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const customer = document.getElementById("product");
+    customer.setAttribute('class','check');
+  </script>
+  <div class="mainteil">
+    <h:form>
+      <div class="inputTable">
+        <div>product id:</div>
+        <h:inputText value="#{productController.product.productId}" disabled="true"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>product name:</div>
+        <h:inputText value="#{productController.product.productName}" /><br/>
+      </div>
+      <div class="inputTable">
+        <div>list price:</div>
+        <h:inputText value="#{productController.product.listPrice}" /><br/>
+      </div>
+      <div class="inputTable">
+        <div>model year:</div>
+        <h:inputText value="#{productController.product.modelYear}" /><br/>
+      </div>
+      <div class="inputTable">
+        <div>brand id:</div>
+        <h:inputText value="#{productController.product.brandId}" /><br/>
+      </div>
+      <div class="inputTable">
+        <div>category id:</div>
+        <h:inputText value="#{productController.product.categoryId}" /><br/>
+      </div>
+      <h:commandButton styleClass="add" action="#{productController.update()}" value="update product" />
+    </h:form>
+    <a class="return" href="product.xhtml">Return</a>
+  </div>
 </h:body>
 </html>
