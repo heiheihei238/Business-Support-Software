@@ -6,10 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-  <title>staff</title>
+  <title>stock</title>
   <f:metadata>
     <!--                <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
-    <f:viewAction action="#{staffController.init}"/>
+    <f:viewAction action="#{stockController.init}"/>
   </f:metadata>
   <h:outputStylesheet library="css" name="dataTable_style.css"/>
   <h:outputStylesheet library="css" name="navigation.css"/>
@@ -20,20 +20,19 @@
     <div class="navbar">
       <ul>
         <li><a href="home.xhtml">Home</a></li>
-        <li><a href="customer.xhtml" style="cursor: pointer">Customer</a></li>
+        <li><a href="customer.xhtml" style="cursor: pointer; background-color:#6dd47d;">Customer</a></li>
         <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
         <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
-        <li><a href="staff.xhtml" style="cursor: pointer; background-color:#6dd47d;">Staff</a></li>
+        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
         <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
         <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
       </ul>
     </div>
   </div>
-
   <div class="mainteil">
     <div class="table">
       <div>
-        <div class="text">STAFF</div>
+        <div class="text">STOCK</div>
         <h:dataTable
                 id="data"
                 styleClass="allTable"
@@ -41,46 +40,40 @@
                 rowClasses="allTableOddRow,allTableEvenRow"
                 border="10"
                 cellpadding="10"
-                value="#{staffController.getAll(staffController.currentPage, staffController.pageSize)}"
-                var="staff">
+                value="#{stockController.getAll(stockController.currentPage, stockController.pageSize)}"
+                var="stock">
           <h:column>
             <f:facet name="header">
-              <h:outputText value="Staff ID"/>
+              <h:outputText value="product id"/>
             </f:facet>
-            <h:outputText value="#{staff.staffId}"/>
+            <h:outputText value="#{stock.productId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="first name"/>
+              <h:outputText value="store id"/>
             </f:facet>
-            <h:outputText value="#{staff.firstName}"/>
+            <h:outputText value="#{stock.storeId}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
-              <h:outputText value="last name"/>
+              <h:outputText value="quantity"/>
             </f:facet>
-            <h:outputText value="#{staff.lastName}"/>
-          </h:column>
-          <h:column>
-            <f:facet name="header">
-              <h:outputText value="detail"/>
-            </f:facet>
-            <h:outputLink value="staffDetails.xhtml?staff_id=#{staff.staffId}">details</h:outputLink>
+            <h:outputText value="#{stock.quantity}"/>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="delete"/>
             </f:facet>
             <h:form>
-              <h:commandButton value="delete" action="#{staffController.remove(staff)}"/>
+              <h:commandButton value="delete" action="#{stockController.remove(stock)}"/>
             </h:form>
           </h:column>
           <h:column>
             <f:facet name="header">
               <h:outputText value="edit"/>
             </f:facet>
-            <h:outputLink value="editStaff.xhtml?staff_id=#{staff.staffId}"
-                          style="border-radius: 5px">edit staff</h:outputLink>
+            <h:outputLink value="editStock.xhtml?product_id=#{stock.productId}&amp;store_id=#{stock.storeId}"
+                          style="border-radius: 5px">edit stock</h:outputLink>
           </h:column>
         </h:dataTable>
       </div>
@@ -89,41 +82,39 @@
     <div class="FormControl">
       <h:form>
         <div class="showPage">
-          current page: <h:outputText id="current" value="#{staffController.currentPage}"/>
+          current page: <h:outputText id="current" value="#{stockController.currentPage}"/>
         </div>
         <div class="showError">
           <h:messages globalOnly="true" styleClass="error-message"/>
         </div>
         <div class="control">
-          <!--                    <h:commandButton onclick="alert('hello');window.history.back();" styleClass="commandButton1" value="return" />-->
-          <h:commandButton styleClass="commandButton1" value="First" action="#{staffController.first}">
+          <h:commandButton styleClass="commandButton1" value="First" action="#{stockController.first}">
             <f:ajax render="data input current"/>
           </h:commandButton>
-          <h:commandButton styleClass="commandButton2" value="Previous" action="#{staffController.previous}">
+          <h:commandButton styleClass="commandButton2" value="Previous" action="#{stockController.previous}">
             <f:ajax render="data input current"/>
           </h:commandButton>
-          <h:commandButton styleClass="commandButton1" value="Next" action="#{staffController.next}">
+          <h:commandButton styleClass="commandButton1" value="Next" action="#{stockController.next}">
             <f:ajax render="data input current"/>
           </h:commandButton>
-          <h:commandButton styleClass="commandButton1" value="Last" action="#{staffController.last}">
+          <h:commandButton styleClass="commandButton1" value="Last" action="#{stockController.last}">
             <f:ajax render="data input current"/>
           </h:commandButton>
           <h:inputText id="input" style="margin-right: 8px; border-radius: 28px; border: 3px solid; text-align: center"
-                       value="#{staffController.currentPage}">Go To:
+                       value="#{stockController.currentPage}">Go To:
             <f:ajax render="data input current"/>
           </h:inputText>
           <h:commandButton styleClass="commandButton1" value="Go"
-                           action="#{staffController.go(staffController.currentPage)}">
+                           action="#{stockController.go(stockController.currentPage)}">
             <f:ajax render="data input current"/>
           </h:commandButton>
         </div>
       </h:form>
     </div>
   </div>
-
   <div class="footer">
     <h:form>
-      <h:commandButton value="add a new staff" action="/sc/admin/addStaff.xhtml"/>
+      <h:commandButton value="add a new stock" action="/sc/admin/addStock.xhtml"/>
     </h:form>
   </div>
 </h:body>

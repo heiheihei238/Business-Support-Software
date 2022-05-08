@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>store</title>
+  <f:metadata>
+    <f:viewAction action="#{storeController.initDetails()}"/>
+  </f:metadata>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+</h:head>
+<h:body>
+  <div class="header">
+    <div class="navbar">
+      <ul>
+        <li><a href="home.xhtml">Home</a></li>
+        <li><a href="store.xhtml" style="cursor: pointer; background-color:#6dd47d;">Customer</a></li>
+        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
+        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
+        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
+        <li><a href="category.xhtml" style="cursor: pointer;">Category</a></li>
+        <li><a href="brand.xhtml" style="cursor: pointer">Brand</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainteil">
+    store id:<h:outputText value="#{storeController.store.storeId}"/><br/>
+    store name:<h:outputText value="#{storeController.store.storeName}"/><br/>
+    city:<h:outputText value="#{storeController.store.city}"/><br/>
+    street:<h:outputText value="#{storeController.store.street}"/><br/>
+    phone:<h:outputText value="#{storeController.store.phone}"/><br/>
+    email:<h:outputText value="#{storeController.store.email}"/><br/>
+    state:<h:outputText value="#{storeController.store.state}"/><br/>
+    zip_code:<h:outputText value="#{storeController.store.zipCode}"/><br/>
+  </div>
+  <div class="footer">
+    <h:outputLink value="store.xhtml">return</h:outputLink>
+  </div>
+</h:body>
+</html>

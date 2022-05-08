@@ -9,11 +9,11 @@ import java.util.Objects;
 @Table(name = "stocks")
 @IdClass(StockPK.class)
 public class Stock {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "product_id")
     private int productId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "store_id")
     private int storeId;

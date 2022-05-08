@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>store</title>
+  <h:outputStylesheet library="css" name="dataTable_style.css"/>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+</h:head>
+<h:body>
+  <div class="header">
+    <div class="navbar">
+      <ul>
+        <li><a href="home.xhtml">Home</a></li>
+        <li><a href="customer.xhtml" style="cursor: pointer;">Customer</a></li>
+        <li><a href="product.xhtml" style="cursor: pointer">Product</a></li>
+        <li><a href="order.xhtml" style="cursor: pointer">Order</a></li>
+        <li><a href="staff.xhtml" style="cursor: pointer">Staff</a></li>
+        <li><a href="category.xhtml" style="cursor: pointer">Category</a></li>
+        <li><a href="brand.xhtml" style="cursor: pointer;">Brand</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mainteil">
+    <div class="table">
+      <div>
+        <div class="text">STORE</div>
+        <h:dataTable
+                id="data"
+                styleClass="allTable"
+                headerClass="allTableHeader"
+                rowClasses="allTableOddRow,allTableEvenRow"
+                border="10"
+                cellpadding="10"
+                value="#{storeController.getAll()}" var="store">
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="ID"/>
+            </f:facet>
+            <h:outputText value="#{store.storeId}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="name"/>
+            </f:facet>
+            <h:outputText value="#{store.storeName}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="detail"/>
+            </f:facet>
+            <h:outputLink value="storeDetails.xhtml?store_id=#{store.storeId}">details</h:outputLink>
+          </h:column>
+        </h:dataTable>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+
+  </div>
+</h:body>
+</html>

@@ -37,7 +37,7 @@ public class BrandController {
     }
 
     public void setBrand(Brand brand) {
-        this.brand = BrandController.this.brand;
+        this.brand = brand;
     }
 
     public int getCurrentPage() {
@@ -78,10 +78,6 @@ public class BrandController {
     public String save() {
         bs.save(brand);
         return null;
-    }
-
-    public List<Brand> getAllBrand() {
-        return bs.findAll();
     }
 
     // pagination

@@ -1,8 +1,8 @@
 package controller;
 
-import entities.Customer;
-import entities.Staff;
-import service.StaffService;
+
+import entities.Stock;
+import service.StockService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -15,34 +15,40 @@ import java.util.logging.Logger;
 
 @Named
 @RequestScoped
-public class StaffController {
+public class StockController {
 
-    private Staff staff;
+    private Stock stock;
 
-    private static Integer staffId;
+    private static Integer productId;
+
+    private static Integer storeId;
 
     private static int currentPage = 1;
 
     private static int totalPages;
 
     // data amount in one page
-    private int pageSize = 5;
+    private int pageSize = 8;
 
     private int totalCount;
 
+    // data per page
+    private List<Stock> stocks;
+
     @Inject
-    private StaffService ss;
+    private StockService ss;
 
-    public StaffController() {
-        staff = new Staff();
+
+    public StockController() {
+        stock = new Stock();
     }
 
-    public Staff getStaff() {
-        return staff;
+    public Stock getStock() {
+        return stock;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = StaffController.this.staff;
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 
     public int getCurrentPage() {
@@ -50,7 +56,7 @@ public class StaffController {
     }
 
     public void setCurrentPage(int currentPage) {
-        StaffController.currentPage = currentPage;
+        StockController.currentPage = currentPage;
     }
 
     public int getPageSize() {
@@ -66,7 +72,7 @@ public class StaffController {
     }
 
     public static void setTotalPages(int totalPages) {
-        StaffController.totalPages = totalPages;
+        StockController.totalPages = totalPages;
     }
 
     public int getTotalCount() {
@@ -77,27 +83,49 @@ public class StaffController {
         this.totalCount = totalCount;
     }
 
-    // pagination
-    public List<Staff> getAll(int page, int pageSize) {
-        return ss.findAll(page, pageSize);
+    public List<Stock> getStocks() {
+        return stocks;
     }
 
-    // update staff
+    public void setStocks(List<Stock> stocks) {
+        this.stocks = stocks;
+    }
+
+    // calculate the number of pages
+    public void init() {
+        totalCount = ss.findAll().size();
+        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+    }
+
+    // edit stock
+    public void initEdit() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("product_id") != null && request.getParameter("store_id") != null) {
+            productId = Integer.parseInt(request.getParameter("product_id"));
+            storeId = Integer.parseInt(request.getParameter("store_id"));
+            this.stock = ss.findByProductIdAndStoreId(productId, storeId);
+        }
+    }
+
+    // update stock
     public String update() {
-        staff.setStaffId(staffId);
-        ss.update(this.staff);
-        return "/sc/admin/editCustomer.xhtml?staff_id=" + staffId + "&faces-redirect=true";
+        stock.setProductId(productId);
+        stock.setStoreId(storeId);
+        ss.update(this.stock);
+        return "/sc/admin/editStock.xhtml?store_id=" + storeId + "&product_id=" + productId + "&faces-redirect=true";
     }
 
+    // add stock
     public String save() {
-        Logger.getLogger(StaffController.class.getCanonicalName()).info("staff saved: "+ staff);
-        ss.save(staff);
+        Logger.getLogger(StockController.class.getCanonicalName()).info("stock saved: "+ stock);
+        ss.save(stock);
         return null;
     }
 
-    public String remove(Staff staff){
+    public String remove(Stock stock){
         try {
-            ss.remove(staff);
+            ss.remove(stock);
             return null;
         } catch (Exception e) {
             FacesMessage msg = new FacesMessage("foreign Key violation");
@@ -106,29 +134,9 @@ public class StaffController {
         }
     }
 
-    public void init() {
-        totalCount = ss.findAll().size();
-        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
-    }
-
-    // show details of a staff
-    public void initDetails() {
-        // read parameter from URL
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        if (request.getParameter("staff_id") != null) {
-            staffId = Integer.parseInt(request.getParameter("staff_id"));
-            this.staff = ss.find(staffId);
-        }
-    }
-
-    // edit staff
-    public void initEdit() {
-        // read parameter from URL
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        if (request.getParameter("staff_id") != null) {
-            staffId = Integer.parseInt(request.getParameter("staff_id"));
-            this.staff = ss.find(staffId);
-        }
+    // data list for pagination
+    public List<Stock> getAll(int page, int pageSize) {
+        return ss.findAll(page, pageSize);
     }
 
     public String next() {
@@ -159,7 +167,7 @@ public class StaffController {
     public String go(int page) {
         if (page > 0 && page <= totalPages) {
             currentPage = page;
-            return "staff_list";
+            return "stock_list";
         } else {
             FacesMessage msg = new FacesMessage("invalid page number");
             FacesContext.getCurrentInstance().addMessage(null, msg);
