@@ -33,7 +33,7 @@
                 rowClasses="allTableOddRow,allTableEvenRow"
                 border="10"
                 cellpadding="10"
-                value="#{stockController.getAll(stockController.currentPage, stockController.pageSize)}"
+                value="#{stockController.getAll()}"
                 var="stock">
           <h:column>
             <f:facet name="header">
@@ -58,7 +58,7 @@
               <h:outputText value="delete"/>
             </f:facet>
             <h:form>
-              <h:commandButton value="delete" action="#{stockController.remove(stock)}"/>
+              <h:commandButton value="delete" onclick="if (!confirm('are you sure to delete')) return false" action="#{stockController.remove(stock)}"/>
             </h:form>
           </h:column>
           <h:column>

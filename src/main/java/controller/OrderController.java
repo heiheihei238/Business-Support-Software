@@ -167,8 +167,8 @@ public class OrderController {
     }
 
     // data list for pagination
-    public List<Order> getAll(int page, int pageSize) {
-        return os.findAll(page, pageSize);
+    public List<Order> getAll() {
+        return os.findAll(currentPage, pageSize);
     }
 
     // jump to page

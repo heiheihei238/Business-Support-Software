@@ -33,7 +33,7 @@
                 rowClasses="allTableOddRow,allTableEvenRow"
                 border="10"
                 cellpadding="10"
-                value="#{brandController.getAll(brandController.currentPage, brandController.pageSize)}" var="brand">
+                value="#{brandController.getAll()}" var="brand">
           <h:column>
             <f:facet name="header">
               <h:outputText value="ID"/>
@@ -49,7 +49,7 @@
           <h:column>
             <f:facet name="header">delete</f:facet>
             <h:form>
-              <h:commandButton value="delete" action="#{brandController.remove(brand)}" style="border-radius: 5px"/>
+              <h:commandButton value="delete" onclick="if (!confirm('are you sure to delete')) return false" action="#{brandController.remove(brand)}" style="border-radius: 5px"/>
             </h:form>
           </h:column>
           <h:column>

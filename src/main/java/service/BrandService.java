@@ -23,12 +23,12 @@ public class BrandService {
     }
 
     public List<Brand> findAll() {
-        return em.createQuery("select s from Brand s", Brand.class).getResultList();
+        return em.createQuery("select b from Brand b", Brand.class).getResultList();
     }
 
     // pagination
     public List<Brand> findAll(int page, int size) {
-        return em.createQuery("select s from Brand s", Brand.class)
+        return em.createQuery("select b from Brand b", Brand.class)
                 .setFirstResult((page - 1) * size)
                 .setMaxResults(size)
                 .getResultList();

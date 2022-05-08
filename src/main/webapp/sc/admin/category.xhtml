@@ -33,7 +33,7 @@
                 rowClasses = "allTableOddRow,allTableEvenRow"
                 border="10"
                 cellpadding="10"
-                value="#{categoryController.getAll(categoryController.currentPage, categoryController.pageSize)}" var="category" >
+                value="#{categoryController.getAll()}" var="category" >
           <h:column>
             <f:facet name="header">
               <h:outputText value="Category ID"/>
@@ -51,7 +51,7 @@
           <h:column>
             <f:facet name="header">delete</f:facet>
             <h:form>
-              <h:commandButton value="delete" action="#{categoryController.remove(category)}" style="border-radius: 5px"/>
+              <h:commandButton value="delete" onclick="if (!confirm('are you sure to delete')) return false" action="#{categoryController.remove(category)}" style="border-radius: 5px"/>
             </h:form>
           </h:column>
           <h:column>

@@ -74,8 +74,8 @@ public class CategoryController {
     }
 
     // pagination
-    public List<Category> getAll(int page, int pageSize) {
-        return cs.findAll(page, pageSize);
+    public List<Category> getAll() {
+        return cs.findAll(currentPage, pageSize);
     }
 
     public void init() {

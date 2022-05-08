@@ -184,8 +184,8 @@ public class CustomerController {
     }
 
     // data list for pagination
-    public List<Customer> getAll(int page, int pageSize) {
-        return cs.findAll(page, pageSize);
+    public List<Customer> getAll() {
+        return cs.findAll(currentPage, pageSize);
     }
 
 

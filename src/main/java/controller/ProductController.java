@@ -204,12 +204,12 @@ public class ProductController {
     }
 
     // pagination
-    public List<Product> getAll(int page, int pageSize) {
-        if (categoryId == 0 && brandId == 0) return ps.findAll(page, pageSize);
+    public List<Product> getAll() {
+        if (categoryId == 0 && brandId == 0) return ps.findAll(currentPage, pageSize);
         // the page is jumped from category.
-        else if(categoryId != 0) return ps.findAllByCategory(page, pageSize, categoryId);
+        else if(categoryId != 0) return ps.findAllByCategory(currentPage, pageSize, categoryId);
         // the page is jumped from brand.
-        else return ps.findAllByBrand(page, pageSize, brandId);
+        else return ps.findAllByBrand(currentPage, pageSize, brandId);
     }
 
     // jump to page

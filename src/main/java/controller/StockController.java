@@ -135,8 +135,8 @@ public class StockController {
     }
 
     // data list for pagination
-    public List<Stock> getAll(int page, int pageSize) {
-        return ss.findAll(page, pageSize);
+    public List<Stock> getAll() {
+        return ss.findAll(currentPage, pageSize);
     }
 
     public String next() {

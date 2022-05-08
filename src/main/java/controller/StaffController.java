@@ -77,8 +77,8 @@ public class StaffController {
     }
 
     // pagination
-    public List<Staff> getAll(int page, int pageSize) {
-        return ss.findAll(page, pageSize);
+    public List<Staff> getAll() {
+        return ss.findAll(currentPage, pageSize);
     }
 
     // update staff
