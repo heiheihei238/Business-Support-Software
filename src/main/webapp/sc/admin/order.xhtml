@@ -8,7 +8,6 @@
 <h:head>
   <title>order</title>
   <f:metadata>
-    <!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
     <f:viewAction action="#{orderController.init}"/>
   </f:metadata>
   <h:outputStylesheet library="css" name="dataTable_style.css"/>
@@ -24,9 +23,15 @@
     customer.setAttribute('class','check');
   </script>
   <div class="mainteil">
+    <div class="text">ORDER</div>
+    <div class="search">
+      <h:form>
+        <h:inputText id="search" value="#{orderController.searchID}" style="width:200px; margin-right: 5px"/>
+        <h:commandButton id="searchButton" value="Search" style="padding: 5px 10px" action="#{orderController.search}"/>
+      </h:form>
+    </div>
     <div class="table">
       <div>
-        <div class="text">ORDER</div>
         <h:dataTable id="list"
                      styleClass="allTable"
                      headerClass="allTableHeader"
@@ -130,6 +135,10 @@
       </h:form>
     </div>
   </div>
-  <!--    <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>-->
+  <div class="footer">
+    <h:form>
+      <h:commandButton styleClass="commandButton3" value="add a new oder" action="/sc/admin/addOder.xhtml"/>
+    </h:form>
+  </div>
 </h:body>
 </html>

@@ -23,6 +23,8 @@ public class StockController {
 
     private static Integer storeId;
 
+    private Integer searchID = 0;
+
     private static int currentPage = 1;
 
     private static int totalPages;
@@ -55,7 +57,7 @@ public class StockController {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public static void setCurrentPage(int currentPage) {
         StockController.currentPage = currentPage;
     }
 
@@ -91,10 +93,25 @@ public class StockController {
         this.stocks = stocks;
     }
 
+    public Integer getSearchID() {
+        return searchID;
+    }
+
+    public void setSearchID(Integer searchID) {
+        this.searchID = searchID;
+    }
+
     // calculate the number of pages
     public void init() {
-        totalCount = ss.findAll().size();
-        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("searchID") != null) {
+            searchID = Integer.parseInt(request.getParameter("searchID"));
+            totalCount = ss.findAllById(searchID).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        } else {
+            totalCount = ss.findAll().size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
     }
 
     // edit stock
@@ -106,6 +123,11 @@ public class StockController {
             storeId = Integer.parseInt(request.getParameter("store_id"));
             this.stock = ss.findByProductIdAndStoreId(productId, storeId);
         }
+    }
+
+    public String search() {
+        StockController.setCurrentPage(1);
+        return "/sc/admin/stock.xhtml?searchID=" + searchID + "&faces-redirect=true";
     }
 
     // update stock
@@ -136,7 +158,12 @@ public class StockController {
 
     // data list for pagination
     public List<Stock> getAll() {
-        return ss.findAll(currentPage, pageSize);
+        if(searchID != 0) {
+            return ss.findAllById(currentPage, pageSize, searchID);
+        }
+        else{
+            return ss.findAll(currentPage, pageSize);
+        }
     }
 
     public String next() {

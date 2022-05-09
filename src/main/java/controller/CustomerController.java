@@ -22,6 +22,8 @@ public class CustomerController {
 
     private static Integer customerId;
 
+    private Integer searchID = 0;
+
     private static int currentPage = 1;
 
     private static int totalPages;
@@ -54,7 +56,7 @@ public class CustomerController {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public static void setCurrentPage(int currentPage) {
         CustomerController.currentPage = currentPage;
     }
 
@@ -91,7 +93,18 @@ public class CustomerController {
         this.customers = customers;
     }
 
+    public Integer getSearchID() {
+        return searchID;
+    }
 
+    public void setSearchID(Integer searchID) {
+        this.searchID = searchID;
+    }
+
+    public String search() {
+        CustomerController.setCurrentPage(1);
+        return "/sc/admin/customer.xhtml?searchID=" + searchID + "&faces-redirect=true";
+    }
 
     // update customer
     public String update() {
@@ -123,8 +136,16 @@ public class CustomerController {
 
     // calculate the number of pages
     public void init() {
-        totalCount = cs.findAll().size();
-        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if(request.getParameter("searchID") != null) {
+            searchID = Integer.parseInt(request.getParameter("searchID"));
+            totalCount = cs.findAllById(searchID).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
+        else {
+            totalCount = cs.findAll().size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
     }
 
     // show details of a customer
@@ -185,8 +206,11 @@ public class CustomerController {
 
     // data list for pagination
     public List<Customer> getAll() {
-        return cs.findAll(currentPage, pageSize);
+        if(searchID != 0) {
+            return cs.findAllById(currentPage, pageSize, searchID);
+        }
+        else {
+            return cs.findAll(currentPage, pageSize);
+        }
     }
-
-
 }

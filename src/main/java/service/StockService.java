@@ -1,11 +1,13 @@
 package service;
 
+import entities.Staff;
 import entities.Stock;
 import entities.StockPK;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
@@ -42,5 +44,20 @@ public class StockService {
                 .setFirstResult((page - 1) * size)
                 .setMaxResults(size)
                 .getResultList();
+    }
+
+    public List<Stock> findAllById(Integer itemId) {
+        Query query = em.createQuery("select c from Stock c where c.storeId = :itemId", Stock.class);
+        query.setParameter("itemId", itemId);
+        return query.getResultList();
+    }
+
+    // find staff by ID and show as page
+    public List<Stock> findAllById(int page, int size, Integer itemId) {
+        Query query = em.createQuery("select c from Stock c where c.storeId = :itemId", Stock.class);
+        query.setParameter("itemId", itemId);
+        query.setFirstResult((page - 1) * size);
+        query.setMaxResults(size);
+        return query.getResultList();
     }
 }
