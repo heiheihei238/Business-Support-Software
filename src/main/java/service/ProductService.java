@@ -1,5 +1,6 @@
 package service;
 
+import entities.Customer;
 import entities.Product;
 
 import javax.ejb.Stateless;
@@ -69,6 +70,22 @@ public class ProductService {
     public List<Product> findAllByBrand(int page, int size, Integer brandId) {
         Query query = em.createQuery("select c from Product c where c.brandId = :brand_id", Product.class);
         query.setParameter("brand_id", brandId);
+        query.setFirstResult((page - 1) * size);
+        query.setMaxResults(size);
+        return query.getResultList();
+    }
+
+    // find products by ID
+    public List<Product> findAllById(Integer itemName) {
+        Query query = em.createQuery("select c from Product c where c.productId = :itemName", Product.class);
+        query.setParameter("itemName", itemName);
+        return query.getResultList();
+    }
+
+    // find products by ID and show as page
+    public List<Product> findAllById(int page, int size, Integer itemName) {
+        Query query = em.createQuery("select c from Product c where c.productId = :itemName", Product.class);
+        query.setParameter("itemName", itemName);
         query.setFirstResult((page - 1) * size);
         query.setMaxResults(size);
         return query.getResultList();

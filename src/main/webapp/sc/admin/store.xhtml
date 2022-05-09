@@ -7,6 +7,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
   <title>store</title>
+  <f:metadata>
+    <f:viewAction action="#{storeController.init}"/>
+  </f:metadata>
   <h:outputStylesheet library="css" name="dataTable_style.css"/>
   <h:outputStylesheet library="css" name="navigation.css"/>
   <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
@@ -20,9 +23,15 @@
     customer.setAttribute('class','check');
   </script>
   <div class="mainteil">
+    <div class="text">STORE</div>
+    <div class="search">
+      <h:form>
+        <h:inputText id="search" value="#{storeController.searchID}" style="width:200px; margin-right: 5px"/>
+        <h:commandButton id="searchButton" value="Search" style="padding: 5px 10px" action="#{storeController.search}"/>
+      </h:form>
+    </div>
     <div class="table">
       <div>
-        <div class="text">STAFF</div>
         <h:dataTable
                 id="data"
                 styleClass="allTable"
@@ -55,7 +64,6 @@
     </div>
     <!--分页按钮-->
   </div>
-
   <div class="footer">
   </div>
 </h:body>

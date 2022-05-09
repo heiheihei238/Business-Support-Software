@@ -19,6 +19,8 @@ public class StoreController {
 
     private static Integer storeId;
 
+    private Integer searchID = 0;
+
     @Inject
     private StoreService ss;
 
@@ -34,6 +36,18 @@ public class StoreController {
         this.store = store;
     }
 
+    public Integer getSearchID() {
+        return searchID;
+    }
+
+    public void setSearchID(Integer searchID) {
+        this.searchID = searchID;
+    }
+
+    public String search(){
+        return "/sc/admin/store.xhtml?searchID=" + searchID + "&faces-redirect=true";
+    }
+
     // show details of a store
     public void initDetails() {
         // read parameter from URL
@@ -44,9 +58,19 @@ public class StoreController {
         }
     }
 
+    public void init() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("searchID") != null) {
+            searchID = Integer.parseInt(request.getParameter("searchID"));
+        }
+    }
+
     // show all store
     public List<Store> getAll() {
-        return ss.findAll();
+        if(searchID != 0) {
+            return ss.findAllById(searchID);
+        }
+        else{return ss.findAll();}
     }
 
 }

@@ -20,6 +20,8 @@ public class StaffController {
 
     private static Integer staffId;
 
+    private Integer searchID = 0;
+
     private static int currentPage = 1;
 
     private static int totalPages;
@@ -48,7 +50,7 @@ public class StaffController {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public static void setCurrentPage(int currentPage) {
         StaffController.currentPage = currentPage;
     }
 
@@ -76,9 +78,27 @@ public class StaffController {
         this.totalCount = totalCount;
     }
 
+    public int getSearchID() {
+        return searchID;
+    }
+
+    public void setSearchID(int searchID) {
+        this.searchID = searchID;
+    }
+
+    public String search() {
+        StaffController.setCurrentPage(1);
+        return "/sc/admin/staff.xhtml?searchID=" + searchID + "&faces-redirect=true";
+    }
+
     // pagination
     public List<Staff> getAll() {
-        return ss.findAll(currentPage, pageSize);
+        if(searchID != 0) {
+            return ss.findAllById(currentPage, pageSize, searchID);
+        }
+        else{
+            return ss.findAll(currentPage, pageSize);
+        }
     }
 
     // update staff
@@ -106,8 +126,15 @@ public class StaffController {
     }
 
     public void init() {
-        totalCount = ss.findAll().size();
-        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("searchID") != null) {
+            searchID = Integer.parseInt(request.getParameter("searchID"));
+            totalCount = ss.findAllById(searchID).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        } else {
+            totalCount = ss.findAll().size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
     }
 
     // show details of a staff

@@ -23,9 +23,15 @@
     customer.setAttribute('class','check');
   </script>
   <div class="mainteil">
+    <div class="text">STOCK</div>
+    <div class="search">
+      <h:form>
+        <h:inputText id="search" value="#{stockController.searchID}" style="width:200px; margin-right: 5px"/>
+        <h:commandButton id="searchButton" value="Search" style="padding: 5px 10px" action="#{stockController.search}"/>
+      </h:form>
+    </div>
     <div class="table">
       <div>
-        <div class="text">STAFF</div>
         <h:dataTable
                 id="data"
                 styleClass="allTable"
@@ -65,8 +71,7 @@
             <f:facet name="header">
               <h:outputText value="edit"/>
             </f:facet>
-            <h:outputLink value="editStock.xhtml?product_id=#{stock.productId}&amp;store_id=#{stock.storeId}">
-                          style="border-radius: 5px">edit stock</h:outputLink>
+            <h:outputLink style="border-radius: 5px" value="editStock.xhtml?product_id=#{stock.productId}&amp;store_id=#{stock.storeId}">edit stock</h:outputLink>
           </h:column>
         </h:dataTable>
       </div>
@@ -109,7 +114,7 @@
 
   <div class="footer">
     <h:form>
-      <h:commandButton value="add a new stock" action="/sc/admin/addStock.xhtml"/>
+      <h:commandButton styleClass="commandButton3" value="add a new stock" action="/sc/admin/addStock.xhtml"/>
     </h:form>
   </div>
 </h:body>

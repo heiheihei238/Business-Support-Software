@@ -21,6 +21,8 @@ public class ProductController {
 
     private static Integer productId;
 
+    private Integer searchID = 0;
+
     private static Integer categoryId = 0;
 
     private static Integer brandId = 0;
@@ -102,7 +104,18 @@ public class ProductController {
         this.products = products;
     }
 
+    public Integer getSearchId() {
+        return searchID;
+    }
 
+    public void setSearchId(Integer searchId) {
+        this.searchID = searchId;
+    }
+
+    public String search() {
+        ProductController.setCurrentPage(1);
+        return "/sc/admin/product.xhtml?searchID=" + searchID + "&faces-redirect=true";
+    }
 
     public String update() {
         product.setProductId(productId);
@@ -139,6 +152,7 @@ public class ProductController {
         // the page jumped not from brand
         if (request.getParameter("category_id") != null) {
             brandId = 0;
+            searchID = 0;
             categoryId = Integer.parseInt(request.getParameter("category_id"));
             totalCount = ps.findAllByCategory(categoryId).size();
             totalPages = (int) Math.ceil(totalCount / (double) pageSize);
@@ -146,14 +160,23 @@ public class ProductController {
         // the page jumped not from category
         else if (request.getParameter("brand_id") != null) {
             categoryId = 0;
+            searchID = 0;
             brandId = Integer.parseInt(request.getParameter("brand_id"));
             totalCount = ps.findAllByBrand(brandId).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
+        else if (request.getParameter("searchID") != null) {
+            categoryId = 0;
+            brandId = 0;
+            searchID= Integer.parseInt(request.getParameter("searchID"));
+            totalCount = ps.findAllById(searchID).size();
             totalPages = (int) Math.ceil(totalCount / (double) pageSize);
         }
         // show all products
         else {
             brandId = 0;
             categoryId = 0;
+            searchID = 0;
             totalCount = ps.findAll().size();
             totalPages = (int) Math.ceil(totalCount / (double) pageSize);
         }
@@ -205,9 +228,11 @@ public class ProductController {
 
     // pagination
     public List<Product> getAll() {
-        if (categoryId == 0 && brandId == 0) return ps.findAll(currentPage, pageSize);
+        if (categoryId == 0 && brandId == 0 && searchID == 0) return ps.findAll(currentPage, pageSize);
         // the page is jumped from category.
         else if(categoryId != 0) return ps.findAllByCategory(currentPage, pageSize, categoryId);
+        // the page is jumped from search.
+        else if(searchID != 0) return ps.findAllById(currentPage, pageSize, searchID);
         // the page is jumped from brand.
         else return ps.findAllByBrand(currentPage, pageSize, brandId);
     }

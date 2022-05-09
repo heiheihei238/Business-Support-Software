@@ -6,6 +6,7 @@ import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
 
@@ -51,5 +52,21 @@ public class StaffService implements Serializable {
     // find the staffs whose manager is not the given manager
     public List<Staff> findByManagerIdNot(Integer manager_id) {
         return (List<Staff>) em.createQuery("select s from Staff s where s.managerId != :manager_id", Staff.class);
+    }
+
+    // find staff by ID
+    public List<Staff> findAllById(Integer itemId) {
+        Query query = em.createQuery("select s from Staff s where s.staffId = :itemId", Staff.class);
+        query.setParameter("itemId", itemId);
+        return query.getResultList();
+    }
+
+    // find staff by ID and show as page
+    public List<Staff> findAllById(int page, int size, Integer itemId) {
+        Query query = em.createQuery("select s from Staff s where s.staffId = :itemId", Staff.class);
+        query.setParameter("itemId", itemId);
+        query.setFirstResult((page - 1) * size);
+        query.setMaxResults(size);
+        return query.getResultList();
     }
 }
