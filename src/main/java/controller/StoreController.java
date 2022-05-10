@@ -19,7 +19,7 @@ public class StoreController {
 
     private static Integer storeId;
 
-    private Integer searchID = 0;
+    private String searchItem = "Search";
 
     @Inject
     private StoreService ss;
@@ -36,16 +36,20 @@ public class StoreController {
         this.store = store;
     }
 
-    public Integer getSearchID() {
-        return searchID;
+    public static Integer getStoreId() {
+        return storeId;
     }
 
-    public void setSearchID(Integer searchID) {
-        this.searchID = searchID;
+    public void setSearchItem(String searchItem) {
+        this.searchItem = searchItem;
+    }
+
+    public String getSearchItem() {
+        return searchItem;
     }
 
     public String search(){
-        return "/sc/admin/store.xhtml?searchID=" + searchID + "&faces-redirect=true";
+        return "/sc/admin/store.xhtml?searchItem=" + searchItem + "&faces-redirect=true";
     }
 
     // show details of a store
@@ -60,15 +64,18 @@ public class StoreController {
 
     public void init() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        if (request.getParameter("searchID") != null) {
-            searchID = Integer.parseInt(request.getParameter("searchID"));
+        if (request.getParameter("searchItem") != null) {
+            searchItem = request.getParameter("searchItem");
+        }
+        else {
+            searchItem = "Search";
         }
     }
 
     // show all store
     public List<Store> getAll() {
-        if(searchID != 0) {
-            return ss.findAllById(searchID);
+        if(!searchItem.equals("Search")){
+            return ss.findAllByIdAndName(searchItem);
         }
         else{return ss.findAll();}
     }

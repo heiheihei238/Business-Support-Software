@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Stateless
 public class ProductService {
@@ -75,20 +76,40 @@ public class ProductService {
         return query.getResultList();
     }
 
-    // find products by ID
-    public List<Product> findAllById(Integer itemName) {
-        Query query = em.createQuery("select c from Product c where c.productId = :itemName", Product.class);
-        query.setParameter("itemName", itemName);
-        return query.getResultList();
+    // find products by ID or name
+    public List<Product> findAllByIdAndName(String itemName) {
+        Pattern pattern = Pattern.compile("[0-9]+");
+        if(pattern.matcher(itemName).matches()){
+            Integer itemId = Integer.parseInt(itemName);
+            Query query = em.createQuery("select c from Product c where c.productId = :itemId", Product.class);
+            query.setParameter("itemId", itemId);
+            return query.getResultList();
+        }
+        else{
+            Query query = em.createQuery("select c from Product c where c.productName like :itemName", Product.class);
+            query.setParameter("itemName", "%"+itemName+"%");
+            return query.getResultList();
+        }
     }
 
-    // find products by ID and show as page
-    public List<Product> findAllById(int page, int size, Integer itemName) {
-        Query query = em.createQuery("select c from Product c where c.productId = :itemName", Product.class);
-        query.setParameter("itemName", itemName);
-        query.setFirstResult((page - 1) * size);
-        query.setMaxResults(size);
-        return query.getResultList();
+    // find products by ID or name and show as page
+    public List<Product> findAllByIdAndName(int page, int size, String itemName) {
+        Pattern pattern = Pattern.compile("[0-9]+");
+        if(pattern.matcher(itemName).matches()){
+            Integer itemId = Integer.parseInt(itemName);
+            Query query = em.createQuery("select c from Product c where c.productId = :itemId", Product.class);
+            query.setParameter("itemId", itemId);
+            query.setFirstResult((page - 1) * size);
+            query.setMaxResults(size);
+            return query.getResultList();
+        }
+        else {
+            Query query = em.createQuery("select c from Product c where c.productName LIKE :itemName", Product.class);
+            query.setParameter("itemName", "%"+itemName+"%");
+            query.setFirstResult((page - 1) * size);
+            query.setMaxResults(size);
+            return query.getResultList();
+        }
     }
 
 }
