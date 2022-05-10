@@ -92,8 +92,7 @@
     </div>
     <div class="footer">
         <h:form>
-          <!--  <h:commandButton styleClass="commandButton3" value="add a new order Item" action="/sc/admin/addOrderItem.xhtml"/>-->
-            <h:button value="add a new order Item" outcome="/sc/admin/addOrderItem.xhtml?order_id=#{orderItemController.orderItem.orderId}" />
+            <h:button value="add a new order Item" outcome="/sc/admin/create/addOrderItem.xhtml?order_id=#{orderItemController.orderItem.orderId}" />
         </h:form>
     </div>
 </h:body>

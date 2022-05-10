@@ -6,21 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-   <f:metadata>
-      <f:viewAction action="#{orderItemController.initItemEdit()}"/>
-   </f:metadata>
    <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
    <h:outputStylesheet library="css" name="navigation.css"/>
+   <f:metadata>
+      <f:viewAction action="#{orderItemController.initItem()}"/>
+   </f:metadata>
 </h:head>
 <h:body>
    <ui:insert>
-      <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+      <ui:include src="../../../resources/template/headerTemplateForAdminSubFolder.xhtml"/>
    </ui:insert>
    <script type="text/javascript">
       const customer = document.getElementById("order");
       customer.setAttribute('class','check');
    </script>
    <div class="mainteil">
+      <div class="title">Add Order Item</div>
       <h:form>
          <div class="inputTable">
             <div>product_id:</div>
@@ -38,9 +39,9 @@
             <div>discount:</div>
             <h:inputText value="#{orderItemController.orderItem.discount}" /><br/>
          </div>
-         <h:commandButton styleClass="add" action="#{orderItemController.update()}" value="update"/>
+         <h:commandButton styleClass="add" action="#{orderItemController.save()}" value="add"/>
+         <h:commandButton styleClass="return" value="return" action="/sc/admin/product.xhtml?faces-redirect=true" />
       </h:form>
-      <a class="return" href="order_item.xhtml">Return</a>
    </div>
 </h:body>
 </html>

@@ -14,7 +14,7 @@
 </h:head>
 <h:body>
   <ui:insert>
-    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+    <ui:include src="../../../resources/template/headerTemplateForAdminSubFolder.xhtml"/>
   </ui:insert>
   <script type="text/javascript">
     const customer = document.getElementById("product");
@@ -48,7 +48,7 @@
       </div>
       <h:commandButton styleClass="add" action="#{productController.update()}" value="update product" />
     </h:form>
-    <a class="return" href="product.xhtml">Return</a>
+    <a class="return" href="../product.xhtml">Return</a>
   </div>
 </h:body>
 </html>

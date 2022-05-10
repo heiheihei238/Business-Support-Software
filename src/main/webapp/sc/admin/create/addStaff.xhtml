@@ -6,27 +6,20 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-  <f:metadata>
-    <f:viewAction action="#{staffController.initEdit}"/>
-  </f:metadata>
   <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
   <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 <h:body>
   <ui:insert>
-    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+    <ui:include src="../../../resources/template/headerTemplateForAdminSubFolder.xhtml"/>
   </ui:insert>
   <script type="text/javascript">
     const staff = document.getElementById("staff");
     staff.setAttribute('class','check');
   </script>
   <div class="mainteil">
-    <div class="title">Edit Staff</div>
+    <div class="title">Add Staff</div>
     <h:form>
-      <div class="inputTable">
-        <div>staff id:</div>
-        <h:inputText value="#{staffController.staff.staffId}" disabled="true"/><br/>
-      </div>
       <div class="inputTable">
         <div>first name:</div>
         <h:inputText value="#{staffController.staff.firstName}"/><br/>
@@ -40,12 +33,12 @@
         <h:inputText value="#{staffController.staff.active}"/><br/>
       </div>
       <div class="inputTable">
-        <div>phone:</div>
-        <h:inputText value="#{staffController.staff.phone}"/><br/>
-      </div>
-      <div class="inputTable">
         <div>email:</div>
         <h:inputText value="#{staffController.staff.email}"/><br/>
+      </div>
+      <div class="inputTable">
+        <div>phone:</div>
+        <h:inputText value="#{staffController.staff.phone}"/><br/>
       </div>
       <div class="inputTable">
         <div>manager id:</div>
@@ -55,9 +48,9 @@
         <div>store id:</div>
         <h:inputText value="#{staffController.staff.storeId}"/><br/>
       </div>
-      <h:commandButton styleClass="add" action="#{staffController.update()}" value="update staff" />
+      <h:commandButton styleClass="add" action="#{staffController.save()}" value="add"/>
+      <h:commandButton styleClass="return" value="return" action="/sc/admin/staff.xhtml?faces-redirect=true" />
     </h:form>
-    <a class="return" href="staff.xhtml">Return</a>
   </div>
 </h:body>
 </html>
