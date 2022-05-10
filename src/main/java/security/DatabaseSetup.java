@@ -61,9 +61,10 @@ public class DatabaseSetup {
                 while (resultSet.next()) {
                     String email = resultSet.getString("EMAIL");
                     String phone = resultSet.getString("PHONE");
+                    String phoneWithoutAreaCode = getPhoneNumberWithoutAreaCode(phone);
                     int managerId = resultSet.getInt("MANAGER_ID");
                     // insert username and password into the user table
-                    executeUpdate(dataSource, "INSERT INTO USERS VALUES ('" + email + "','" + passwordHash.generate(phone.toCharArray()) + "')");
+                    executeUpdate(dataSource, "INSERT INTO USERS VALUES ('" + email + "','" + passwordHash.generate(phoneWithoutAreaCode.toCharArray()) + "')");
                     // insert username and role into the groups' table
                     // admin
                     if(managerId == 0) {
@@ -83,5 +84,10 @@ public class DatabaseSetup {
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    private String getPhoneNumberWithoutAreaCode(String phoneNumber){
+        String[] parts = phoneNumber.split(" ");
+        return parts[1];
     }
 }
