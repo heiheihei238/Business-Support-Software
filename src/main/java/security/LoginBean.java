@@ -16,6 +16,7 @@ import javax.security.enterprise.credential.Password;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
@@ -67,6 +68,12 @@ public class LoginBean {
             facesContext.addMessage(null,
                     new FacesMessage(SEVERITY_ERROR, "Authentication failed", null));
         }
+    }
+
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        session.invalidate();
+        return "/sc/welcome.xhtml?faces-redirect=true";
     }
 
     private HttpServletRequest getHttpRequestFromFacesContext() {
