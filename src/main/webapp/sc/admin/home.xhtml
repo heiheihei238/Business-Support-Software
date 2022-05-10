@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -76,6 +77,11 @@
       <div class="back-content">
         <a href="staff.xhtml">Staff</a>
       </div>
+    </div>
+    <div id="logout">
+      <h:form>
+        <h:commandButton value="logout" action="#{loginBean.logout()}"/>
+      </h:form>
     </div>
   </div>
 </h:body>

@@ -148,3 +148,9 @@ body::after{
     opacity: 0;
     transform: translateY(110px);
 }
+
+#logout{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

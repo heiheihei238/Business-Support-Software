@@ -16,6 +16,7 @@ import javax.security.enterprise.credential.Password;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
@@ -32,9 +33,6 @@ public class LoginBean {
 
     @NotNull
     private String password;
-
-    @Inject
-    private LoginService ls;
 
     @Inject
     private SecurityContext securityContext;
@@ -58,34 +56,24 @@ public class LoginBean {
         this.password = password;
     }
 
-    //    public String login() {
-    //        if(ls.findAdmin(username, password)) {
-    //            return "/sc/admin/home.xhtml?faces-redirect=true";
-    //        }
-    //        else if(ls.findUser1(username, password)) {
-    //            return "/sc/user1/home.xhtml?faces-redirect=true";
-    //        }
-    //        else if(ls.findUser2(username, password)) {
-    //            return "/sc/user2/home.xhtml?faces-redirect=true";
-    //        }
-    //        else
-    //            JsfUtil.addErrorMessage("InvalidLogin");
-    //            return "/sc/login.xhtml";
-    //    }
     public void login() {
         Credential credential = new UsernamePasswordCredential(username, new Password(password));
         AuthenticationStatus status = securityContext.authenticate(
                 getHttpRequestFromFacesContext(),
                 getHttpResponseFromFacesContext(),
                 withParams().credential(credential));
-//        System.out.println(username);
-//        System.out.println(password);
         if (status.equals(SEND_CONTINUE)) {
             facesContext.responseComplete();
         } else if (status.equals(SEND_FAILURE)) {
             facesContext.addMessage(null,
                     new FacesMessage(SEVERITY_ERROR, "Authentication failed", null));
         }
+    }
+
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        session.invalidate();
+        return "/sc/welcome.xhtml?faces-redirect=true";
     }
 
     private HttpServletRequest getHttpRequestFromFacesContext() {
