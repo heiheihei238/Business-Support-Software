@@ -22,7 +22,7 @@ public class CustomerController {
 
     private static Integer customerId;
 
-    private Integer searchID = 0;
+    private String searchItem = "Search";
 
     private static int currentPage = 1;
 
@@ -93,17 +93,17 @@ public class CustomerController {
         this.customers = customers;
     }
 
-    public Integer getSearchID() {
-        return searchID;
+    public String getSearchItem() {
+        return searchItem;
     }
 
-    public void setSearchID(Integer searchID) {
-        this.searchID = searchID;
+    public void setSearchItem(String searchItem) {
+        this.searchItem = searchItem;
     }
 
     public String search() {
         CustomerController.setCurrentPage(1);
-        return "/sc/admin/customer.xhtml?searchID=" + searchID + "&faces-redirect=true";
+        return "/sc/admin/customer.xhtml?searchItem=" + searchItem + "&faces-redirect=true";
     }
 
     // update customer
@@ -137,9 +137,9 @@ public class CustomerController {
     // calculate the number of pages
     public void init() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        if(request.getParameter("searchID") != null) {
-            searchID = Integer.parseInt(request.getParameter("searchID"));
-            totalCount = cs.findAllById(searchID).size();
+        if(request.getParameter("searchItem") != null) {
+            searchItem = request.getParameter("searchItem");
+            totalCount = cs.findAllByIdAndName(searchItem).size();
             totalPages = (int) Math.ceil(totalCount / (double) pageSize);
         }
         else {
@@ -206,8 +206,8 @@ public class CustomerController {
 
     // data list for pagination
     public List<Customer> getAll() {
-        if(searchID != 0) {
-            return cs.findAllById(currentPage, pageSize, searchID);
+        if(!searchItem.equals("Search")) {
+            return cs.findAllById(currentPage, pageSize, searchItem);
         }
         else {
             return cs.findAll(currentPage, pageSize);
