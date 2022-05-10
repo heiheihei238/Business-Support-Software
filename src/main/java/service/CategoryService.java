@@ -19,16 +19,6 @@ public class CategoryService {
         return em.createQuery("select c from Category c", Category.class).getResultList();
     }
 
-    // find category by id
-    public Category find(Integer id) {
-        return em.find(Category.class, id);
-    }
-
-    // update category
-    public void update(Category category) {
-        em.merge(category);
-    }
-
     // save category
     public Category save(Category category) {
         return em.merge(category);
@@ -47,12 +37,4 @@ public class CategoryService {
                 .setMaxResults(size)
                 .getResultList();
     }
-
-    // show products by category
-    public List<Product> findProductsByCategory(Category category) {
-        return em.createQuery("select p from Product p where p.categoryByCategoryId = :category", Product.class)
-                .setParameter("category", category)
-                .getResultList();
-    }
-
 }

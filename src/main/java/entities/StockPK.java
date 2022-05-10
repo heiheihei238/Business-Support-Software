@@ -10,12 +10,19 @@ import java.util.Objects;
 public class StockPK implements Serializable {
     @Column(name = "product_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
     @Column(name = "store_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int storeId;
+
+    public StockPK(){}
+
+    public StockPK(int productId, int storeId) {
+        this.productId = productId;
+        this.storeId = storeId;
+    }
 
     public int getProductId() {
         return productId;

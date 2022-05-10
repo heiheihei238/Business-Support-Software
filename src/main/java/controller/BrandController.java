@@ -16,6 +16,8 @@ public class BrandController {
 
     private Brand brand;
 
+    private String search;
+
     private static int currentPage = 1;
 
     private static int totalPages;
@@ -37,7 +39,15 @@ public class BrandController {
     }
 
     public void setBrand(Brand brand) {
-        this.brand = BrandController.this.brand;
+        this.brand = brand;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 
     public int getCurrentPage() {
@@ -77,16 +87,32 @@ public class BrandController {
     // add brand
     public String save() {
         bs.save(brand);
+        // add message
+        FacesMessage msg = new FacesMessage("insert success");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         return null;
     }
 
-    public List<Brand> getAllBrand() {
-        return bs.findAll();
+    // pagination
+    public List<Brand> getAll() {
+        return bs.findAll(currentPage, pageSize);
     }
 
-    // pagination
-    public List<Brand> getAll(int page, int pageSize) {
-        return bs.findAll(page, pageSize);
+    public String remove(Brand brand){
+        try {
+            bs.remove(brand);
+            return null;
+        } catch (Exception e) {
+            FacesMessage msg = new FacesMessage("foreign Key violation");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return null;
+        }
+    }
+
+    // show products by category
+    public String showProducts(Brand brand) {
+        ProductController.setCurrentPage(1);
+        return "/sc/admin/product.xhtml?brand_id=" + brand.getBrandId() + "&faces-redirect=true";
     }
 
     public void init() {
@@ -128,22 +154,5 @@ public class BrandController {
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
         }
-    }
-
-    public String remove(Brand brand){
-        try {
-            bs.remove(brand);
-            return null;
-        } catch (Exception e) {
-            FacesMessage msg = new FacesMessage("foreign Key violation");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            return null;
-        }
-    }
-
-    // show products by category
-    public String showProducts(Brand brand) {
-        ProductController.setCurrentPage(1);
-        return "/sc/admin/product.xhtml?brand_id=" + brand.getBrandId() + "&faces-redirect=true";
     }
 }

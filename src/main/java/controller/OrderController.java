@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,10 +23,15 @@ public class OrderController {
 
     private static int totalPages;
 
+    private Integer searchID = 0;
+
     // data amount in one page
     private int pageSize = 10;
 
     private int totalCount;
+
+    private static Integer orderId;
+
 
     // Data per page
     private List<Order> orders;
@@ -50,17 +56,12 @@ public class OrderController {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public static void setCurrentPage(int currentPage) {
         OrderController.currentPage = currentPage;
     }
 
     public int getTotalPages() {
         return totalPages;
-    }
-
-    public void setTotalPages() {
-        setTotalCount();
-        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
     }
 
     public int getPageSize() {
@@ -75,6 +76,11 @@ public class OrderController {
         return totalCount;
     }
 
+    public void setTotalPages() {
+        setTotalCount();
+        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
+    }
+
     public void setTotalCount() {
         this.totalCount = getAllOrder().size();
     }
@@ -87,10 +93,23 @@ public class OrderController {
         this.orders = orders;
     }
 
+    public Integer getSearchID() {
+        return searchID;
+    }
 
+    public void setSearchID(Integer searchID) {
+        this.searchID = searchID;
+    }
 
-    public Order update() {
-        return os.update(this.order);
+    public String search(){
+        OrderController.setCurrentPage(1);
+        return "/sc/admin/oder.xhtml?searchID=" + searchID + "&faces-redirect=true";
+    }
+
+    public String update() {
+        order.setOrderId(orderId);
+        os.update(this.order);
+        return "/sc/admin/editOrder.xhtml?order_id=" + orderId + "&faces-redirect=true";
     }
 
     public String save() {
@@ -133,7 +152,25 @@ public class OrderController {
     }
 
     public void init(){
-        setTotalPages();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("searchID") != null) {
+            searchID = Integer.parseInt(request.getParameter("searchID"));
+            totalCount = os.findAllById(searchID).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        } else {
+            setTotalPages();
+        }
+    }
+
+    public void initEdit() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("order_id") != null) {
+            orderId = Integer.parseInt(request.getParameter("order_id"));
+            this.order = os.find(orderId);
+            System.out.println("GET"+orderId);
+            System.out.println(this.order.toString());
+        }
     }
 
     public List<Order> getAllOrder() {
@@ -167,8 +204,13 @@ public class OrderController {
     }
 
     // data list for pagination
-    public List<Order> getAll(int page, int pageSize) {
-        return os.findAll(page, pageSize);
+    public List<Order> getAll() {
+        if(searchID != 0) {
+            return os.findAllById(currentPage, pageSize, searchID);
+        }
+        else{
+            return os.findAll(currentPage, pageSize);
+        }
     }
 
     // jump to page

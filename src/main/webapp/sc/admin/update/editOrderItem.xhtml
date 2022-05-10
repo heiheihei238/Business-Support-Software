@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+   <f:metadata>
+      <f:viewAction action="#{orderItemController.initItemEdit()}"/>
+   </f:metadata>
+   <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
+   <h:outputStylesheet library="css" name="navigation.css"/>
+</h:head>
+<h:body>
+   <ui:insert>
+      <ui:include src="../../../resources/template/headerTemplateForAdminSubFolder.xhtml"/>
+   </ui:insert>
+   <script type="text/javascript">
+      const customer = document.getElementById("order");
+      customer.setAttribute('class','check');
+   </script>
+   <div class="mainteil">
+      <h:form>
+         <div class="inputTable">
+            <div>product_id:</div>
+            <h:inputText value="#{orderItemController.orderItem.productId}" /><br/>
+         </div>
+         <div class="inputTable">
+            <div>list price:</div>
+            <h:inputText value="#{orderItemController.orderItem.listPrice}" /><br/>
+         </div>
+         <div class="inputTable">
+            <div>quantity:</div>
+            <h:inputText value="#{orderItemController.orderItem.quantity}" /><br/>
+         </div>
+         <div class="inputTable">
+            <div>discount:</div>
+            <h:inputText value="#{orderItemController.orderItem.discount}" /><br/>
+         </div>
+         <h:commandButton styleClass="add" action="#{orderItemController.update()}" value="update"/>
+      </h:form>
+      <a class="return" href="../order_item.xhtml">Return</a>
+   </div>
+</h:body>
+</html>

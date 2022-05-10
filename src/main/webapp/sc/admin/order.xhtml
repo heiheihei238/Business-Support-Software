@@ -8,7 +8,6 @@
 <h:head>
   <title>order</title>
   <f:metadata>
-    <!--        <f:viewParam name="param" id="param" value="#{searchTest.param}"/>-->
     <f:viewAction action="#{orderController.init}"/>
   </f:metadata>
   <h:outputStylesheet library="css" name="dataTable_style.css"/>
@@ -24,16 +23,22 @@
     customer.setAttribute('class','check');
   </script>
   <div class="mainteil">
+    <div class="text">ORDER</div>
+    <div class="search">
+      <h:form>
+        <h:inputText id="search" value="#{orderController.searchID}" style="width:200px; margin-right: 5px"/>
+        <h:commandButton id="searchButton" value="Search" style="padding: 5px 10px" action="#{orderController.search}"/>
+      </h:form>
+    </div>
     <div class="table">
       <div>
-        <div class="text">ORDER</div>
         <h:dataTable id="list"
                      styleClass="allTable"
                      headerClass="allTableHeader"
                      rowClasses="allTableOddRow,allTableEvenRow"
                      border="10"
                      cellpadding="10"
-                     value="#{orderController.getAll(orderController.currentPage, orderController.pageSize)}"
+                     value="#{orderController.getAll()}"
                      var="order">
           <h:column>
             <f:facet name="header">
@@ -93,6 +98,20 @@
                           value="order_item.xhtml?order_id=#{order.orderId}">order_item</h:outputLink>
 
           </h:column>
+          <h:column>
+            <f:facet name="header">delete</f:facet>
+            <h:form>
+              <h:commandButton rendered="#{order.orderStatus != 4}" value="delete" onclick="if (!confirm('are you sure to delete')) return false" action="#{orderController.remove(order)}"/>
+            </h:form>
+            <h:outputText rendered="#{order.orderStatus == 4}" value="non-removable" style="padding: 10px"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="edit"/>
+            </f:facet>
+            <h:outputLink value="editOrder.xhtml?order_id=#{order.orderId}"
+                          style="border-radius: 5px">edit order</h:outputLink>
+          </h:column>
         </h:dataTable>
       </div>
     </div>
@@ -130,6 +149,10 @@
       </h:form>
     </div>
   </div>
-  <!--    <div class="footer">Designed and produced by Tang,Wang,Li,Chen</div>-->
+  <div class="footer">
+    <h:form>
+      <h:commandButton styleClass="commandButton3" value="add a new order" action="/sc/admin/create/addOrder.xhtml"/>
+    </h:form>
+  </div>
 </h:body>
 </html>

@@ -6,8 +6,10 @@ import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Stateless
 public class StaffService implements Serializable {
@@ -51,5 +53,41 @@ public class StaffService implements Serializable {
     // find the staffs whose manager is not the given manager
     public List<Staff> findByManagerIdNot(Integer manager_id) {
         return (List<Staff>) em.createQuery("select s from Staff s where s.managerId != :manager_id", Staff.class);
+    }
+
+    // find staffs by ID or by name
+    public List<Staff> findAllByIdAndName(String itemName) {
+        Pattern pattern = Pattern.compile("[0-9]+");
+        if(pattern.matcher(itemName).matches()) {
+            Integer itemId = Integer.parseInt(itemName);
+            Query query = em.createQuery("select s from Staff s where s.staffId = :itemName", Staff.class);
+            query.setParameter("itemName", itemId);
+            return query.getResultList();
+        }
+        else {
+            Query query = em.createQuery("select s from Staff s where s.firstName like :itemName OR s.lastName like :itemName", Staff.class);
+            query.setParameter("itemName", "%"+itemName+"%");
+            return query.getResultList();
+        }
+    }
+
+    // find staffs by ID or by name and show the page
+    public List<Staff> findAllByIdAndName(int page, int size, String itemName) {
+        Pattern pattern = Pattern.compile("[0-9]+");
+        if(pattern.matcher(itemName).matches()) {
+            Integer itemId = Integer.parseInt(itemName);
+            Query query = em.createQuery("select s from Staff s where s.staffId = :itemName", Staff.class);
+            query.setParameter("itemName", itemId);
+            query.setFirstResult((page - 1) * size);
+            query.setMaxResults(size);
+            return query.getResultList();
+        }
+        else {
+            Query query = em.createQuery("select s from Staff s where s.firstName like :itemName OR s.lastName like :itemName", Staff.class);
+            query.setParameter("itemName", "%"+itemName+"%");
+            query.setFirstResult((page - 1) * size);
+            query.setMaxResults(size);
+            return query.getResultList();
+        }
     }
 }

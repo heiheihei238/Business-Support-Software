@@ -21,7 +21,8 @@ public class OrderItemService {
     }
 
     public void remove(OrderItem orderItem) {
-        em.remove(orderItem);
+        //em.remove(orderItem);
+        em.remove(em.contains(orderItem) ? orderItem : em.merge(orderItem));
     }
 
     public OrderItem find(int id) {

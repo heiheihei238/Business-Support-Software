@@ -8,7 +8,7 @@
         <driver>postgresql-42.3.1.jar</driver>
         <security>
             <user-name>postgres</user-name>
-            <password>20000210lkh</password>
+            <password>458438wkl</password>
         </security>
     </datasource>
 

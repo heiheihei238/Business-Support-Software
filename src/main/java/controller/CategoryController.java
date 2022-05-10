@@ -49,15 +49,6 @@ public class CategoryController {
         CategoryController.currentPage = currentPage;
     }
 
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages() {
-        setTotalCount();
-        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
-    }
-
     public int getPageSize() {
         return pageSize;
     }
@@ -66,22 +57,25 @@ public class CategoryController {
         this.pageSize = pageSize;
     }
 
+    public static int getTotalPages() {
+        return totalPages;
+    }
+
+    public static void setTotalPages(int totalPages) {
+        CategoryController.totalPages = totalPages;
+    }
+
     public int getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount() {
-        this.totalCount = getAllCategory().size();
-    }
-
-
-    public List<Category> getAllCategory() {
-        return cs.findAll();
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 
     // pagination
-    public List<Category> getAll(int page, int pageSize) {
-        return cs.findAll(page, pageSize);
+    public List<Category> getAll() {
+        return cs.findAll(currentPage, pageSize);
     }
 
     public void init() {
@@ -109,7 +103,6 @@ public class CategoryController {
     }
 
     public String last() {
-        setTotalPages();
         currentPage = totalPages;
         return null;
     }

@@ -13,7 +13,7 @@ public class OrderItem {
     @Id
     @Column(name = "item_id")
     private int itemId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "order_id")
     private int orderId;
@@ -90,6 +90,20 @@ public class OrderItem {
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem that = (OrderItem) o;
         return itemId == that.itemId && orderId == that.orderId && Objects.equals(discount, that.discount) && Objects.equals(listPrice, that.listPrice) && Objects.equals(quantity, that.quantity) && Objects.equals(productId, that.productId);
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "itemId=" + itemId +
+                ", orderId=" + orderId +
+                ", discount=" + discount +
+                ", listPrice=" + listPrice +
+                ", quantity=" + quantity +
+                ", productId=" + productId +
+                ", orderByOrderId=" + orderByOrderId +
+                ", productByProductId=" + productByProductId +
+                '}';
     }
 
     @Override

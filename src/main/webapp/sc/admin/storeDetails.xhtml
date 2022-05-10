@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>store</title>
+  <f:metadata>
+    <f:viewAction action="#{storeController.initDetails()}"/>
+  </f:metadata>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+</h:head>
+<h:body>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const store = document.getElementById("store");
+    store.setAttribute('class','check');
+  </script>
+  <div class="mainteil">
+    store id:<h:outputText value="#{storeController.store.storeId}"/><br/>
+    store name:<h:outputText value="#{storeController.store.storeName}"/><br/>
+    city:<h:outputText value="#{storeController.store.city}"/><br/>
+    street:<h:outputText value="#{storeController.store.street}"/><br/>
+    phone:<h:outputText value="#{storeController.store.phone}"/><br/>
+    email:<h:outputText value="#{storeController.store.email}"/><br/>
+    state:<h:outputText value="#{storeController.store.state}"/><br/>
+    zip code:<h:outputText value="#{storeController.store.zipCode}"/><br/>
+  </div>
+  <div class="footer">
+    <a href="store.xhtml">Return</a>
+  </div>
+</h:body>
+</html>

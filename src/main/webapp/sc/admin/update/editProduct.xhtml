@@ -6,12 +6,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
+  <f:metadata>
+    <f:viewAction action="#{productController.initEdit}"/>
+  </f:metadata>
   <h:outputStylesheet library="css" name="editAndAddStyle.css"/>
   <h:outputStylesheet library="css" name="navigation.css"/>
 </h:head>
 <h:body>
   <ui:insert>
-    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+    <ui:include src="../../../resources/template/headerTemplateForAdminSubFolder.xhtml"/>
   </ui:insert>
   <script type="text/javascript">
     const customer = document.getElementById("product");
@@ -19,6 +22,10 @@
   </script>
   <div class="mainteil">
     <h:form>
+      <div class="inputTable">
+        <div>product id:</div>
+        <h:inputText value="#{productController.product.productId}" disabled="true"/><br/>
+      </div>
       <div class="inputTable">
         <div>product name:</div>
         <h:inputText value="#{productController.product.productName}" /><br/>
@@ -39,9 +46,9 @@
         <div>category id:</div>
         <h:inputText value="#{productController.product.categoryId}" /><br/>
       </div>
-      <h:commandButton styleClass="add" action="#{productController.save()}" value="add"/>
-      <h:commandButton styleClass="return" value="return" action="/sc/admin/product.xhtml?faces-redirect=true" />
+      <h:commandButton styleClass="add" action="#{productController.update()}" value="update product" />
     </h:form>
+    <a class="return" href="../product.xhtml">Return</a>
   </div>
 </h:body>
 </html>

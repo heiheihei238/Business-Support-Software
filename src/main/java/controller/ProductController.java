@@ -21,6 +21,8 @@ public class ProductController {
 
     private static Integer productId;
 
+    private String searchItem = "Search";
+
     private static Integer categoryId = 0;
 
     private static Integer brandId = 0;
@@ -102,7 +104,18 @@ public class ProductController {
         this.products = products;
     }
 
+    public String getSearchItem() {
+        return searchItem;
+    }
 
+    public void setSearchItem(String searchItem) {
+        this.searchItem = searchItem;
+    }
+
+    public String search() {
+        ProductController.setCurrentPage(1);
+        return "/sc/admin/product.xhtml?searchItem=" + searchItem + "&faces-redirect=true";
+    }
 
     public String update() {
         product.setProductId(productId);
@@ -139,6 +152,7 @@ public class ProductController {
         // the page jumped not from brand
         if (request.getParameter("category_id") != null) {
             brandId = 0;
+            searchItem = "Search";
             categoryId = Integer.parseInt(request.getParameter("category_id"));
             totalCount = ps.findAllByCategory(categoryId).size();
             totalPages = (int) Math.ceil(totalCount / (double) pageSize);
@@ -146,14 +160,23 @@ public class ProductController {
         // the page jumped not from category
         else if (request.getParameter("brand_id") != null) {
             categoryId = 0;
+            searchItem = "Search";
             brandId = Integer.parseInt(request.getParameter("brand_id"));
             totalCount = ps.findAllByBrand(brandId).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
+        else if (request.getParameter("searchItem") != null) {
+            categoryId = 0;
+            brandId = 0;
+            searchItem = request.getParameter("searchItem");
+            totalCount = ps.findAllByIdAndName(searchItem).size();
             totalPages = (int) Math.ceil(totalCount / (double) pageSize);
         }
         // show all products
         else {
             brandId = 0;
             categoryId = 0;
+            searchItem = "Search";
             totalCount = ps.findAll().size();
             totalPages = (int) Math.ceil(totalCount / (double) pageSize);
         }
@@ -204,12 +227,14 @@ public class ProductController {
     }
 
     // pagination
-    public List<Product> getAll(int page, int pageSize) {
-        if (categoryId == 0 && brandId == 0) return ps.findAll(page, pageSize);
+    public List<Product> getAll() {
+        if (categoryId == 0 && brandId == 0 && searchItem.equals("Search")) return ps.findAll(currentPage, pageSize);
         // the page is jumped from category.
-        else if(categoryId != 0) return ps.findAllByCategory(page, pageSize, categoryId);
+        else if(categoryId != 0) return ps.findAllByCategory(currentPage, pageSize, categoryId);
+        // the page is jumped from search.
+        else if(!searchItem.equals("Search")) return ps.findAllByIdAndName(currentPage, pageSize, searchItem);
         // the page is jumped from brand.
-        else return ps.findAllByBrand(page, pageSize, brandId);
+        else return ps.findAllByBrand(currentPage, pageSize, brandId);
     }
 
     // jump to page

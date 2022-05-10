@@ -108,6 +108,23 @@ public class Order {
     }
 
     @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", orderDate=" + orderDate +
+                ", orderStatus=" + orderStatus +
+                ", requiredDate=" + requiredDate +
+                ", shippedDate=" + shippedDate +
+                ", customerId=" + customerId +
+                ", staffId=" + staffId +
+                ", storeId=" + storeId +
+                ", customerByCustomerId=" + customerByCustomerId +
+                ", staffByStaffId=" + staffByStaffId +
+                ", storeByStoreId=" + storeByStoreId +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

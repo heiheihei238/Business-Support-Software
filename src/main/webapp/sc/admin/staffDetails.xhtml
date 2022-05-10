@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>staff</title>
+  <f:metadata>
+    <f:viewAction action="#{staffController.initDetails()}"/>
+  </f:metadata>
+  <h:outputStylesheet library="css" name="navigation.css"/>
+  <h:outputStylesheet library="css" name="displayPageGeneral.css"/>
+</h:head>
+<h:body>
+  <ui:insert>
+    <ui:include src="../../resources/template/headerTemplateForAdmin.xhtml"/>
+  </ui:insert>
+  <script type="text/javascript">
+    const staff = document.getElementById("staff");
+    staff.setAttribute('class','check');
+  </script>
+  <div class="mainteil">
+    staff id:<h:outputText value="#{staffController.staff.staffId}"/><br/>
+    first name:<h:outputText value="#{staffController.staff.firstName}"/><br/>
+    last name:<h:outputText value="#{staffController.staff.lastName}"/><br/>
+    active:<h:outputText value="#{staffController.staff.active}"/><br/>
+    phone:<h:outputText value="#{staffController.staff.phone}"/><br/>
+    email:<h:outputText value="#{staffController.staff.email}"/><br/>
+    manager id:<h:outputText value="#{staffController.staff.managerId}"/><br/>
+    store id:<h:outputText value="#{staffController.staff.storeId}"/><br/>
+  </div>
+  <div class="footer">
+    <a href="staff.xhtml">Return</a>
+  </div>
+</h:body>
+</html>

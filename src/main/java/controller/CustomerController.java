@@ -22,6 +22,8 @@ public class CustomerController {
 
     private static Integer customerId;
 
+    private String searchItem = "Search";
+
     private static int currentPage = 1;
 
     private static int totalPages;
@@ -54,7 +56,7 @@ public class CustomerController {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public static void setCurrentPage(int currentPage) {
         CustomerController.currentPage = currentPage;
     }
 
@@ -91,7 +93,18 @@ public class CustomerController {
         this.customers = customers;
     }
 
+    public String getSearchItem() {
+        return searchItem;
+    }
 
+    public void setSearchItem(String searchItem) {
+        this.searchItem = searchItem;
+    }
+
+    public String search() {
+        CustomerController.setCurrentPage(1);
+        return "/sc/admin/customer.xhtml?searchItem=" + searchItem + "&faces-redirect=true";
+    }
 
     // update customer
     public String update() {
@@ -123,8 +136,16 @@ public class CustomerController {
 
     // calculate the number of pages
     public void init() {
-        totalCount = cs.findAll().size();
-        totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if(request.getParameter("searchItem") != null) {
+            searchItem = request.getParameter("searchItem");
+            totalCount = cs.findAllByIdAndName(searchItem).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
+        else {
+            totalCount = cs.findAll().size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
     }
 
     // show details of a customer
@@ -184,9 +205,12 @@ public class CustomerController {
     }
 
     // data list for pagination
-    public List<Customer> getAll(int page, int pageSize) {
-        return cs.findAll(page, pageSize);
+    public List<Customer> getAll() {
+        if(!searchItem.equals("Search")) {
+            return cs.findAllById(currentPage, pageSize, searchItem);
+        }
+        else {
+            return cs.findAll(currentPage, pageSize);
+        }
     }
-
-
 }

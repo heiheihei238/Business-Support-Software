@@ -8,13 +8,19 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Named
 @RequestScoped
 public class StaffController {
 
     private Staff staff;
+
+    private static Integer staffId;
+
+    private String searchItem = "Search";
 
     private static int currentPage = 1;
 
@@ -44,17 +50,8 @@ public class StaffController {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public static void setCurrentPage(int currentPage) {
         StaffController.currentPage = currentPage;
-    }
-
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages() {
-        setTotalCount();
-        totalPages = (int) Math.ceil(getTotalCount() / (double) pageSize);
     }
 
     public int getPageSize() {
@@ -65,33 +62,99 @@ public class StaffController {
         this.pageSize = pageSize;
     }
 
+    public static int getTotalPages() {
+        return totalPages;
+    }
+
+    public static void setTotalPages(int totalPages) {
+        StaffController.totalPages = totalPages;
+    }
+
     public int getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount() {
-        this.totalCount = getAllStaff().size();
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 
-
-
-    // add staff
-    public String addStaff() {
-        ss.save(staff);
-        return "index";
+    public String getSearchItem() {
+        return searchItem;
     }
 
-    public List<Staff> getAllStaff() {
-        return ss.findAll();
+    public void setSearchItem(String searchItem) {
+        this.searchItem = searchItem;
+    }
+
+    public String search() {
+        StaffController.setCurrentPage(1);
+        return "/sc/admin/staff.xhtml?searchItem=" + searchItem + "&faces-redirect=true";
     }
 
     // pagination
-    public List<Staff> getAll(int page, int pageSize) {
-        return ss.findAll(page, pageSize);
+    public List<Staff> getAll() {
+        if(!searchItem.equals("Search")) {
+            return ss.findAllByIdAndName(currentPage, pageSize, searchItem);
+        }
+        else{
+            return ss.findAll(currentPage, pageSize);
+        }
+    }
+
+    // update staff
+    public String update() {
+        staff.setStaffId(staffId);
+        ss.update(this.staff);
+        return "/sc/admin/editStaff.xhtml?staff_id=" + staffId + "&faces-redirect=true";
+    }
+
+    public String save() {
+        Logger.getLogger(StaffController.class.getCanonicalName()).info("staff saved: "+ staff);
+        ss.save(staff);
+        return null;
+    }
+
+    public String remove(Staff staff){
+        try {
+            ss.remove(staff);
+            return null;
+        } catch (Exception e) {
+            FacesMessage msg = new FacesMessage("foreign Key violation");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return null;
+        }
     }
 
     public void init() {
-        setTotalPages();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("searchItem") != null) {
+            searchItem = request.getParameter("searchItem");
+            totalCount = ss.findAllByIdAndName(searchItem).size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        } else {
+            totalCount = ss.findAll().size();
+            totalPages = (int) Math.ceil(totalCount / (double) pageSize);
+        }
+    }
+
+    // show details of a staff
+    public void initDetails() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("staff_id") != null) {
+            staffId = Integer.parseInt(request.getParameter("staff_id"));
+            this.staff = ss.find(staffId);
+        }
+    }
+
+    // edit staff
+    public void initEdit() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("staff_id") != null) {
+            staffId = Integer.parseInt(request.getParameter("staff_id"));
+            this.staff = ss.find(staffId);
+        }
     }
 
     public String next() {
@@ -114,7 +177,6 @@ public class StaffController {
     }
 
     public String last() {
-        setTotalPages();
         currentPage = totalPages;
         return null;
     }
@@ -123,7 +185,7 @@ public class StaffController {
     public String go(int page) {
         if (page > 0 && page <= totalPages) {
             currentPage = page;
-            return "customer_list";
+            return "staff_list";
         } else {
             FacesMessage msg = new FacesMessage("invalid page number");
             FacesContext.getCurrentInstance().addMessage(null, msg);
