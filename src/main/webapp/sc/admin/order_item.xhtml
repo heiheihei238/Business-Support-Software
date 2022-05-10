@@ -6,6 +6,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
+    <f:metadata>
+        <f:viewAction action="#{orderItemController.init()}"/>
+    </f:metadata>
     <h:outputStylesheet library="css" name="dataTable_style.css"/>
     <h:outputStylesheet library="css" name="navigation.css"/>
     <h:outputStylesheet library="css" name="oderItem.css"/>
@@ -27,7 +30,7 @@
     </div>
     <div class="bodystyle">
         <div class="dataTable">
-            <!--分页列表展示-->
+            <!--page Break-->
             <h:dataTable
                     styleClass = "allTable"
                     headerClass = "allTableHeader"
@@ -71,8 +74,27 @@
                     </f:facet>
                     <h:outputText value="#{order_item.quantity}"/>
                 </h:column>
+                <h:column>
+                    <f:facet name="header">delete</f:facet>
+                    <h:form>
+                        <h:commandButton value="delete" onclick="if (!confirm('are you sure to delete')) return false" action="#{orderItemController.remove(order_item)}" style="border-radius: 5px"/>
+                    </h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="edit"/>
+                    </f:facet>
+                    <h:outputLink value="editOrderItem.xhtml?item_id=#{order_item.itemId}"
+                                  style="border-radius: 5px">edit order Item</h:outputLink>
+                </h:column>
             </h:dataTable>
         </div>
+    </div>
+    <div class="footer">
+        <h:form>
+          <!--  <h:commandButton styleClass="commandButton3" value="add a new order Item" action="/sc/admin/addOrderItem.xhtml"/>-->
+            <h:button value="add a new order Item" outcome="/sc/admin/addOrderItem.xhtml?order_id=#{orderItemController.orderItem.orderId}" />
+        </h:form>
     </div>
 </h:body>
 </html>

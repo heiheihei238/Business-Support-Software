@@ -98,6 +98,20 @@
                           value="order_item.xhtml?order_id=#{order.orderId}">order_item</h:outputLink>
 
           </h:column>
+          <h:column>
+            <f:facet name="header">delete</f:facet>
+            <h:form>
+              <h:commandButton rendered="#{order.orderStatus != 4}" value="delete" onclick="if (!confirm('are you sure to delete')) return false" action="#{orderController.remove(order)}"/>
+            </h:form>
+            <h:outputText rendered="#{order.orderStatus == 4}" value="non-removable" style="padding: 10px"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+              <h:outputText value="edit"/>
+            </f:facet>
+            <h:outputLink value="editOrder.xhtml?order_id=#{order.orderId}"
+                          style="border-radius: 5px">edit order</h:outputLink>
+          </h:column>
         </h:dataTable>
       </div>
     </div>
@@ -137,7 +151,7 @@
   </div>
   <div class="footer">
     <h:form>
-      <h:commandButton styleClass="commandButton3" value="add a new oder" action="/sc/admin/addOder.xhtml"/>
+      <h:commandButton styleClass="commandButton3" value="add a new order" action="/sc/admin/addOrder.xhtml"/>
     </h:form>
   </div>
 </h:body>

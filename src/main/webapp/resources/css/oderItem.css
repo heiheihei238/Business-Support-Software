@@ -17,8 +17,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../image/blockchain3a-1700x800.jpg");
-    background-size: cover;
+    background: linear-gradient(200deg,#a8edea,#fed6e3);
 }
 .dataTable{
     text-align: center;

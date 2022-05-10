@@ -10,11 +10,11 @@ import java.util.Objects;
 public class OrderItemPK implements Serializable {
     @Column(name = "item_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int itemId;
     @Column(name = "order_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
 
     public int getItemId() {

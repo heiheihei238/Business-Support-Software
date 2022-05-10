@@ -1,6 +1,7 @@
 package controller;
 
 
+import entities.Order;
 import entities.OrderItem;
 import service.OrderItemService;
 
@@ -9,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Named
@@ -19,14 +21,17 @@ public class OrderItemController {
 
     private Integer order_id;
 
+    private Integer item_id;
+
+    private static int temp;
+
+    private static int tempItemId;
+
     @Inject
     OrderItemService os;
 
     public OrderItemController() {
         orderItem = new OrderItem();
-        // read parameter from URL
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        order_id = Integer.parseInt(request.getParameter("order_id"));
     }
 
     public Integer getOrder_id() {
@@ -45,23 +50,45 @@ public class OrderItemController {
         this.orderItem = orderItem;
     }
 
-    public OrderItem update() {
-        return os.update(this.orderItem);
+    public String update() {
+        orderItem.setOrderId(temp);
+        orderItem.setItemId(tempItemId);
+        os.update(this.orderItem);
+        return "/sc/admin/order_Item.xhtml?item_id=" + tempItemId + "&faces-redirect=true";
+    }
+
+    public void init(){
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        order_id = Integer.parseInt(request.getParameter("order_id"));
+        temp = order_id;
+        orderItem.setOrderId(order_id);
+    }
+
+    public void initItemEdit(){
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        tempItemId = Integer.parseInt(request.getParameter("item_id"));
+    }
+
+    public void initItem(){
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        order_id = Integer.parseInt(request.getParameter("order_id"));
+        orderItem.setOrderId(order_id);
+        temp = order_id;
     }
 
     public String save() {
-//        Logger.getLogger(OrderItemOverview.class.getCanonicalName()).info("order saved: "+ order);
-//        boolean showMessage =  os.save(orderItem);
-//        if (!showMessage){
-//            FacesMessage msg = new FacesMessage("Product not in Stock");
-//            FacesContext.getCurrentInstance().addMessage(null, msg);
-//            return null;
-//        }
-        return null;
+        orderItem.setOrderId(temp);
+        os.save(orderItem);
+        return "/sc/admin/order_item.xhtml?order_id=" + orderItem.getOrderId() + "&faces-redirect=true";
     }
 
-    public void remove(OrderItem orderItem) {
+    public String remove(OrderItem orderItem) {
+        orderItem.setOrderId(temp);
+        System.out.println(orderItem.toString());
         os.remove(orderItem);
+        return "/sc/admin/order_item.xhtml?order_id=" + orderItem.getOrderId() + "&faces-redirect=true";
     }
 
     public OrderItem find(Integer orderItem_id) {
@@ -73,7 +100,7 @@ public class OrderItemController {
     }
 
     public List<OrderItem> getAllByOrderId(Integer order_id) {
-        return os.getOrderItemsByOrderId(order_id);
+        return os.getOrderItemsByOrderId(temp);
     }
 
 }

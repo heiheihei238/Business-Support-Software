@@ -14,7 +14,7 @@ public class OrderService {
     @PersistenceContext
     EntityManager em;
 
-    public Order find(Long order_id) {
+    public Order find(Integer order_id) {
         return em.find(Order.class,order_id);
     }
 

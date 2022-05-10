@@ -30,6 +30,9 @@ public class OrderController {
 
     private int totalCount;
 
+    private static Integer orderId;
+
+
     // Data per page
     private List<Order> orders;
 
@@ -103,8 +106,10 @@ public class OrderController {
         return "/sc/admin/oder.xhtml?searchID=" + searchID + "&faces-redirect=true";
     }
 
-    public Order update() {
-        return os.update(this.order);
+    public String update() {
+        order.setOrderId(orderId);
+        os.update(this.order);
+        return "/sc/admin/editOrder.xhtml?order_id=" + orderId + "&faces-redirect=true";
     }
 
     public String save() {
@@ -154,6 +159,17 @@ public class OrderController {
             totalPages = (int) Math.ceil(totalCount / (double) pageSize);
         } else {
             setTotalPages();
+        }
+    }
+
+    public void initEdit() {
+        // read parameter from URL
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getParameter("order_id") != null) {
+            orderId = Integer.parseInt(request.getParameter("order_id"));
+            this.order = os.find(orderId);
+            System.out.println("GET"+orderId);
+            System.out.println(this.order.toString());
         }
     }
 
